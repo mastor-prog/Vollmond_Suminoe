@@ -879,6 +879,7 @@
 
           <li class="nav-category-title" data-i18n="catStay">🏠 ご滞在中</li>
           <li><a href="#manual" class="nav-link" style="color:var(--accent-gold);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg><span data-i18n="navManualCard">📖 ハウスマニュアル</span></a></li>
+          <li><a href="#amenities" class="nav-link"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h1.5v3l1.5-1.5 1.5 1.5V5H17v6h-5V5zm-5 2h3v2H7V7zm0 4h3v2H7v-2zm0 4h10v2H7v-2z"/></svg><span data-i18n="navAmenities">備品・アメニティ</span></a></li>
           <li><a href="#wifi" class="nav-link"><svg viewBox="0 0 24 24"><path d="M12 3C6.95 3 2.55 5.4 0 9l2.25 3C4.24 9.1 7.89 7 12 7s7.76 2.1 9.75 5L24 9c-2.55-3.6-6.95-6-12-6zm0 6c-3.16 0-6.03 1.34-8.06 3.5L6.19 15.5C7.66 14 9.7 13 12 13s4.34 1 5.81 2.5l2.25-3C18.03 10.34 15.16 9 12 9zm0 6c-1.38 0-2.63.56-3.54 1.46L12 21l3.54-4.54C14.63 15.56 13.38 15 12 15z"/></svg><span data-i18n="navWifi">Wi-Fi & 設備</span></a></li>
           <li><a href="#rules" class="nav-link"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg><span data-i18n="navRules">ハウスルール</span></a></li>
           <li><a href="#nearby" class="nav-link"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span data-i18n="navNearby">周辺検索・マップ</span></a></li>
@@ -951,8 +952,12 @@
           <h4 style="color:var(--accent-gold-light); margin-bottom:4px;" data-i18n="lblAddress">📍 所在地</h4>
           <p style="font-size:0.95rem; color:#fff;">〒559-0001 大阪府大阪市住之江区粉浜3丁目7-20 フォルモント住之江 101号室</p>
           <div class="btn-group">
-            <a href="https://mastor-prog.github.io/map/" target="_blank" class="btn btn-primary">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%BD%8F%E4%B9%8B%E6%B1%9F%E5%8C%BA%E7%B2%89%E6%B5%9C3%E4%B8%81%E7%9B%AE7-20&travelmode=walking" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-gold), #b8860b); color:#000; font-weight:700;">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span data-i18n="btnNavi">🚶 現在地からの徒歩ナビ</span>
+            </a>
+            <a href="https://mastor-prog.github.io/map/" target="_blank" class="btn btn-outline">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
               <span data-i18n="btnOpenMap">マップを表示</span>
             </a>
             <a href="https://mastor-prog.github.io/access_guide/" target="_blank" class="btn btn-outline">
@@ -964,10 +969,19 @@
 
         <div style="margin-bottom:16px;">
           <h4 style="color:var(--accent-gold-light); margin-bottom:6px;" data-i18n="lblTrain">🚃 最寄り駅＆関西空港からのアクセス</h4>
-          <ul style="color:var(--text-sub); font-size:0.9rem; margin-left:20px; display:flex; flex-direction:column; gap:4px;">
-            <li><strong>南海本線「住吉大社（すみよしたいしゃ）駅」</strong>（徒歩5分 / なんば直通 約10分）</li>
-            <li><strong>南海本線「粉浜（こはま）駅」</strong>（徒歩7分 / なんば直通 約9分）</li>
+          <ul style="color:var(--text-sub); font-size:0.9rem; margin-left:20px; display:flex; flex-direction:column; gap:6px;">
+            <li data-i18n="lblTrainSumiyoshi"><strong>南海本線「住吉大社（すみよしたいしゃ）駅」西出口</strong>（徒歩5分 / なんば直通 約10分）<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 改札・地上階ともにエレベーター完備（スーツケースでも安心）</span></li>
+            <li data-i18n="lblTrainKohama"><strong>南海本線「粉浜（こはま）駅」西出口</strong>（徒歩7分 / なんば直通 約9分）<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 改札・地上階ともにエレベーター完備</span></li>
           </ul>
+
+          <!-- Luggage & Locker Notice -->
+          <div class="alert-box alert-info" style="margin-top:10px;">
+            <div class="alert-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg></div>
+            <div>
+              <strong data-i18n="luggageNoticeTitle">🧳 お荷物のお預かり・コインロッカーについて:</strong><br>
+              <span data-i18n="luggageNoticeDesc">清掃・準備のため、チェックイン前およびチェックアウト後の室内でのお荷物のお預かりは承っておりません。住吉大社駅構内、粉浜駅周辺、または主要ターミナル（南海なんば駅・関西国際空港）のコインロッカーや手荷物預かり所をご利用ください。</span>
+            </div>
+          </div>
           <div class="alert-box alert-info" style="margin-top:10px;">
             <div class="alert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
             <div>
@@ -1075,6 +1089,103 @@
           エアコンや洗濯機などの家電の使い方、お部屋の設備の操作方法、ゴミの分別ルールなど、快適なご滞在に必要なすべての情報を網羅した公式オンラインガイドです。
         </p>
         <a href="https://mastor-prog.github.io/house-guide/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background:linear-gradient(135deg, var(--accent-gold), #b8860b); color:#000; font-weight:700; display:inline-flex; align-items:center; gap:8px;" data-i18n="btnOpenManual">WEB版ハウスマニュアルを開く ↗</a>
+      </section>
+
+      <!-- Amenities & Items Quick Guide -->
+      <section id="amenities" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background:rgba(212,175,55,0.15); color:var(--accent-gold);"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h1.5v3l1.5-1.5 1.5 1.5V5H17v6h-5V5zm-5 2h3v2H7V7zm0 4h3v2H7v-2zm0 4h10v2H7v-2z"/></svg></div>
+          <div>
+            <h2 class="card-title" data-i18n="amenitiesTitle">お部屋の設備 & アメニティ早見表</h2>
+            <span style="font-size:0.8rem; color:var(--text-sub);" data-i18n="amenitiesSub">Where to Find Room Amenities</span>
+          </div>
+        </div>
+
+        <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:16px;" data-i18n="amenitiesDesc">
+          「あれはどこにある？」と思った際にご確認ください。主な備品やお部屋のアメニティの保管場所です。
+        </p>
+
+        <div class="rules-grid">
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">💇</div>
+            <div>
+              <div class="rule-title" data-i18n="amDryerTitle">ヘアドライヤー</div>
+              <div class="rule-desc" data-i18n="amDryerDesc">洗濯機上ランドリーラックの右側フック（黒いポーチ内）に掛けております。</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">🧺</div>
+            <div>
+              <div class="rule-title" data-i18n="amTowelTitle">タオル類（バス / フェイス）</div>
+              <div class="rule-desc" data-i18n="amTowelDesc">洗濯機上のランドリーラック最上段に人数分ご用意しております。</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">👕</div>
+            <div>
+              <div class="rule-title" data-i18n="amLaundryTitle">洗濯洗剤 & バスケット</div>
+              <div class="rule-desc" data-i18n="amLaundryDesc">洗濯機上ラック中段に洗濯洗剤とランドリーバスケットがございます。</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">🪥</div>
+            <div>
+              <div class="rule-title" data-i18n="amToiletriesTitle">歯ブラシ・綿棒・コットン</div>
+              <div class="rule-desc" data-i18n="amToiletriesDesc">洗面台の鏡横ポケットに設置しております。（ハンドソープは洗面台）</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">🧴</div>
+            <div>
+              <div class="rule-title" data-i18n="amBathTitle">シャンプー・ソープ類</div>
+              <div class="rule-desc" data-i18n="amBathDesc">浴室内の専用ラックにシャンプー、コンディショナー、ボディソープを常備しております。</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">🧻</div>
+            <div>
+              <div class="rule-title" data-i18n="amPaperTitle">トイレットペーパー予備</div>
+              <div class="rule-desc" data-i18n="amPaperDesc">トイレ上部棚およびペーパーホルダー下のスリム棚にストックがございます。</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">👟</div>
+            <div>
+              <div class="rule-title" data-i18n="amSlippersTitle">室内スリッパ</div>
+              <div class="rule-desc" data-i18n="amSlippersDesc">玄関の下駄箱（シューズボックス）内に人数分ご用意しております。</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">👔</div>
+            <div>
+              <div class="rule-title" data-i18n="amClosetTitle">アイロン & 消臭スプレー</div>
+              <div class="rule-desc" data-i18n="amClosetDesc">クローゼット内にファブリーズ、アイロン、アイロン台、ハンガーがございます。</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">📺</div>
+            <div>
+              <div class="rule-title" data-i18n="amRemoteTitle">各種リモコン（エアコン / TV）</div>
+              <div class="rule-desc" data-i18n="amRemoteDesc">ダイニングテーブルの上（ハウスガイド横）に並べて設置しております。</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">🍳</div>
+            <div>
+              <div class="rule-title" data-i18n="amKitchenTitle">キッチン備品 & 調理家電</div>
+              <div class="rule-desc" data-i18n="amKitchenDesc">シンク下に食器・鍋、引き出しにカトラリー、家電ラックに電子レンジ・ケトル・炊飯器がございます。</div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="wifi" class="card">
@@ -1269,6 +1380,62 @@
             </div>
             <a href="https://www.google.com/maps/search/%E3%81%9F%E3%81%93%E7%84%BC%E3%81%8D+%E7%B2%89%E6%B5%9C/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchTako">「たこ焼き店」の地図を見る ↗</a>
           </div>
+
+          <div class="place-card">
+            <div>
+              <div class="place-header">
+                <span class="place-emoji">⛩️</span>
+                <div>
+                  <div class="place-name" data-i18n="placeShrineTitle">パワースポット「住吉大社」</div>
+                  <span class="place-tag" data-i18n="placeShrineTag">国宝・神社・太鼓橋</span>
+                </div>
+              </div>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeShrineDesc">全国の住吉神社の総本社。名物の急勾配「反橋（太鼓橋）」での写真撮影や、末社・大歳社で願いを占う「おもかる石」が人気です。（開門 6:00〜17:00 ／ 徒歩約5分）</p>
+            </div>
+            <a href="https://www.google.com/maps/search/%E4%BD%8F%E5%90%89%E5%A4%A7%E7%A4%BE/@34.6133,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchShrine">「住吉大社」の地図を見る ↗</a>
+          </div>
+
+          <div class="place-card">
+            <div>
+              <div class="place-header">
+                <span class="place-emoji">☕</span>
+                <div>
+                  <div class="place-name" data-i18n="placeCafeTitle">レトロ純喫茶「サンローズ」</div>
+                  <span class="place-tag" data-i18n="placeCafeTag">喫茶・モーニング・サイフォン珈琲</span>
+                </div>
+              </div>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeCafeDesc">昭和50年から続く粉浜商店街の老舗純喫茶。朝8:00からサイフォン式珈琲と美味しいモーニングセットが楽しめます。（営業時間 8:00〜16:00 ／ 木曜定休 ／ 徒歩約4分）</p>
+            </div>
+            <a href="https://www.google.com/maps/search/%E5%96%AB%E8%8C%B6%E3%82%B5%E3%83%B3%E3%83%AD%E3%83%BC%E3%82%BA+%E7%B2%89%E6%B5%9C/@34.614,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchCafe">「喫茶サンローズ」の地図を見る ↗</a>
+          </div>
+
+          <div class="place-card">
+            <div>
+              <div class="place-header">
+                <span class="place-emoji">♨️</span>
+                <div>
+                  <div class="place-name" data-i18n="placeOnsenTitle">天然温泉・サウナ「日之出温泉」</div>
+                  <span class="place-tag" data-i18n="placeOnsenTag">銭湯・露天風呂・サウナ</span>
+                </div>
+              </div>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeOnsenDesc">粉浜商店街近くにある地元で親しまれるレトロ銭湯。露天風呂やサウナを備え、旅の疲れを大きなお風呂でゆったり癒せます。（営業時間 15:00〜22:00 ／ 月曜定休 ／ 徒歩約5分）</p>
+            </div>
+            <a href="https://www.google.com/maps/search/%E6%97%A5%E4%B9%8B%E5%87%BA%E6%B8%A9%E6%B3%89+%E7%B2%89%E6%B5%9C/@34.616,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchOnsen">「日之出温泉」の地図を見る ↗</a>
+          </div>
+
+          <div class="place-card">
+            <div>
+              <div class="place-header">
+                <span class="place-emoji">☔</span>
+                <div>
+                  <div class="place-name" data-i18n="placeArcadeTitle">屋根付き「粉浜商店街」</div>
+                  <span class="place-tag" data-i18n="placeArcadeTag">商店街・雨の日安心・下町散策</span>
+                </div>
+              </div>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeArcadeDesc">全長約350mの屋根付きアーケード商店街。雨の日でも濡れずに買い物や食べ歩き、お惣菜めぐりが楽しめます。（徒歩約2分）</p>
+            </div>
+            <a href="https://www.google.com/maps/search/%E7%B2%89%E6%B5%9C%E5%95%86%E5%BA%97%E8%A1%97/@34.614,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchArcade">「粉浜商店街」の地図を見る ↗</a>
+          </div>
         </div>
       </section>
 
@@ -1348,6 +1515,13 @@
           </li>
         </ul>
 
+        <!-- Thank you card -->
+        <div style="margin-top:20px; background:linear-gradient(135deg, rgba(212,175,55,0.12), rgba(24,32,44,0.95)); border:1px solid var(--accent-gold); border-radius:var(--radius-md); padding:16px 20px; text-align:center;">
+          <div style="font-size:1.4rem; margin-bottom:6px;">🌸</div>
+          <h4 style="color:#ffffff; font-size:1.1rem; margin-bottom:6px;" data-i18n="thanksTitle">ご滞在ありがとうございました！ / Thank you for staying!</h4>
+          <p style="font-size:0.88rem; color:var(--text-sub); line-height:1.6;" data-i18n="thanksDesc">フォルモント住之江 101 をご利用いただき誠にありがとうございました。<br>どうぞお気をつけて次の目的地へお向かいください！また大阪へお越しの際は、ぜひお立ち寄りください。</p>
+        </div>
+
         <div style="margin-top:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.1);">
           <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:10px;" data-i18n="checkoutManualNote">
             ※チェックアウト手順や写真付き詳細ガイドは、ハウスマニュアルをご参照ください。
@@ -1389,9 +1563,15 @@
               <span data-i18n="faq2Q">Q. 鍵が開かない・キーボックスの使い方がわからない</span>
               <span class="faq-toggle">▼</span>
             </div>
-            <div class="faq-body" data-i18n="faq2A">メッセージでお送りした暗証番号を中央のラインに合わせ、そのまま手前にフタを開けてください（解錠レバーはありません）。
-              暗証番号【5758】をダイヤル中央に合わせ、レバーを引き下げて開けてください。詳しい写真付き説明は「<a href="https://mastor-prog.github.io/checkin_guide/" target="_blank">チェックインガイド</a>」をご確認ください。
+            <div class="faq-body" data-i18n="faq2A">メッセージでお送りした暗証番号をダイヤル中央のラインに合わせ、手前にフタを開けて鍵を取り出してください。<br>詳しい写真付き説明は「<a href="https://mastor-prog.github.io/checkin_guide/" target="_blank" style="color:var(--accent-gold); text-decoration:underline;">チェックインガイド</a>」をご確認ください。</div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-header">
+              <span data-i18n="faqLuggageQ">Q. チェックイン前やチェックアウト後に荷物を預けられますか？</span>
+              <span class="faq-toggle">▼</span>
             </div>
+            <div class="faq-body" data-i18n="faqLuggageA">申し訳ございませんが、清掃作業のため室内でのお荷物のお預かりは承っておりません。住吉大社駅構内やなんば駅・関西国際空港のコインロッカー・手荷物預かり所をご利用ください。</div>
           </div>
 
           <div class="faq-item" onclick="toggleFaq(this)">
@@ -1561,7 +1741,7 @@
     "faq1Q": "Q. 滞在中のゴミが溜まった場合はどうすればいいですか？",
     "faq1A": "袋にまとめて【建物前の専用ゴミ収集箱】にお出しください。（※日曜日の回収はございませんので、日曜日の排出はお控えください。）<br>※ゴミの分別ルールや詳細については、<a href=\"https://mastor-prog.github.io/house-guide/#garbage\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--accent-gold); text-decoration:underline; font-weight:600;\">ハウスマニュアル「5. Garbage / ゴミの分別」 ↗</a> をご参照ください。",
     "faq2Q": "Q. 鍵が開かない・キーボックスの使い方がわからない",
-    "faq2A": "メッセージでお送りした暗証番号を中央のラインに合わせ、そのまま手前にフタを開けてください（解錠レバーはありません）。",
+    "faq2A": "メッセージでお送りした暗証番号をダイヤル中央のラインに合わせ、手前にフタを開けて鍵を取り出してください。<br>詳しい写真付き説明は「<a href=\"https://mastor-prog.github.io/checkin_guide/\" target=\"_blank\" style=\"color:var(--accent-gold); text-decoration:underline;\">チェックインガイド</a>」をご確認ください。",
     "faq3Q": "Q. 夜遅く（20:00以降）に到着する場合は？",
     "faq3A": "24時間セルフチェックインに対応しておりますので、遅い時間のご到着でも問題ございません。住宅街のため、近隣住民の皆様の睡眠の妨げにならないよう、屋外（建物周辺や道路）での会話はお控えいただき、スーツケースを持ち上げて運ぶなど静かな移動をお願いいたします。",
     "sosTitle": "🆘 緊急連絡先 & 多言語ヘルプデスク",
@@ -1585,7 +1765,60 @@
     "manualDesc": "エアコンや洗濯機などの家電の使い方、お部屋の設備の操作方法、ゴミの分別ルールなど、快適なご滞在に必要なすべての情報を網羅した公式オンラインガイドです。",
     "btnOpenManual": "WEB版ハウスマニュアルを開く ↗",
     "checkoutManualNote": "※チェックアウト手順や写真付き詳細ガイドは、ハウスマニュアルをご参照ください。",
-    "btnCheckoutManual": "📖 ハウスマニュアル「9. Check-out / チェックアウト」を見る ↗"
+    "btnCheckoutManual": "📖 ハウスマニュアル「9. Check-out / チェックアウト」を見る ↗",
+    "btnNavi": "🚶 現在地からの徒歩ナビ",
+    "lblTrainSumiyoshi": "<strong>南海本線「住吉大社（すみよしたいしゃ）駅」西出口</strong>（徒歩5分 / なんば直通 約10分）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 改札・地上階ともにエレベーター完備（スーツケースでも安心）</span>",
+    "lblTrainKohama": "<strong>南海本線「粉浜（こはま）駅」西出口</strong>（徒歩7分 / なんば直通 約9分）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 改札・地上階ともにエレベーター完備</span>",
+    "luggageNoticeTitle": "🧳 お荷物のお預かり・コインロッカーについて:",
+    "luggageNoticeDesc": "清掃・準備のため、チェックイン前およびチェックアウト後の室内でのお荷物のお預かりは承っておりません。住吉大社駅構内、粉浜駅周辺、または主要ターミナル（南海なんば駅・関西国際空港）のコインロッカーや手荷物預かり所をご利用ください。",
+    "thanksTitle": "ご滞在ありがとうございました！ / Thank you for staying!",
+    "thanksDesc": "フォルモント住之江 101 をご利用いただき誠にありがとうございました。<br>どうぞお気をつけて次の目的地へお向かいください！また大阪へお越しの際は、ぜひお立ち寄りください。",
+    "faqLuggageQ": "Q. チェックイン前やチェックアウト後に荷物を預けられますか？",
+    "faqLuggageA": "申し訳ございませんが、清掃作業のため室内でのお荷物のお預かりは承っておりません。住吉大社駅構内やなんば駅・関西国際空港のコインロッカー・手荷物預かり所をご利用ください。",
+    "navAmenities": "備品・アメニティ",
+    "amenitiesTitle": "お部屋の設備 & アメニティ早見表",
+    "amenitiesSub": "Where to Find Room Amenities",
+    "amenitiesDesc": "「あれはどこにある？」と思った際にご確認ください。お部屋の主な備品やアメニティの配置場所です。",
+    "amDryerTitle": "ヘアドライヤー",
+    "amDryerDesc": "洗濯機上ランドリーラックの右側フック（黒いポーチ内）に掛けております。",
+    "amBathTitle": "シャンプー・ソープ類",
+    "amBathDesc": "浴室内の専用ラックにシャンプー、コンディショナー、ボディソープを常備しております。",
+    "amTowelTitle": "タオル類（バス / フェイス）",
+    "amTowelDesc": "洗濯機上のランドリーラック最上段に人数分ご用意しております。",
+    "amPaperTitle": "トイレットペーパー予備",
+    "amPaperDesc": "トイレ上部棚およびペーパーホルダー下のスリム棚にストックがございます。",
+    "amLaundryTitle": "洗濯洗剤 & バスケット",
+    "amLaundryDesc": "洗濯機上ラック中段に洗濯洗剤とランドリーバスケットがございます。",
+    "amRemoteTitle": "各種リモコン（エアコン / TV）",
+    "amRemoteDesc": "ダイニングテーブルの上（ハウスガイド横）に並べて設置しております。",
+    "amPowerTitle": "電源・USB充電",
+    "amPowerDesc": "ベッドサイドおよびテーブル付近に電源コンセントがございます。",
+    "amUmbrellaTitle": "雨傘（無料貸出）",
+    "amUmbrellaDesc": "玄関スペースに雨天用の傘をご用意しております。ご自由にご利用ください。",
+    "placeShrineTitle": "パワースポット「住吉大社」",
+    "placeShrineTag": "国宝・神社・太鼓橋",
+    "placeShrineDesc": "全国の住吉神社の総本社。名物の急勾配「反橋（太鼓橋）」での写真撮影や、末社・大歳社で願いを占う「おもかる石」が人気です。（開門 6:00〜17:00 ／ 徒歩約5分）",
+    "btnSearchShrine": "「住吉大社」の地図を見る ↗",
+    "placeCafeTitle": "レトロ純喫茶「サンローズ」",
+    "placeCafeTag": "喫茶・モーニング・サイフォン珈琲",
+    "placeCafeDesc": "昭和50年から続く粉浜商店街の老舗純喫茶。朝8:00からサイフォン式珈琲と美味しいモーニングセットが楽しめます。（営業時間 8:00〜16:00 ／ 木曜定休 ／ 徒歩約4分）",
+    "btnSearchCafe": "「喫茶サンローズ」の地図を見る ↗",
+    "placeOnsenTitle": "天然温泉・サウナ「日之出温泉」",
+    "placeOnsenTag": "銭湯・露天風呂・サウナ",
+    "placeOnsenDesc": "粉浜商店街近くにある地元で親しまれるレトロ銭湯。露天風呂やサウナを備え、旅の疲れを大きなお風呂でゆったり癒せます。（営業時間 15:00〜22:00 ／ 月曜定休 ／ 徒歩約5分）",
+    "btnSearchOnsen": "「日之出温泉」の地図を見る ↗",
+    "placeArcadeTitle": "屋根付き「粉浜商店街」",
+    "placeArcadeTag": "商店街・雨の日安心・下町散策",
+    "placeArcadeDesc": "全長約350mの屋根付きアーケード商店街。雨の日でも濡れずに買い物や食べ歩き、お惣菜めぐりが楽しめます。（徒歩約2分）",
+    "btnSearchArcade": "「粉浜商店街」の地図を見る ↗",
+    "amToiletriesTitle": "歯ブラシ・綿棒・コットン",
+    "amToiletriesDesc": "洗面台の鏡横ポケットに設置しております。（ハンドソープは洗面台）",
+    "amSlippersTitle": "室内スリッパ",
+    "amSlippersDesc": "玄関の下駄箱（シューズボックス）内に人数分ご用意しております。",
+    "amClosetTitle": "アイロン & 消臭スプレー",
+    "amClosetDesc": "クローゼット内にファブリーズ、アイロン、アイロン台、ハンガーがございます。",
+    "amKitchenTitle": "キッチン備品 & 調理家電",
+    "amKitchenDesc": "シンク下に食器・鍋、引き出しにカトラリー、家電ラックに電子レンジ・ケトル・炊飯器がございます。"
   },
   "en": {
     "navHome": "Home",
@@ -1716,7 +1949,7 @@
     "faq1Q": "Q. How to dispose trash during long stay?",
     "faq1A": "Put bagged trash into the dedicated box in front of the building (Except Sundays).<br>For sorting rules and details, please refer to <a href=\"https://mastor-prog.github.io/house-guide/#garbage\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--accent-gold); text-decoration:underline; font-weight:600;\">\"5. Garbage\" in the House Manual ↗</a>.",
     "faq2Q": "Q. Key lockbox doesn't open",
-    "faq2A": "Align the passcode sent to you in message to the center and open the cover directly.",
+    "faq2A": "Align the passcode sent in your check-in message with the center line on the lockbox, and pull the front cover down toward you to retrieve the key.<br>For step-by-step photos, please check the <a href=\"https://mastor-prog.github.io/checkin_guide/\" target=\"_blank\" style=\"color:var(--accent-gold); text-decoration:underline;\">Check-in Photo Guide</a>.",
     "faq3Q": "Q. Late arrival after 20:00?",
     "faq3A": "Self check-in is available 24 hours so late arrival is not a problem. As this is a residential area, please refrain from talking outside (around the building or street) so as not to disturb neighbors' sleep, and handle your luggage quietly.",
     "sosTitle": "🆘 Emergency Contacts",
@@ -1740,7 +1973,60 @@
     "manualDesc": "Official online guide covering appliance instructions (AC, washer), room facility usage, and trash sorting rules.",
     "btnOpenManual": "Open House Manual ↗",
     "checkoutManualNote": "* For detailed photo guides on check-out procedures, please check the House Manual.",
-    "btnCheckoutManual": "📖 View \"9. Check-out\" in House Manual ↗"
+    "btnCheckoutManual": "📖 View \"9. Check-out\" in House Manual ↗",
+    "btnNavi": "🚶 Walking Navigation",
+    "lblTrainSumiyoshi": "<strong>Nankai Main Line \"Sumiyoshi-taisha Station\" West Exit</strong> (5 min walk / ~10 min direct to Namba)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevators available at platforms and exits (Luggage-friendly)</span>",
+    "lblTrainKohama": "<strong>Nankai Main Line \"Kohama Station\" West Exit</strong> (7 min walk / ~9 min direct to Namba)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevators available at platforms and exits</span>",
+    "luggageNoticeTitle": "🧳 Luggage Storage & Lockers:",
+    "luggageNoticeDesc": "Due to room cleaning and turnaround, luggage storage inside the room before check-in or after check-out is not available. Please use coin lockers or luggage storage services at Sumiyoshi-taisha Station, Nankai Namba Station, or Kansai Airport (KIX).",
+    "thanksTitle": "Thank You for Staying With Us!",
+    "thanksDesc": "Thank you very much for choosing Vollmond Suminoe 101.<br>Have a safe and wonderful journey to your next destination! We look forward to welcoming you back to Osaka anytime.",
+    "faqLuggageQ": "Q. Can I store luggage before check-in or after check-out?",
+    "faqLuggageA": "Unfortunately, luggage storage inside the apartment is not available due to cleaning operations. Please use coin lockers at Sumiyoshi-taisha Station, Nankai Namba Station, or Kansai Airport.",
+    "navAmenities": "Amenities & Items",
+    "amenitiesTitle": "Room Amenities & Equipment Guide",
+    "amenitiesSub": "Where to Find Room Amenities",
+    "amenitiesDesc": "Wondering where something is? Here is a quick guide to common items and amenities in Room 101.",
+    "amDryerTitle": "Hair Dryer",
+    "amDryerDesc": "Hanging in a black pouch on the right side of the laundry rack above the washing machine.",
+    "amBathTitle": "Shampoo & Body Soap",
+    "amBathDesc": "Shampoo, conditioner, and body soap are provided inside the bathroom.",
+    "amTowelTitle": "Bath & Face Towels",
+    "amTowelDesc": "Neatly placed on the top shelf of the laundry rack above the washing machine.",
+    "amPaperTitle": "Extra Toilet Paper",
+    "amPaperDesc": "Spare rolls are stored on the upper shelf and slim shelf below the holder in the toilet.",
+    "amLaundryTitle": "Laundry Detergent & Basket",
+    "amLaundryDesc": "Detergent and laundry basket are located on the middle shelf of the laundry rack.",
+    "amRemoteTitle": "Remotes (AC & TV)",
+    "amRemoteDesc": "Arranged neatly on the dining table next to the house guide.",
+    "amPowerTitle": "Power Outlets & Charging",
+    "amPowerDesc": "Power sockets are conveniently located beside the bed and desks.",
+    "amUmbrellaTitle": "Umbrellas (Free to use)",
+    "amUmbrellaDesc": "Available at the entrance area for rainy days. Feel free to borrow them.",
+    "placeShrineTitle": "Sumiyoshi-taisha Grand Shrine",
+    "placeShrineTag": "National Treasure / Historic Shrine",
+    "placeShrineDesc": "Headquarters of all Sumiyoshi shrines in Japan. Famous for the iconic curved Sorihashi (Taiko) Bridge and the fortune-telling Omokaru Stone. (Open 6:00-17:00 / ~5 min walk)",
+    "btnSearchShrine": "View Sumiyoshi Shrine on Map ↗",
+    "placeCafeTitle": "Retro Kissaten Cafe 'Sunrose'",
+    "placeCafeTag": "Japanese Morning Breakfast & Syphon Coffee",
+    "placeCafeDesc": "Classic Showa-style coffee shop in Kohama Shopping Street. Enjoy siphon-brewed coffee and traditional morning toast sets from 8:00 AM. (Hours: 8:00-16:00 / Closed Thursdays / ~4 min walk)",
+    "btnSearchCafe": "View 'Sunrose' on Map ↗",
+    "placeOnsenTitle": "Sento Public Bath 'Hinode Onsen'",
+    "placeOnsenTag": "Japanese Bath / Sauna / Outdoor Bath",
+    "placeOnsenDesc": "Beloved local retro sento bathhouse featuring open-air baths and sauna. Perfect for relaxing after a long day of sightseeing. (Hours: 15:00-22:00 / Closed Mondays / ~5 min walk)",
+    "btnSearchOnsen": "View Hinode Onsen on Map ↗",
+    "placeArcadeTitle": "Covered 'Kohama Shopping Arcade'",
+    "placeArcadeTag": "Shopping Street / Rain-friendly / Local Food",
+    "placeArcadeDesc": "A covered 350-meter traditional shopping arcade. Great for strolling, shopping, and enjoying local street food without getting wet on rainy days. (~2 min walk)",
+    "btnSearchArcade": "View Kohama Arcade on Map ↗",
+    "amToiletriesTitle": "Toothbrushes & Cotton Swabs",
+    "amToiletriesDesc": "Placed in the side pockets beside the bathroom vanity mirror.",
+    "amSlippersTitle": "Room Slippers",
+    "amSlippersDesc": "Stored inside the shoe cabinet (getabako) at the entrance.",
+    "amClosetTitle": "Iron & Fabric Freshener",
+    "amClosetDesc": "Febreze spray, iron, ironing board, and clothes hangers are inside the closet.",
+    "amKitchenTitle": "Kitchenware & Appliances",
+    "amKitchenDesc": "Dishes and cookware under the sink, cutlery in the drawer, and microwave/kettle on the appliance rack."
   },
   "zh": {
     "navHome": "首页·概要",
@@ -1871,7 +2157,7 @@
     "faq1Q": "Q. 连续入住期间垃圾满了怎么办？",
     "faq1A": "装袋后放至【楼前的专属垃圾箱】（周日不回收，请勿在周日丢弃）。<br>详细分类规则与说明请参考 <a href=\"https://mastor-prog.github.io/house-guide/#garbage\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--accent-gold); text-decoration:underline; font-weight:600;\">房屋手册“5. Garbage / 垃圾分类” ↗</a>。",
     "faq2Q": "Q. 钥匙盒无法打开怎么办？",
-    "faq2A": "请将消息中收到的密码对准中间，直接拉开盒盖即可。",
+    "faq2A": "请将入住消息中收到的密码对准密码盒正中央的基准线，然后向前拉开盖子取出钥匙。<br>详细图文说明请查看“<a href=\"https://mastor-prog.github.io/checkin_guide/\" target=\"_blank\" style=\"color:var(--accent-gold); text-decoration:underline;\">入住指引（带照片）</a>”。",
     "faq3Q": "Q. 20:00以后晚到怎么办？",
     "faq3A": "支持24小时自助入住，深夜到达也没问题。由于位于住宅区，为避免影响邻居休息，请勿在户外（大楼周边及道路）交谈，并请轻拿轻放行李。",
     "sosTitle": "🆘 紧急联系方式与多语言求助",
@@ -1895,7 +2181,60 @@
     "manualDesc": "涵盖空调、洗衣机等家电使用说明、房间设施操作以及垃圾分类规则的官方在线指南。",
     "btnOpenManual": "打开房屋手册 ↗",
     "checkoutManualNote": "※退房流程的图文详细说明，请参考房屋手册。",
-    "btnCheckoutManual": "📖 查看房屋手册“9. Check-out / 退房” ↗"
+    "btnCheckoutManual": "📖 查看房屋手册“9. Check-out / 退房” ↗",
+    "btnNavi": "🚶 步行导航",
+    "lblTrainSumiyoshi": "<strong>南海本线“住吉大社站”西出口</strong>（步行5分钟 / 直达难波约10分钟）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 站台及出站口均配有电梯（方便携带大件行李）</span>",
+    "lblTrainKohama": "<strong>南海本线“粉滨站”西出口</strong>（步行7分钟 / 直达难波约9分钟）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 配有电梯</span>",
+    "luggageNoticeTitle": "🧳 行李寄存与储物柜指南:",
+    "luggageNoticeDesc": "由于需要进行保洁和消毒，入住前及退房后无法在房间内寄存行李。请使用住吉大社站内、粉滨站周边或主要交通枢纽（南海难波站、关西国际机场）的投币式储物柜或行李寄存服务。",
+    "thanksTitle": "感谢您的入住！ / Thank you for staying!",
+    "thanksDesc": "非常感谢您选择入住 Vollmond Suminoe 101。<br>祝您下一段旅途平安愉快！期待下次在大阪与您再次相遇。",
+    "faqLuggageQ": "Q. 可以在入住前或退房后在房间存放行李吗？",
+    "faqLuggageA": "非常抱歉，由于客房保洁准备工作，房间内无法寄存行李。请利用住吉大社站、难波站或关西机场的投币储物柜及行李寄存服务。",
+    "navAmenities": "客房设施与用品",
+    "amenitiesTitle": "客房用品与设施速查表",
+    "amenitiesSub": "Where to Find Room Amenities",
+    "amenitiesDesc": "想找东西时请看这里。以下是101号房主要日常用品和设施的放置位置。",
+    "amDryerTitle": "吹风机",
+    "amDryerDesc": "挂在洗衣机上方置物架右侧挂钩的黑色专用收纳袋中。",
+    "amBathTitle": "洗浴洗发用品",
+    "amBathDesc": "浴室内部专放置物架上常备有洗发水、护发素和沐浴露。",
+    "amTowelTitle": "浴巾与毛巾",
+    "amTowelDesc": "整齐摆放在洗衣机上方置物架的最上层，已备齐入住人数份量。",
+    "amPaperTitle": "备用卫生纸",
+    "amPaperDesc": "存放于卫生间上方置物架及纸巾架下方的窄柜内。",
+    "amLaundryTitle": "洗衣液与洗衣篮",
+    "amLaundryDesc": "洗衣液及衣物篮放置在洗衣机上方置物架的中层。",
+    "amRemoteTitle": "各类遥控器（空调 / 电视）",
+    "amRemoteDesc": "整齐放置在餐桌上（房屋指南手册旁）。",
+    "amPowerTitle": "电源与充电",
+    "amPowerDesc": "床头及书桌旁均设有便利的电源插座。",
+    "amUmbrellaTitle": "雨伞（免费借用）",
+    "amUmbrellaDesc": "玄关处备有雨伞供您雨天外出时免费借用。",
+    "placeShrineTitle": "祈福胜地“住吉大社”",
+    "placeShrineTag": "国宝级神社·太鼓桥·能量景点",
+    "placeShrineDesc": "全日本住吉神社的全国总本社。著名的拱形太鼓桥是热门打卡拍照点，末社大岁社的“重轻石”（占卜心愿）非常受旅客喜爱。（开放时间 6:00〜17:00 / 步行约5分钟）",
+    "btnSearchShrine": "查看“住吉大社”地图 ↗",
+    "placeCafeTitle": "昭和复古咖啡厅“Sunrose”",
+    "placeCafeTag": "纯吃茶·日式早餐·虹吸咖啡",
+    "placeCafeDesc": "创业于昭和50年的粉滨商业街老牌纯咖啡馆。早晨8:00起供应虹吸咖啡与日式吐司早间套餐。（营业时间 8:00〜16:00 / 周四公休 / 步行约4分钟）",
+    "btnSearchCafe": "查看“Sunrose”地图 ↗",
+    "placeOnsenTitle": "天然温泉·桑拿“日之出温泉”",
+    "placeOnsenTag": "钱汤·露天浴池·桑拿",
+    "placeOnsenDesc": "深受当地人喜爱的老字号传统钱汤浴场，配有露天温泉与桑拿。在宽敞的大浴缸中泡汤，舒缓旅行与长途步行的疲劳。（营业时间 15:00〜22:00 / 周一公休 / 步行约5分钟）",
+    "btnSearchOnsen": "查看“日之出温泉”地图 ↗",
+    "placeArcadeTitle": "全天候拱廊“粉滨商业街”",
+    "placeArcadeTag": "下町商业街·雨天无忧·地道美食",
+    "placeArcadeDesc": "全长约350米的带顶棚商业街。即使遇到下雨天也无需撑伞，即可舒适漫步、品尝大阪地道熟食和小吃。（步行约2分钟）",
+    "btnSearchArcade": "查看“粉滨商业街”地图 ↗",
+    "amToiletriesTitle": "牙刷与棉签等备品",
+    "amToiletriesDesc": "放置在洗手台镜子两侧的收纳小格内（洗手液位于洗手台面上）。",
+    "amSlippersTitle": "室内拖鞋",
+    "amSlippersDesc": "整齐摆放在玄关鞋柜（下驮箱）内。",
+    "amClosetTitle": "熨斗与衣物消臭喷雾",
+    "amClosetDesc": "衣柜内备有除菌消臭喷雾（风倍清）、熨斗、烫衣板及衣架。",
+    "amKitchenTitle": "厨房用具与家电",
+    "amKitchenDesc": "水槽下方备有碗碟锅具，抽屉内备有餐具，微波炉、电水壶及电饭煲位于家电架上。"
   },
   "ko": {
     "navHome": "홈·개요",
@@ -2026,7 +2365,7 @@
     "faq1Q": "Q. 연박 중 쓰레기가 쌓이면 어떻게 하나요?",
     "faq1A": "봉투에 모아 【건물 앞 전용 쓰레기 수거함】에 버려주세요 (일요일 제외).<br>자세한 분리수거 방법은 <a href=\"https://mastor-prog.github.io/house-guide/#garbage\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--accent-gold); text-decoration:underline; font-weight:600;\">하우스 매뉴얼 \"5. Garbage / 쓰레기 분리수거\" ↗</a> 를 참고해 주세요.",
     "faq2Q": "Q. 키박스가 열리지 않습니다",
-    "faq2A": "메시지로 받으신 비밀번호를 중앙에 맞추고 커버를 열어주세요.",
+    "faq2A": "메시지로 안내받으신 비밀번호를 다이얼 중앙 기준선에 맞춘 후, 커버를 앞으로 당겨 열어 열쇠를 꺼내주세요.<br>자세한 사진 설명은 '<a href=\"https://mastor-prog.github.io/checkin_guide/\" target=\"_blank\" style=\"color:var(--accent-gold); text-decoration:underline;\">체크인 사진 가이드</a>'를 확인해 주세요.",
     "faq3Q": "Q. 20:00 이후 늦은 도착 시?",
     "faq3A": "24시간 셀프 체크인이 가능하므로 늦은 시간 도착하셔도 괜찮습니다. 주택가이므로 이웃 주민의 수면에 방해가 되지 않도록 야외(건물 주변 및 도로)에서의 대화는 자제해 주시고, 수하물을 들어서 이동하는 등 조용히 이동해 주시기 바랍니다.",
     "sosTitle": "🆘 긴급 연락처 & 다국어 헬프데스크",
@@ -2050,7 +2389,60 @@
     "manualDesc": "에어컨, 세탁기 등 가전제품 사용법, 시설 이용 안내, 쓰레기 분리수거 수칙 등 쾌적한 체류를 위한 공식 온라인 가이드입니다.",
     "btnOpenManual": "하우스 매뉴얼 열기 ↗",
     "checkoutManualNote": "※사진이 포함된 자세한 체크아웃 절차는 하우스 매뉴얼을 참고해 주세요.",
-    "btnCheckoutManual": "📖 하우스 매뉴얼 \"9. Check-out / 체크아웃\" 보기 ↗"
+    "btnCheckoutManual": "📖 하우스 매뉴얼 \"9. Check-out / 체크아웃\" 보기 ↗",
+    "btnNavi": "🚶 도보 길찾기 내비",
+    "lblTrainSumiyoshi": "<strong>난카이 본선 '스미요시타이샤역' 서쪽 출구</strong> (도보 5분 / 난바 직통 약 10분)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 승강장 및 개찰구 엘리베이터 완비 (캐리어 이동 편리)</span>",
+    "lblTrainKohama": "<strong>난카이 본선 '고하마역' 서쪽 출구</strong> (도보 7분 / 난바 직통 약 9분)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 개찰구 엘리베이터 완비</span>",
+    "luggageNoticeTitle": "🧳 짐 보관 및 코인로커 안내:",
+    "luggageNoticeDesc": "객실 청소 및 준비 관계로 체크인 전 및 체크아웃 후 객실 내 짐 보관은 불가합니다. 스미요시타이샤역 구내, 난카이 난바역, 간사이 국제공항(KIX) 등의 코인로커 또는 수하물 보관소를 이용해 주시기 바랍니다.",
+    "thanksTitle": "머물러 주셔서 진심으로 감사드립니다! / Thank you!",
+    "thanksDesc": "포르몬트 스미노에 101을 이용해 주셔서 감사합니다.<br>다음 목적지까지 안전하고 즐거운 여행 되시기를 바랍니다! 오사카에 오실 때 언제든 다시 찾아주세요.",
+    "faqLuggageQ": "Q. 체크인 전이나 체크아웃 후에 짐을 보관할 수 있나요?",
+    "faqLuggageA": "죄송하지만 청소 작업 관계로 객실 내 짐 보관은 지원되지 않습니다. 스미요시타이샤역 또는 난바역, 간사이공항의 코인로커를 이용해 주시기 바랍니다.",
+    "navAmenities": "비품·어메니티",
+    "amenitiesTitle": "객실 비품 및 어메니티 위치 안내",
+    "amenitiesSub": "Where to Find Room Amenities",
+    "amenitiesDesc": "물건을 찾으실 때 확인해 주세요. 101호실의 주요 비품 및 어메니티 보관 위치입니다.",
+    "amDryerTitle": "헤어드라이어",
+    "amDryerDesc": "세탁기 위 선반 오른쪽 걸이에 걸린 검은색 전용 파우치 안에 있습니다.",
+    "amBathTitle": "샴푸·바디워시",
+    "amBathDesc": "욕실 내 전용 거치대에 샴푸, 린스, 바디워시가 상시 비치되어 있습니다.",
+    "amTowelTitle": "타월류 (바스 / 페이스)",
+    "amTowelDesc": "세탁기 위 랜드리 선반 최상단에 인원수에 맞게 준비되어 있습니다.",
+    "amPaperTitle": "여분 화장지",
+    "amPaperDesc": "화장실 상단 선반 및 페이퍼 홀더 아래 슬림 선반에 보관되어 있습니다.",
+    "amLaundryTitle": "세탁세제 & 빨래 바구니",
+    "amLaundryDesc": "세탁기 위 선반 중간 칸에 세탁세제와 바구니가 구비되어 있습니다.",
+    "amRemoteTitle": "각종 리모컨 (에어컨 / TV)",
+    "amRemoteDesc": "식탁 테이블 위(하우스 가이드 옆)에 가지런히 놓여 있습니다.",
+    "amPowerTitle": "콘센트 및 충전",
+    "amPowerDesc": "침대 옆과 테이블 주변에 편리하게 콘센트가 마련되어 있습니다.",
+    "amUmbrellaTitle": "우산 (무료 대여)",
+    "amUmbrellaDesc": "현관 공간에 비치되어 있으니 비 오는 날 자유롭게 이용하세요.",
+    "placeShrineTitle": "오사카 대표 신사 '스미요시타이샤'",
+    "placeShrineTag": "국보·소리하시(태고교)·파워스팟",
+    "placeShrineDesc": "일본 전국 스미요시 신사의 총본사. 붉은 아치형 '태고교' 사진 촬영과 소원을 점치는 '오모카루이시' 바위 체험이 인기입니다. (개문 6:00~17:00 / 도보 약 5분)",
+    "btnSearchShrine": "'스미요시타이샤' 지도 보기 ↗",
+    "placeCafeTitle": "레트로 다방 '산로즈 (Sunrose)'",
+    "placeCafeTag": "쇼와 감성·모닝 세트·사이폰 커피",
+    "placeCafeDesc": "고하마 상점가에서 1975년부터 이어진 전통 다방. 아침 8시부터 사이폰 커피와 토스트 모닝 세트를 즐길 수 있습니다. (영업시간 8:00~16:00 / 목요일 휴무 / 도보 약 4분)",
+    "btnSearchCafe": "'산로즈' 지도 보기 ↗",
+    "placeOnsenTitle": "대중목욕탕·사우나 '히노데 온천'",
+    "placeOnsenTag": "센토(목욕탕)·노천탕·사우나",
+    "placeOnsenDesc": "고하마 상점가 인근의 정겨운 레트로 대중목욕탕. 노천탕과 사우나를 갖추고 있어 여행의 피로를 풀기에 좋습니다. (영업시간 15:00~22:00 / 월요일 휴무 / 도보 약 5분)",
+    "btnSearchOnsen": "'히노데 온천' 지도 보기 ↗",
+    "placeArcadeTitle": "아케이드 상점가 '고하마 상점가'",
+    "placeArcadeTag": "지붕 있는 상점가·비 오는 날 OK·로컬 먹거리",
+    "placeArcadeDesc": "약 350m 길이의 아케이드 상점가. 비 오는 날에도 우산 없이 편안하게 먹거리와 쇼핑을 즐길 수 있습니다. (도보 약 2분)",
+    "btnSearchArcade": "'고하마 상점가' 지도 보기 ↗",
+    "amToiletriesTitle": "칫솔·면봉·화장솜",
+    "amToiletriesDesc": "세면대 거울 양옆 포켓에 비치되어 있습니다. (핸드워시는 세면대 위)",
+    "amSlippersTitle": "실내용 슬리퍼",
+    "amSlippersDesc": "현관 신발장(게타바코) 안에 인원수에 맞게 정돈되어 있습니다.",
+    "amClosetTitle": "다리미 & 섬유탈취제",
+    "amClosetDesc": "옷장 안에 페브리즈, 다리미, 다리미판, 옷걸이가 구비되어 있습니다.",
+    "amKitchenTitle": "주방 비품 & 가전",
+    "amKitchenDesc": "싱크대 아래에 식기 및 냄비, 서랍에 수저류, 가전 랙에 전자레인지·전기주전자·밥솥이 있습니다."
   }
 };
 
