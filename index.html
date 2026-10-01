@@ -878,9 +878,9 @@
           <li><a href="#checkin" class="nav-link"><svg viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg><span data-i18n="navCheckin">チェックイン方法</span></a></li>
 
           <li class="nav-category-title" data-i18n="catStay">🏠 ご滞在中</li>
+          <li><a href="#wifi" class="nav-link"><svg viewBox="0 0 24 24"><path d="M12 3C6.95 3 2.55 5.4 0 9l2.25 3C4.24 9.1 7.89 7 12 7s7.76 2.1 9.75 5L24 9c-2.55-3.6-6.95-6-12-6zm0 6c-3.16 0-6.03 1.34-8.06 3.5L6.19 15.5C7.66 14 9.7 13 12 13s4.34 1 5.81 2.5l2.25-3C18.03 10.34 15.16 9 12 9zm0 6c-1.38 0-2.63.56-3.54 1.46L12 21l3.54-4.54C14.63 15.56 13.38 15 12 15z"/></svg><span data-i18n="navWifi">Wi-Fi & 設備</span></a></li>
           <li><a href="#manual" class="nav-link" style="color:var(--accent-gold);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg><span data-i18n="navManualCard">📖 ハウスマニュアル</span></a></li>
           <li><a href="#amenities" class="nav-link"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h1.5v3l1.5-1.5 1.5 1.5V5H17v6h-5V5zm-5 2h3v2H7V7zm0 4h3v2H7v-2zm0 4h10v2H7v-2z"/></svg><span data-i18n="navAmenities">備品・アメニティ</span></a></li>
-          <li><a href="#wifi" class="nav-link"><svg viewBox="0 0 24 24"><path d="M12 3C6.95 3 2.55 5.4 0 9l2.25 3C4.24 9.1 7.89 7 12 7s7.76 2.1 9.75 5L24 9c-2.55-3.6-6.95-6-12-6zm0 6c-3.16 0-6.03 1.34-8.06 3.5L6.19 15.5C7.66 14 9.7 13 12 13s4.34 1 5.81 2.5l2.25-3C18.03 10.34 15.16 9 12 9zm0 6c-1.38 0-2.63.56-3.54 1.46L12 21l3.54-4.54C14.63 15.56 13.38 15 12 15z"/></svg><span data-i18n="navWifi">Wi-Fi & 設備</span></a></li>
           <li><a href="#rules" class="nav-link"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg><span data-i18n="navRules">ハウスルール</span></a></li>
           <li><a href="#nearby" class="nav-link"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span data-i18n="navNearby">周辺検索・マップ</span></a></li>
 
@@ -1024,6 +1024,16 @@
           </div>
         </div>
 
+        <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:14px; line-height:1.6;" data-i18n="checkinGuideDesc">
+          鍵の取り出しから入室、タブレットでのチェックイン手続きまで、写真付きで分かりやすくまとめたオンライン手順書をご用意しています。
+        </p>
+        <div style="margin-bottom:20px;">
+          <a href="https://mastor-prog.github.io/checkin_guide/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background:linear-gradient(135deg, var(--accent-gold), #b8860b); color:#000; font-weight:700; display:inline-flex; align-items:center; gap:8px;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span data-i18n="btnCheckinGuide">📷 写真付きチェックイン＆入室手順ガイド ↗</span>
+          </a>
+        </div>
+
         <div class="timeline">
 
           <div class="step-item">
@@ -1036,16 +1046,19 @@
                 <div style="font-size:0.85rem; color:var(--accent-gold-light);" data-i18n="lblKeyCode">🔑 キーボックスの暗証番号について</div>
                 <div style="font-size:0.9rem; color:var(--text-sub); margin-top:6px;" data-i18n="lblKeyNotice">ご宿泊日が近づきましたら、別途メッセージにて暗証番号をお送りいたします。届いたメッセージをご確認ください。</div>
               </div>
-
-              <a href="https://mastor-prog.github.io/checkin_guide/" target="_blank" class="btn btn-outline btn-sm">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                <span data-i18n="btnCheckinGuide">キーボックス設置場所写真ガイド</span>
-              </a>
             </div>
           </div>
 
           <div class="step-item">
             <div class="step-number">2</div>
+            <div class="step-content">
+              <div class="step-title" data-i18n="step2EntranceTitle">マンションエントランス（オートロック）の解錠</div>
+              <p class="step-desc" data-i18n="step2EntranceDesc">エントランス操作パネルにある鍵穴に鍵を差し込み、右に回してオートロックを解錠して中へお入りください。</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-number">3</div>
             <div class="step-content">
               <div class="step-title" data-i18n="step2Title">お部屋の鍵を開けて入室する</div>
               <p class="step-desc" data-i18n="step2Desc">鍵を使って101号室のドアを開けてお入りください。玄関で必ず靴を脱いで上がってください。</p>
@@ -1060,7 +1073,7 @@
           </div>
 
           <div class="step-item">
-            <div class="step-number">3</div>
+            <div class="step-number">4</div>
             <div class="step-content">
               <div class="step-title" data-i18n="step3Title">【必須】リビングのタブレットで登録手続き</div>
               <p class="step-desc" data-i18n="step3Desc">
@@ -1072,6 +1085,54 @@
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <!-- Wi-Fi & Facilities -->
+      <section id="wifi" class="card" style="border-left: 4px solid var(--accent-gold);">
+        <div class="card-header">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3C6.95 3 2.55 5.4 0 9l2.25 3C4.24 9.1 7.89 7 12 7s7.76 2.1 9.75 5L24 9c-2.55-3.6-6.95-6-12-6zm0 6c-3.16 0-6.03 1.34-8.06 3.5L6.19 15.5C7.66 14 9.7 13 12 13s4.34 1 5.81 2.5l2.25-3C18.03 10.34 15.16 9 12 9zm0 6c-1.38 0-2.63.56-3.54 1.46L12 21l3.54-4.54C14.63 15.56 13.38 15 12 15z"/></svg></div>
+          <div>
+            <h2 class="card-title" data-i18n="wifiTitle">Wi-Fi 接続情報</h2>
+            <span style="font-size:0.8rem; color:var(--text-sub);" data-i18n="wifiSub">Free High-Speed Wi-Fi</span>
+          </div>
+        </div>
+
+        <div class="wifi-box">
+          <!-- QR Code Connect Area -->
+          <div style="display:flex; align-items:center; gap:16px; background:rgba(0,0,0,0.3); padding:14px; border-radius:var(--radius-sm); border:1px solid rgba(212,175,55,0.3);">
+            <div style="background:#fff; padding:6px; border-radius:8px; line-height:0; flex-shrink:0;">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&amp;data=WIFI%3AS%3AGuest_Room101_5G%3BT%3AWPA%3BP%3AKohamaStay101%3B%3B&amp;margin=2" alt="Wi-Fi QR Code" width="100" height="100" style="display:block; border-radius:4px;">
+            </div>
+            <div>
+              <div style="font-weight:700; color:var(--accent-gold-light); font-size:0.95rem; margin-bottom:4px;" data-i18n="wifiQrTitle">📷 QRコードでかんたん接続</div>
+              <p style="font-size:0.82rem; color:var(--text-sub); line-height:1.5; margin:0;" data-i18n="wifiQrDesc">スマホの標準カメラでQRコードをかざすだけで、パスワード入力なしで高速5GHz Wi-Fiに自動接続できます。</p>
+            </div>
+          </div>
+
+          <div class="wifi-row">
+            <div>
+              <div class="wifi-info-label" data-i18n="lblSsid5G">SSID (5GHz - 高速)</div>
+              <div class="wifi-info-val">Guest_Room101_5G</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('Guest_Room101_5G')" data-i18n="btnCopy">コピー</button>
+          </div>
+
+          <div class="wifi-row">
+            <div>
+              <div class="wifi-info-label" data-i18n="lblSsid24G">SSID (2.4GHz)</div>
+              <div class="wifi-info-val">Guest_Room101_2_4G</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('Guest_Room101_2_4G')" data-i18n="btnCopy">コピー</button>
+          </div>
+
+          <div class="wifi-row">
+            <div>
+              <div class="wifi-info-label" data-i18n="lblWifiPassword">Wi-Fi パスワード</div>
+              <div class="wifi-info-val">KohamaStay101</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('KohamaStay101')" data-i18n="btnCopy">コピー</button>
+          </div>
         </div>
       </section>
 
@@ -1188,41 +1249,6 @@
         </div>
       </section>
 
-      <section id="wifi" class="card">
-        <div class="card-header">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3C6.95 3 2.55 5.4 0 9l2.25 3C4.24 9.1 7.89 7 12 7s7.76 2.1 9.75 5L24 9c-2.55-3.6-6.95-6-12-6zm0 6c-3.16 0-6.03 1.34-8.06 3.5L6.19 15.5C7.66 14 9.7 13 12 13s4.34 1 5.81 2.5l2.25-3C18.03 10.34 15.16 9 12 9zm0 6c-1.38 0-2.63.56-3.54 1.46L12 21l3.54-4.54C14.63 15.56 13.38 15 12 15z"/></svg></div>
-          <div>
-            <h2 class="card-title" data-i18n="wifiTitle">Wi-Fi 接続情報</h2>
-            <span style="font-size:0.8rem; color:var(--text-sub);" data-i18n="wifiSub">Free High-Speed Wi-Fi</span>
-          </div>
-        </div>
-
-        <div class="wifi-box">
-          <div class="wifi-row">
-            <div>
-              <div class="wifi-info-label" data-i18n="lblSsid5G">SSID (5GHz - 高速)</div>
-              <div class="wifi-info-val">Guest_Room101_5G</div>
-            </div>
-            <button class="copy-btn" onclick="copyText('Guest_Room101_5G')" data-i18n="btnCopy">コピー</button>
-          </div>
-
-          <div class="wifi-row">
-            <div>
-              <div class="wifi-info-label" data-i18n="lblSsid24G">SSID (2.4GHz)</div>
-              <div class="wifi-info-val">Guest_Room101_2_4G</div>
-            </div>
-            <button class="copy-btn" onclick="copyText('Guest_Room101_2_4G')" data-i18n="btnCopy">コピー</button>
-          </div>
-
-          <div class="wifi-row">
-            <div>
-              <div class="wifi-info-label" data-i18n="lblWifiPassword">Wi-Fi パスワード</div>
-              <div class="wifi-info-val">KohamaStay101</div>
-            </div>
-            <button class="copy-btn" onclick="copyText('KohamaStay101')" data-i18n="btnCopy">コピー</button>
-          </div>
-        </div>
-      </section>
 
       <!-- House Rules -->
       
@@ -1491,11 +1517,19 @@
           </div>
         </div>
 
+        <div class="alert-box alert-warning" style="margin-bottom:16px;">
+          <div class="alert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
+          <div>
+            <strong data-i18n="coTvWarnTitle">⚠️ スマートテレビのログアウトをお忘れなく:</strong><br>
+            <span data-i18n="coTvWarnDesc">Netflix、YouTube、Prime Video等にご自身のアカウントでログインされた場合は、個人情報保護のため退室前に必ずログアウトしてください。</span>
+          </div>
+        </div>
+
         <h4 style="color:var(--accent-gold-light); margin-bottom:10px;" data-i18n="checkoutListTitle">📋 退出時チェックリスト</h4>
         <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; color:var(--text-sub); font-size:0.9rem;">
           <li style="display:flex; gap:10px; align-items:flex-start;">
             <span style="color:var(--accent-gold); font-weight:700;">1.</span>
-            <span data-i18n="coStep1"><strong>お忘れ物確認:</strong> スマホ充電器、服、洗面用具。※テレビ（Netflix等）は必ずログアウト。</span>
+            <span data-i18n="coStep1"><strong>お忘れ物確認:</strong> スマホ充電器、服、洗面用具。</span>
           </li>
           <li style="display:flex; gap:10px; align-items:flex-start;">
             <span style="color:var(--accent-gold); font-weight:700;">2.</span>
@@ -1653,11 +1687,14 @@
     "carWarnDesc": "当施設には専用駐車場がございません。また前面道路は非常に狭く駐停車厳禁です。お車でお越しの際は必ず近隣のコインパーキングをご利用ください。",
     "checkinTitle": "チェックイン &amp; 入室手順",
     "checkinSub": "Check-in Flow (Self Check-in)",
+    "checkinGuideDesc": "鍵の取り出しから入室、タブレットでのチェックイン手続きまで、写真付きで分かりやすくまとめたオンライン手順書をご用意しています。",
+    "btnCheckinGuide": "📷 写真付きチェックイン＆入室手順ガイド ↗",
     "step1Title": "到着・キーボックスから鍵を取り出す",
     "step1Desc": "建物外に設置されたキーボックスのダイヤルを合わせ、お部屋の鍵を取り出してください。",
     "lblKeyCode": "🔑 キーボックスの暗証番号について",
     "lblKeyNotice": "ご宿泊日が近づきましたら、別途メッセージにて暗証番号をお送りいたします。届いたメッセージをご確認ください。",
-    "btnCheckinGuide": "キーボックス設置場所写真ガイド",
+    "step2EntranceTitle": "マンションエントランス（オートロック）の解錠",
+    "step2EntranceDesc": "エントランス操作パネルにある鍵穴に鍵を差し込み、右に回してオートロックを解錠して中へお入りください。",
     "step2Title": "お部屋の鍵を開けて入室する",
     "step2Desc": "鍵を使って101号室のドアを開けてお入りください。玄関で必ず靴を脱いで上がってください。",
     "lockWarnTitle": "オートロックではありません:",
@@ -1667,6 +1704,8 @@
     "step3Tip": "※事前登録済みの方は、画面のQRコードをカメラにかざすだけでスムーズに完了できます。",
     "wifiTitle": "Wi-Fi 接続情報",
     "wifiSub": "Free High-Speed Wi-Fi",
+    "wifiQrTitle": "📷 QRコードでかんたん接続",
+    "wifiQrDesc": "スマホの標準カメラでQRコードをかざすだけで、パスワード入力なしで高速5GHz Wi-Fiに自動接続できます。",
     "lblSsid5G": "SSID (5GHz - 高速)",
     "btnCopy": "コピー",
     "lblSsid24G": "SSID (2.4GHz)",
@@ -1722,8 +1761,10 @@
     "checkoutSub": "Check-out Checklist",
     "checkoutTimeTitle": "チェックアウト時間: 10:00 AM まで",
     "checkoutTimeDesc": "清掃スタッフの準備のため、お時間厳守でのご出発をお願いいたします。",
+    "coTvWarnTitle": "⚠️ スマートテレビのログアウトをお忘れなく:",
+    "coTvWarnDesc": "Netflix、YouTube、Prime Video等にご自身のアカウントでログインされた場合は、個人情報保護のため退室前に必ずログアウトしてください。",
     "checkoutListTitle": "📋 退出時チェックリスト",
-    "coStep1": "<strong>お忘れ物確認:</strong> スマホ充電器、服、洗面用具。※テレビ（Netflix等）は必ずログアウト。",
+    "coStep1": "<strong>お忘れ物確認:</strong> スマホ充電器、服、洗面用具。",
     "coStep2": "<strong>電源・エアコンオフ:</strong> 電気、エアコン、給湯器を全て切り、全ての窓を施錠。",
     "coStep3": "<strong>タブレット操作:</strong> リビングのタブレットで「チェックアウト」操作を完了。",
     "coStep4": "<strong>ゴミの処理:</strong> 外のゴミ捨て場には出さず、室内のゴミ箱/袋にまとめたままでOKです（清掃スタッフが回収します）。可能な範囲で「燃えるゴミ」と「缶・ビン・ペットボトル」の分別にご協力ください。",
@@ -1859,20 +1900,25 @@
     "carWarnDesc": "No private parking available. Stopping/parking in front of the building is strictly prohibited. Please use nearby paid coin parking.",
     "checkinTitle": "Check-in & Room Key Retrieval",
     "checkinSub": "Self Check-in Process",
+    "checkinGuideDesc": "Step-by-step online guide with photos, covering key retrieval, room entry, and tablet check-in procedures.",
+    "btnCheckinGuide": "📷 Photo Check-in & Entry Guide ↗",
     "step1Title": "1. Arrival & Key Box Retrieval",
     "step1Desc": "Set the passcode on the lockbox outside the building and retrieve the room key.",
     "lblKeyCode": "🔑 Key Lockbox Passcode Notice",
     "lblKeyNotice": "The lockbox passcode will be sent to you via message prior to your check-in date.",
-    "btnCheckinGuide": "Lockbox Photo Guide",
-    "step2Title": "2. Unlock Room Door & Enter",
+    "step2EntranceTitle": "2. Unlock Building Entrance (Auto-lock)",
+    "step2EntranceDesc": "Insert the room key into the keyhole on the entrance panel and turn right to unlock the automatic door.",
+    "step2Title": "3. Unlock Room Door & Enter",
     "step2Desc": "Use key to unlock Room 101. Please remove your shoes at the entryway.",
     "lockWarnTitle": "NOT Auto-locking (Manual Lock Only):",
     "lockWarnDesc": "Please manually lock the door with the key whenever you go out or leave the room.",
-    "step3Title": "3. [REQUIRED] Tablet Registration in Living Room",
+    "step3Title": "4. [REQUIRED] Tablet Registration in Living Room",
     "step3Desc": "Immediately after entering, complete check-in & passport verification on the living room tablet (maneKEY).",
     "step3Tip": "※Pre-registered guests can simply scan the QR code on screen to complete quickly.",
     "wifiTitle": "Wi-Fi & Appliances Guide",
     "wifiSub": "Free High-Speed Wi-Fi & Amenities",
+    "wifiQrTitle": "📷 Scan QR to Connect Instantly",
+    "wifiQrDesc": "Scan the QR code with your phone camera to connect directly to 5GHz Wi-Fi without typing the password.",
     "lblSsid5G": "SSID (5GHz - Fast)",
     "btnCopy": "Copy",
     "lblSsid24G": "SSID (2.4GHz)",
@@ -1928,8 +1974,10 @@
     "checkoutSub": "Check-out Checklist",
     "checkoutTimeTitle": "Check-out Time: By 10:00 AM",
     "checkoutTimeDesc": "Please leave on time so cleaning staff can prepare for next guests.",
+    "coTvWarnTitle": "⚠️ Remember to Log Out of TV Apps:",
+    "coTvWarnDesc": "If you signed into Netflix, YouTube, Prime Video, etc. with your own account, please be sure to log out before leaving for your privacy.",
     "checkoutListTitle": "📋 Check-out Checklist",
-    "coStep1": "<strong>Check belongings:</strong> Don't forget chargers, clothes, and toiletries. Please make sure to log out of your streaming accounts (Netflix, etc.) on the TV.",
+    "coStep1": "<strong>Check belongings:</strong> Don't forget chargers, clothes, and toiletries.",
     "coStep2": "Power off: Turn off all lights, AC, heaters, and lock all windows.",
     "coStep3": "Tablet: Complete 'Check-out' on the living room tablet.",
     "coStep4": "<strong>Trash handling:</strong> You do NOT need to take trash out to the street bins. Please leave tied bags inside the room (cleaning staff will collect them). Please help separate 'Burnable' from 'Cans, Bottles & Plastic Bottles'.",
@@ -2065,20 +2113,25 @@
     "carWarnDesc": "本设施无专用停车场，且门前道路极窄禁止违章停车。请务必使用附近的收费停车场。",
     "checkinTitle": "入住与钥匙领取步骤",
     "checkinSub": "自助入住流程",
+    "checkinGuideDesc": "包含从取出钥匙、开门入室到平板电脑办理入住手续的图文在线指引。",
+    "btnCheckinGuide": "📷 图文入住与开门指引 ↗",
     "step1Title": "1. 到达并从密码盒中取出钥匙",
     "step1Desc": "在建筑物外的密码盒上对准密码，取出房间钥匙。",
     "lblKeyCode": "🔑 钥匙盒密码说明",
     "lblKeyNotice": "临近入住日期时，我们将通过消息另行发送钥匙盒密码，请注意查收。",
-    "btnCheckinGuide": "钥匙盒位置图文指南",
-    "step2Title": "2. 开锁并进入房间",
+    "step2EntranceTitle": "2. 开启大楼门禁（自动锁）",
+    "step2EntranceDesc": "将房间钥匙插入门禁面板上的钥匙孔并向右旋转，解开自动门进入大楼。",
+    "step2Title": "3. 开锁并进入房间",
     "step2Desc": "用钥匙打开101室房门。入户时请务必在玄关处脱鞋。",
     "lockWarnTitle": "非自动上锁（须手动锁门）:",
     "lockWarnDesc": "外出及离开房间时，请务必使用钥匙手动锁好房门。",
-    "step3Title": "3. 【必须】使用客厅平板登记信息",
+    "step3Title": "4. 【必须】使用客厅平板登记信息",
     "step3Desc": "进入房间后，请首先在客厅专用平板（maneKEY）上办理入住和身份验证。",
     "step3Tip": "※预先完成登记的住客，只需在屏幕前扫描二维码即可快速完成。",
     "wifiTitle": "Wi-Fi 连接与设备指南",
     "wifiSub": "免费高速Wi-Fi与家电使用",
+    "wifiQrTitle": "📷 扫码一键连接Wi-Fi",
+    "wifiQrDesc": "使用手机相机扫描二维码，无需手动输入密码即可自动连接高速5GHz Wi-Fi。",
     "lblSsid5G": "SSID (5GHz - 高速)",
     "btnCopy": "复制",
     "lblSsid24G": "SSID (2.4GHz)",
@@ -2134,8 +2187,10 @@
     "checkoutSub": "退房注意事项",
     "checkoutTimeTitle": "退房时间: 上午 10:00 前",
     "checkoutTimeDesc": "为便于保洁人员准备，请务必准时退房。",
+    "coTvWarnTitle": "⚠️ 请务必退出电视中的个人账号:",
+    "coTvWarnDesc": "如果您登录了Netflix、YouTube、Prime Video等个人流媒体账号，为保护个人隐私请务必在退房前退出登录。",
     "checkoutListTitle": "📋 退房检查清单",
-    "coStep1": "<strong>确认随身物品:</strong> 检查手机充电器、衣物及洗漱用品。※电视上的个人账号（Netflix等）请务必退出登录。",
+    "coStep1": "<strong>确认随身物品:</strong> 检查手机充电器、衣物及洗漱用品。",
     "coStep2": "关闭电源: 请关闭所有照明、空调、暖气，并锁好所有窗户。",
     "coStep3": "平板操作: 请在客厅平板上点击“退房”完成按钮。",
     "coStep4": "<strong>垃圾处理:</strong> 无需将垃圾扔至室外收集处，打包扎好留在室内垃圾桶旁即可（保洁人员会进行回收）。请尽量协助将“可燃垃圾”与“易拉罐、玻璃瓶、塑料瓶”分类。",
@@ -2271,20 +2326,25 @@
     "carWarnDesc": "전용 주차장이 없으며 건물 앞 도로는 주정차 금지구역입니다. 차량 이용 시 반드시 근처의 동전 주차장을 이용해 주세요.",
     "checkinTitle": "체크인 & 열쇠 수령 방법",
     "checkinSub": "셀프 체크인 프로세스",
+    "checkinGuideDesc": "열쇠 수령부터 입실, 태블릿 체크인 절차까지 사진과 함께 알기 쉽게 정리된 온라인 가이드입니다.",
+    "btnCheckinGuide": "📷 사진으로 보는 체크인 & 입실 가이드 ↗",
     "step1Title": "1. 도착 및 키박스에서 열쇠 꺼내기",
     "step1Desc": "건물 밖에 설치된 키박스의 비밀번호를 맞추고 열쇠를 꺼내세요.",
     "lblKeyCode": "🔑 키박스 비밀번호 안내",
     "lblKeyNotice": "숙박일이 가까워지면 별도 메시지로 키박스 비밀번호를 안내해 드립니다.",
-    "btnCheckinGuide": "키박스 위치 사진 가이드",
-    "step2Title": "2. 방문 열고 입실하기",
+    "step2EntranceTitle": "2. 공동현관(오토락) 문 열기",
+    "step2EntranceDesc": "공동현관 패널의 열쇠 구멍에 방 열쇠를 넣고 오른쪽으로 돌려 문을 열고 들어가세요.",
+    "step2Title": "3. 방문 열고 입실하기",
     "step2Desc": "열쇠를 사용해 101호 문을 열고 들어가세요. 현관에서 반드시 신발을 벗어주세요.",
     "lockWarnTitle": "수동 잠금 방식 (자동 잠금 아님):",
     "lockWarnDesc": "외출 시 및 퇴실 시에는 반드시 열쇠를 사용하여 직접 문을 잠가주시기 바랍니다.",
-    "step3Title": "3. [필수] 거실 태블릿에서 등록 완료하기",
+    "step3Title": "4. [필수] 거실 태블릿에서 등록 완료하기",
     "step3Desc": "입실 후 거실에 있는 전용 태블릿(maneKEY)을 통해 본인 확인 및 체크인을 완료해 주세요.",
     "step3Tip": "※ 사전 등록을 마치신 분은 화면의 QR코드를 스캔하여 빠르게 완료할 수 있습니다.",
     "wifiTitle": "Wi-Fi 정보 및 비품 안내",
     "wifiSub": "무료 고속 Wi-Fi 및 가전 사용법",
+    "wifiQrTitle": "📷 QR 코드로 간편 연결",
+    "wifiQrDesc": "스마트폰 카메라로 QR 코드를 스캔하면 비밀번호 입력 없이 고속 5GHz Wi-Fi에 바로 연결됩니다.",
     "lblSsid5G": "SSID (5GHz - 고속)",
     "btnCopy": "복사",
     "lblSsid24G": "SSID (2.4GHz)",
@@ -2340,8 +2400,10 @@
     "checkoutSub": "퇴실 시 확인 사항",
     "checkoutTimeTitle": "체크아웃 시간: 오전 10:00 까지",
     "checkoutTimeDesc": "청소 스태프의 준비를 위해 체크아웃 시간을 엄수해 주시기 바랍니다.",
+    "coTvWarnTitle": "⚠️ 스마트 TV 앱 로그아웃을 잊지 마세요:",
+    "coTvWarnDesc": "넷플릭스, 유튜브, 프라임 비디오 등에 개인 계정으로 로그인하신 경우, 개인정보 보호를 위해 퇴실 전 반드시 로그아웃해 주세요.",
     "checkoutListTitle": "📋 퇴실 체크리스트",
-    "coStep1": "<strong>소지품 확인:</strong> 스마트폰 충전기, 의류, 세면도구를 확인해 주세요. ※TV의 개인 계정(Netflix 등)은 반드시 로그아웃해 주세요.",
+    "coStep1": "<strong>소지품 확인:</strong> 스마트폰 충전기, 의류, 세면도구를 확인해 주세요.",
     "coStep2": "전원/에어컨 끄기: 모든 조명, 에어컨, 난방을 끄고 창문을 잠가주세요.",
     "coStep3": "태블릿 완료: 거실 태블릿에서 '체크아웃' 완료 버튼을 눌러주세요.",
     "coStep4": "<strong>쓰레기 처리:</strong> 외부 쓰레기장에 직접 버리실 필요 없이 실내 쓰레기통/봉투에 모아두시면 됩니다 (청소팀이 수거합니다). 가능한 범위 내에서 '타는 쓰레기'와 '캔·병·페트병' 분리수거에 협조해 주세요.",
