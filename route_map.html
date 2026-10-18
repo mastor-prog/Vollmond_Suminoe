@@ -570,9 +570,72 @@
       margin-top: 2px;
       white-space: nowrap;
     }
+
+    /* Top Return Bar (shown when opened directly as a standalone page) */
+    .top-return-bar {
+      width: 1600px;
+      margin: 0 auto 16px auto;
+      background: #18202c;
+      border: 3px solid var(--gold-bright);
+      border-radius: 16px;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .return-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--gold-bright), #b8860b);
+      color: #000;
+      font-size: 28px;
+      font-weight: 900;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .return-hint {
+      color: #f8fafc;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    body.in-iframe .top-return-bar {
+      display: none;
+    }
   </style>
 </head>
 <body>
+
+<div class="top-return-bar" id="topReturnBar">
+  <a href="index.html#routemap" onclick="handleReturn(event)" class="return-btn">
+    <span>← ゲストガイドに戻る / Back to Guide</span>
+  </a>
+  <span class="return-hint">🔍 ピンチ操作で拡大できます / Pinch to Zoom</span>
+  <a href="index.html#routemap" onclick="handleReturn(event)" class="return-btn" style="background:#ef4444; color:#fff;">
+    <span>✕ 閉じる / Close</span>
+  </a>
+</div>
+<script>
+  if (window.self !== window.top) {
+    document.body.classList.add('in-iframe');
+  }
+  function handleReturn(e) {
+    e.preventDefault();
+    if (window.history.length > 1 && document.referrer.includes(window.location.host)) {
+      window.history.back();
+    } else {
+      window.location.href = 'index.html#routemap';
+    }
+  }
+</script>
 
 <div class="poster">
 

@@ -874,6 +874,141 @@
       align-items: center;
       gap: 6px;
     }
+
+    /* Fullscreen In-App Page Viewer Modal */
+    .viewer-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: #0f141c;
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+    }
+
+    .viewer-modal.active {
+      display: flex;
+    }
+
+    .viewer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #141c27;
+      border-bottom: 2px solid var(--accent-gold);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .viewer-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(212, 175, 55, 0.18);
+      color: var(--accent-gold-light);
+      border: 1px solid var(--accent-gold);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .viewer-back-btn:hover {
+      background: var(--accent-gold);
+      color: #000;
+    }
+
+    .viewer-title {
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+      text-align: center;
+    }
+
+    .viewer-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .viewer-ext-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-sub);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .viewer-close-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #ef4444;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+    }
+
+    .viewer-body {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0f141c;
+    }
+
+    .viewer-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #fff;
+    }
+
+    .viewer-fab-close {
+      position: absolute;
+      bottom: 20px;
+      right: 16px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 20, 28, 0.92);
+      color: #fff;
+      border: 2px solid var(--accent-gold);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    }
   </style>
 </head>
 <body>
@@ -913,6 +1048,28 @@
       </div>
       <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:15px;" data-i18n="taxiModalNote">※前道が狭いため、近くで停車してもらうことをお勧めします。</p>
       <button class="btn btn-primary" onclick="copyAddress()" data-i18n="btnCopyAddress">住所をコピーする</button>
+    </div>
+  </div>
+
+  <!-- Modal: Fullscreen Guide / Map Viewer -->
+  <div id="viewerModal" class="viewer-modal" aria-hidden="true">
+    <div class="viewer-header">
+      <button type="button" class="viewer-back-btn" onclick="closeViewerModal()">
+        <span data-i18n="viewerBackBtn">← ガイドに戻る</span>
+      </button>
+      <div id="viewerTitle" class="viewer-title">Guide Viewer</div>
+      <div class="viewer-actions">
+        <a id="viewerExtLink" href="#" target="_blank" rel="noopener noreferrer" class="viewer-ext-btn" title="Open in new tab">↗</a>
+        <button type="button" class="viewer-close-btn" onclick="closeViewerModal()">
+          <span data-i18n="viewerCloseBtn">✕ 閉じる</span>
+        </button>
+      </div>
+    </div>
+    <div class="viewer-body">
+      <iframe id="viewerFrame" class="viewer-iframe" src="about:blank" allowfullscreen loading="lazy"></iframe>
+      <button type="button" class="viewer-fab-close" onclick="closeViewerModal()">
+        <span data-i18n="viewerCloseBtn">✕ 閉じる</span>
+      </button>
     </div>
   </div>
 
@@ -2021,7 +2178,9 @@
     "amClosetTitle": "アイロン &amp; 消臭スプレー",
     "amClosetDesc": "クローゼット内にファブリーズ、アイロン、アイロン台、ハンガーがございます。",
     "amKitchenTitle": "キッチン備品 &amp; 調理家電",
-    "amKitchenDesc": "シンク下に食器・鍋、引き出しにカトラリー、家電ラックに電子レンジ・ケトル・炊飯器がございます。"
+    "amKitchenDesc": "シンク下に食器・鍋、引き出しにカトラリー、家電ラックに電子レンジ・ケトル・炊飯器がございます。",
+    "viewerBackBtn": "← ガイドに戻る",
+    "viewerCloseBtn": "✕ 閉じる"
   },
   "en": {
     "navHome": "Home",
@@ -2265,7 +2424,9 @@
     "amClosetTitle": "Iron & Fabric Freshener",
     "amClosetDesc": "Febreze spray, iron, ironing board, and clothes hangers are inside the closet.",
     "amKitchenTitle": "Kitchenware & Appliances",
-    "amKitchenDesc": "Dishes and cookware under the sink, cutlery in the drawer, and microwave/kettle on the appliance rack."
+    "amKitchenDesc": "Dishes and cookware under the sink, cutlery in the drawer, and microwave/kettle on the appliance rack.",
+    "viewerBackBtn": "← Back to Guide",
+    "viewerCloseBtn": "✕ Close"
   },
   "zh": {
     "navHome": "首页·概要",
@@ -2509,7 +2670,9 @@
     "amClosetTitle": "熨斗与衣物消臭喷雾",
     "amClosetDesc": "衣柜内备有除菌消臭喷雾（风倍清）、熨斗、烫衣板及衣架。",
     "amKitchenTitle": "厨房用具与家电",
-    "amKitchenDesc": "水槽下方备有碗碟锅具，抽屉内备有餐具，微波炉、电水壶及电饭煲位于家电架上。"
+    "amKitchenDesc": "水槽下方备有碗碟锅具，抽屉内备有餐具，微波炉、电水壶及电饭煲位于家电架上。",
+    "viewerBackBtn": "← 返回指南",
+    "viewerCloseBtn": "✕ 关闭"
   },
   "ko": {
     "navHome": "홈·개요",
@@ -2753,7 +2916,9 @@
     "amClosetTitle": "다리미 & 섬유탈취제",
     "amClosetDesc": "옷장 안에 페브리즈, 다리미, 다리미판, 옷걸이가 구비되어 있습니다.",
     "amKitchenTitle": "주방 비품 & 가전",
-    "amKitchenDesc": "싱크대 아래에 식기 및 냄비, 서랍에 수저류, 가전 랙에 전자레인지·전기주전자·밥솥이 있습니다."
+    "amKitchenDesc": "싱크대 아래에 식기 및 냄비, 서랍에 수저류, 가전 랙에 전자레인지·전기주전자·밥솥이 있습니다.",
+    "viewerBackBtn": "← 가이드로 돌아가기",
+    "viewerCloseBtn": "✕ 닫기"
   }
 };
 
@@ -2799,6 +2964,71 @@
         modal.classList.remove('active');
       }
     }
+
+    function openViewerModal(url, titleText) {
+      const modal = document.getElementById('viewerModal');
+      const frame = document.getElementById('viewerFrame');
+      const titleEl = document.getElementById('viewerTitle');
+      const extLink = document.getElementById('viewerExtLink');
+
+      titleEl.textContent = (titleText || '').replace(/↗/g, '').trim() || 'Vollmond Suminoe 101';
+      extLink.href = url;
+      frame.src = url;
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      if (!history.state || !history.state.viewerModal) {
+        history.pushState({ viewerModal: true }, '');
+      }
+    }
+
+    function closeViewerModal(fromPopState) {
+      const modal = document.getElementById('viewerModal');
+      if (!modal || !modal.classList.contains('active')) return;
+
+      const frame = document.getElementById('viewerFrame');
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        if (!modal.classList.contains('active')) {
+          frame.src = 'about:blank';
+        }
+      }, 200);
+
+      if (!fromPopState && history.state && history.state.viewerModal) {
+        history.back();
+      }
+    }
+
+    window.addEventListener('popstate', () => {
+      const modal = document.getElementById('viewerModal');
+      if (modal && modal.classList.contains('active')) {
+        closeViewerModal(true);
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href]');
+      if (!link || link.id === 'viewerExtLink') return;
+
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:')) return;
+
+      // Open Route Map and all Guide / Manual / Map / Chatbot subpages in the fullscreen viewer with Close button
+      if (href.includes('route_map.html') || href.includes('mastor-prog.github.io')) {
+        e.preventDefault();
+        const label = link.innerText || link.getAttribute('title') || 'Guide';
+        openViewerModal(href, label);
+        return;
+      }
+
+      // On mobile devices, allow Google Maps links to navigate cleanly so hardware back button works if opened in browser
+      if (window.innerWidth <= 900 && href.includes('google.com/maps')) {
+        link.removeAttribute('target');
+      }
+    });
 
     function copyText(text) {
       navigator.clipboard.writeText(text).then(() => {
