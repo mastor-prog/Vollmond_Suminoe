@@ -804,7 +804,7 @@
     /* Transit List */
     .transit-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 10px;
       margin-top: 12px;
     }
@@ -818,11 +818,61 @@
       justify-content: space-between;
       align-items: center;
       font-size: 0.88rem;
+      gap: 8px;
     }
 
     .transit-time {
       color: var(--accent-gold);
       font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* Route Map Embed Card */
+    .route-map-box {
+      background: linear-gradient(135deg, rgba(24, 32, 44, 0.95), rgba(15, 20, 28, 0.98));
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin: 18px 0;
+    }
+
+    .route-map-preview {
+      display: block;
+      position: relative;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 2px solid rgba(212, 175, 55, 0.4);
+      margin-top: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: var(--transition);
+    }
+
+    .route-map-preview:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+
+    .route-map-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .route-map-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(15, 20, 28, 0.92);
+      color: var(--accent-gold-light);
+      border: 1px solid var(--accent-gold);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
   </style>
 </head>
@@ -883,6 +933,7 @@
           <li><a href="#amenities" class="nav-link"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h1.5v3l1.5-1.5 1.5 1.5V5H17v6h-5V5zm-5 2h3v2H7V7zm0 4h3v2H7v-2zm0 4h10v2H7v-2z"/></svg><span data-i18n="navAmenities">備品・アメニティ</span></a></li>
           <li><a href="#rules" class="nav-link"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg><span data-i18n="navRules">ハウスルール</span></a></li>
           <li><a href="#nearby" class="nav-link"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span data-i18n="navNearby">周辺検索・マップ</span></a></li>
+          <li><a href="#routemap" class="nav-link"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg><span data-i18n="navRouteMap">観光・路線マップ</span></a></li>
 
           <li class="nav-category-title" data-i18n="catCheckout">🚪 ご退室 & ヘルプ</li>
           <li><a href="#checkout" class="nav-link"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg><span data-i18n="navCheckout">チェックアウト</span></a></li>
@@ -913,6 +964,10 @@
             <svg viewBox="0 0 24 24"><path d="M12 3C6.95 3 2.55 5.4 0 9l2.25 3C4.24 9.1 7.89 7 12 7s7.76 2.1 9.75 5L24 9c-2.55-3.6-6.95-6-12-6zm0 6c-3.16 0-6.03 1.34-8.06 3.5L6.19 15.5C7.66 14 9.7 13 12 13s4.34 1 5.81 2.5l2.25-3C18.03 10.34 15.16 9 12 9zm0 6c-1.38 0-2.63.56-3.54 1.46L12 21l3.54-4.54C14.63 15.56 13.38 15 12 15z"/></svg>
             <span data-i18n="quickWifi">Wi-Fi情報</span>
           </a>
+          <a href="#routemap" class="action-btn">
+            <svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+            <span data-i18n="quickRouteMap">🗺️ 路線マップ</span>
+          </a>
           <button class="action-btn" onclick="toggleTaxiModal(true)">
             <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4h14v4z"/><circle cx="7.5" cy="14.5" r="1.5"/><circle cx="16.5" cy="14.5" r="1.5"/></svg>
             <span data-i18n="quickTaxi">タクシー画面</span>
@@ -938,7 +993,7 @@
         </p>
       </div>
 
-      <!-- Access & Location -->
+      <!-- Access & Location (Before Arrival) -->
       <section id="access" class="card">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
@@ -970,8 +1025,9 @@
         <div style="margin-bottom:16px;">
           <h4 style="color:var(--accent-gold-light); margin-bottom:6px;" data-i18n="lblTrain">🚃 最寄り駅＆関西空港からのアクセス</h4>
           <ul style="color:var(--text-sub); font-size:0.9rem; margin-left:20px; display:flex; flex-direction:column; gap:6px;">
-            <li data-i18n="lblTrainSumiyoshi"><strong>南海本線「住吉大社（すみよしたいしゃ）駅」西出口</strong>（徒歩5分 / なんば直通 約10分）<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 改札・地上階ともにエレベーター完備（スーツケースでも安心）</span></li>
-            <li data-i18n="lblTrainKohama"><strong>南海本線「粉浜（こはま）駅」西出口</strong>（徒歩7分 / なんば直通 約9分）<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 改札・地上階ともにエレベーター完備</span></li>
+            <li data-i18n="lblTrainSumiyoshi"><strong>南海本線「住吉大社駅 (NK08)」西出口</strong>（徒歩5分 / なんば直通 約10分）※普通のみ停車<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 改札・地上階ともにエレベーター完備（スーツケースでも安心）</span></li>
+            <li data-i18n="lblTrainKohama"><strong>南海本線「粉浜駅 (NK07)」西出口</strong>（徒歩7分 / なんば直通 約9分）※普通のみ停車<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 改札・地上階ともにエレベーター完備</span></li>
+            <li data-i18n="lblTrainTamade"><strong>Osaka Metro 四つ橋線「玉出駅 (Y19)」5番出口</strong>（徒歩11分 / 西梅田・四ツ橋・なんば直通）<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 エレベーター完備</span></li>
           </ul>
 
           <!-- Luggage & Locker Notice -->
@@ -985,22 +1041,9 @@
           <div class="alert-box alert-info" style="margin-top:10px;">
             <div class="alert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
             <div>
-              <strong data-i18n="kixRouteTitle">関西国際空港（KIX）からのルート:</strong><br>
-              <span data-i18n="kixRouteDesc">南海電鉄「ラピート」または「空港急行」で<strong>「天下茶屋（てんがちゃや）駅」</strong>へ。天下茶屋駅で各駅停車にお乗り換えの上、「住吉大社駅」（徒歩5分）または「粉浜駅」（徒歩7分）でお降りください。</span>
+              <strong data-i18n="kixRouteTitle">✈️ 関西国際空港（KIX）からの到着ルート（約45分）:</strong><br>
+              <span data-i18n="kixRouteDesc">南海電鉄「ラピート」または「空港急行」で<strong>「天下茶屋駅 (NK05)」</strong>へ。天下茶屋駅で<strong>普通列車（各駅停車）</strong>にお乗り換えの上、「住吉大社駅 (NK08)」（徒歩5分）または「粉浜駅 (NK07)」（徒歩7分）でお降りください。</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Transit time guide -->
-        <div>
-          <h4 style="color:var(--accent-gold-light); margin-bottom:6px;" data-i18n="lblTransitGuide">⏱ 主要スポットへの所要時間目安</h4>
-          <div class="transit-list">
-            <div class="transit-item"><span>難波（なんば）</span><span class="transit-time">約10分</span></div>
-            <div class="transit-item"><span>USJ（ユニバ）</span><span class="transit-time">約45分</span></div>
-            <div class="transit-item"><span>梅田・大阪駅</span><span class="transit-time">約25分</span></div>
-            <div class="transit-item"><span>関西国際空港</span><span class="transit-time">約45分</span></div>
-            <div class="transit-item"><span>京都</span><span class="transit-time">約60分</span></div>
-            <div class="transit-item"><span>奈良</span><span class="transit-time">約60分</span></div>
           </div>
         </div>
 
@@ -1465,6 +1508,103 @@
         </div>
       </section>
 
+      <!-- Route Map & Sightseeing Transit Guide (During Stay) -->
+      <section id="routemap" class="card">
+        <div class="card-header">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></div>
+          <div>
+            <h2 class="card-title" data-i18n="routeMapSectionTitle">🗺️ 観光・路線マップ & お出かけ乗換ガイド</h2>
+            <span style="font-size:0.8rem; color:var(--text-sub);" data-i18n="routeMapSectionSub">Sightseeing Route Map & Transit Guide</span>
+          </div>
+        </div>
+
+        <!-- Route Map Preview Box -->
+        <div class="route-map-box" style="margin-top:0; margin-bottom:20px;">
+          <div class="route-map-header">
+            <div>
+              <h4 style="color:var(--accent-gold-light); font-size:1.05rem; margin-bottom:4px;" data-i18n="routeMapCardTitle">🗺️ 施設発・関西お出かけ路線マップ（高精細版）</h4>
+              <p style="font-size:0.85rem; color:var(--text-sub);" data-i18n="routeMapCardDesc">当施設から利用できる3路線（南海本線・阪堺電車・地下鉄四つ橋線）と、大阪・関西の主要観光スポット12ヶ所へのルート・所要時間を1枚にまとめた専用マップです。</p>
+            </div>
+            <a href="route_map.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-gold), #b8860b); color:#000; font-weight:700; white-space:nowrap;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              <span data-i18n="btnOpenRouteMapPage">専用ページで大きく開く ↗</span>
+            </a>
+          </div>
+          <a href="route_map.html" target="_blank" rel="noopener noreferrer" class="route-map-preview">
+            <img src="Vollmond_Suminoe_RouteMap.png" alt="Vollmond Suminoe Route Map" loading="lazy">
+            <div class="route-map-badge">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              <span data-i18n="routeMapTapBadge">タップして拡大マップを開く</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 3 Lines Guide from the Property -->
+        <div style="margin-bottom:20px;">
+          <h4 style="color:var(--accent-gold-light); margin-bottom:8px;" data-i18n="lblThreeLinesGuide">🚃 目的地別・3路線の使い分けガイド</h4>
+          <ul style="color:var(--text-sub); font-size:0.9rem; margin-left:20px; display:flex; flex-direction:column; gap:8px;">
+            <li data-i18n="routeLineNankai"><strong>① 南海本線「住吉大社駅 (NK08)」徒歩5分 ／「粉浜駅 (NK07)」徒歩7分</strong><br><span style="font-size:0.84rem;">👉 <strong>難波（直通10分）</strong>・<strong>関西国際空港</strong>・<strong>奈良／神戸方面（難波乗換）</strong>へ行くのに最速・便利です。※両駅とも普通列車のみ停車</span></li>
+            <li data-i18n="routeLineHankai"><strong>② 阪堺電車（路面電車）「住吉鳥居前駅 (HN12)」徒歩5分 ／「住吉駅 (HN10)」徒歩7分</strong><br><span style="font-size:0.84rem;">👉 <strong>通天閣・新世界（恵美須町駅まで直通18分）</strong>や天王寺方面へ、大阪唯一のレトロな路面電車でのんびり観光移動できます。</span></li>
+            <li data-i18n="routeLineMetro"><strong>③ Osaka Metro 四つ橋線「玉出駅 (Y19)」徒歩11分</strong><br><span style="font-size:0.84rem;">👉 <strong>梅田（西梅田まで直通22分）</strong>・心斎橋（四ツ橋）・USJ・海遊館・大阪城・京都方面へ、地下鉄ネットワークでスムーズにアクセスできます。</span></li>
+          </ul>
+        </div>
+
+        <!-- Sightseeing Transit Times (12 Spots) -->
+        <div>
+          <h4 style="color:var(--accent-gold-light); margin-bottom:10px;" data-i18n="lblSpots">🗺️ 主要観光スポットへの所要時間目安（12選）</h4>
+          <div class="transit-grid">
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitSumiyoshi">⛩️ 住吉大社（目の前）</span>
+              <span class="transit-time" data-i18n="timeWalk5m">徒歩 5分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitNamba">🏮 難波・道頓堀（南海本線）</span>
+              <span class="transit-time" data-i18n="timeDirect10m">直通 10分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitTsutenkaku">🗼 通天閣・新世界（阪堺電車）</span>
+              <span class="transit-time" data-i18n="time18m">直通 18分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitUmeda">🏙️ 梅田・大阪駅（四つ橋線）</span>
+              <span class="transit-time" data-i18n="timeDirect22m">直通 22分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitKaiyukan">🦈 海遊館・天保山</span>
+              <span class="transit-time" data-i18n="time30m">約 30分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitCastle">🏯 大阪城・大阪城公園</span>
+              <span class="transit-time" data-i18n="time35m">約 35分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitUsj">🎢 USJ（ユニバーサルシティ）</span>
+              <span class="transit-time" data-i18n="time35m">約 35分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitKix">✈️ 関西国際空港 (KIX)</span>
+              <span class="transit-time" data-i18n="time45m">約 45分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitKobe">⚓ 神戸・三宮（難波乗換）</span>
+              <span class="transit-time" data-i18n="time50m">約 50分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitNara">🦌 奈良公園・東大寺（難波乗換）</span>
+              <span class="transit-time" data-i18n="time50m">約 50分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitItm">🛫 大阪伊丹空港 (ITM)</span>
+              <span class="transit-time" data-i18n="time55m">約 55分</span>
+            </div>
+            <div class="transit-item">
+              <span class="transit-dest" data-i18n="transitKyoto">⛩️ 京都エリア（梅田乗換）</span>
+              <span class="transit-time" data-i18n="time60m">約 60分</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Culture & Etiquette Guide -->
       <section class="card" style="background:linear-gradient(135deg, #18202c, #131b26);">
         <div class="card-header">
@@ -1668,20 +1808,35 @@
     "lblAddress": "📍 所在地",
     "btnPhotoGuide": "写真付き道順ガイド",
     "lblTrain": "🚃 最寄り駅＆関西空港からのアクセス",
-    "stationSumiyoshi": "<strong>南海本線「住吉大社（すみよしたいしゃ）駅」</strong>（徒歩4分 / なんば直通 約10分）",
-    "stationKohama": "<strong>南海本線「粉浜（こはま）駅」</strong>（徒歩4分 / なんば直通 約9分）",
-    "kixRouteTitle": "関西国際空港（KIX）からのルート:",
-    "kixRouteDesc": "南海電鉄「ラピート」または「空港急行」で<strong>「天下茶屋（てんがちゃや）駅」</strong>へ。天下茶屋駅で各駅停車にお乗り換えの上、「住吉大社駅」（徒歩5分）または「粉浜駅」（徒歩7分）でお降りください。",
-    "lblTransitGuide": "⏱ 主要スポットへの所要時間目安",
-    "transitNamba": "難波（なんば）",
+    "stationSumiyoshi": "<strong>南海本線「住吉大社（すみよしたいしゃ）駅」</strong>（徒歩5分 / なんば直通 約10分）",
+    "stationKohama": "<strong>南海本線「粉浜（こはま）駅」</strong>（徒歩7分 / なんば直通 約9分）",
+    "kixRouteTitle": "✈️ 関西国際空港（KIX）からの到着ルート（約45分）:",
+    "kixRouteDesc": "南海電鉄「ラピート」または「空港急行」で<strong>「天下茶屋駅 (NK05)」</strong>へ。天下茶屋駅で<strong>普通列車（各駅停車）</strong>にお乗り換えの上、「住吉大社駅 (NK08)」（徒歩5分）または「粉浜駅 (NK07)」（徒歩7分）でお降りください。",
+    "lblTransitGuide": "⏱ 主要スポットへの所要時間目安（路線マップ準拠）",
+    "transitSumiyoshi": "住吉大社・路面電車",
+    "transitNamba": "難波・道頓堀・黒門市場",
+    "transitTsutenkaku": "通天閣・天王寺",
+    "transitUmeda": "梅田・大阪駅（四つ橋線）",
+    "transitKaiyukan": "海遊館（大阪港駅 C11）",
+    "transitCastle": "大阪城公園",
     "transitUsj": "USJ（ユニバ）",
-    "transitUmeda": "梅田・大阪駅",
-    "transitKix": "関西国際空港",
-    "transitKyoto": "京都",
-    "transitNara": "奈良",
+    "transitKix": "関西国際空港 (KIX)",
+    "transitKobe": "神戸（阪神・JR線）",
+    "transitNara": "奈良公園（近鉄・JR線）",
+    "transitItm": "大阪空港 / 伊丹空港 (ITM)",
+    "transitKyoto": "京都（JR・京阪線）",
+    "timeWalk5m": "徒歩5分",
+    "timeDirect10m": "直通 約10分",
     "time10m": "約10分",
-    "time25m": "約25分",
+    "time18m": "約18分",
+    "timeDirect22m": "直通 約22分",
+    "time25m": "約22分",
+    "time30m": "約30分",
+    "time35m": "約35分",
+    "time40m": "約40分",
     "time45m": "約45分",
+    "time50m": "約50分",
+    "time55m": "約55分",
     "time60m": "約60分",
     "carWarnTitle": "お車でお越しの方へ（重要）:",
     "carWarnDesc": "当施設には専用駐車場がございません。また前面道路は非常に狭く駐停車厳禁です。お車でお越しの際は必ず近隣のコインパーキングをご利用ください。",
@@ -1789,6 +1944,20 @@
     "heroDesc": "快適な大阪滞在をお楽しみください。アクセス、鍵の解錠、チェックイン手続き、Wi-Fi情報、周辺マップをまとめた公式案内サイトです。",
     "navManual": "ハウスマニュアル ↗",
     "quickManual": "📖 ハウスマニュアル",
+    "navRouteMap": "観光・路線マップ",
+    "quickRouteMap": "🗺️ 路線マップ",
+    "btnRouteMap": "🗺️ 全線路線図 (Route Map)",
+    "routeMapSectionTitle": "🗺️ 観光・路線マップ & お出かけ乗換ガイド",
+    "routeMapSectionSub": "Sightseeing Route Map & Transit Guide",
+    "routeMapCardTitle": "🗺️ 施設発・関西お出かけ路線マップ（高精細版）",
+    "routeMapCardDesc": "当施設から利用できる3路線（南海本線・阪堺電車・地下鉄四つ橋線）と、大阪・関西の主要観光スポット12ヶ所へのルート・所要時間を1枚にまとめた専用マップです。",
+    "btnOpenRouteMapPage": "専用ページで大きく開く ↗",
+    "routeMapTapBadge": "タップして拡大マップを開く",
+    "lblThreeLinesGuide": "🚃 目的地別・3路線の使い分けガイド",
+    "routeLineNankai": "<strong>① 南海本線「住吉大社駅 (NK08)」徒歩5分 ／「粉浜駅 (NK07)」徒歩7分</strong><br><span style=\"font-size:0.84rem;\">👉 <strong>難波（直通10分）</strong>・<strong>関西国際空港</strong>・<strong>奈良／神戸方面（難波乗換）</strong>へ行くのに最速・便利です。※両駅とも普通列車のみ停車</span>",
+    "routeLineHankai": "<strong>② 阪堺電車（路面電車）「住吉鳥居前駅 (HN12)」徒歩5分 ／「東粉浜駅 (HN61)」徒歩7分</strong><br><span style=\"font-size:0.84rem;\">👉 <strong>通天閣・新世界（恵美須町駅）・天王寺駅前駅（直通 約18分）</strong>へ、大阪唯一のレトロな路面電車でのんびり観光移動できます。</span>",
+    "routeLineMetro": "<strong>③ Osaka Metro 四つ橋線「玉出駅 (Y19)」徒歩11分</strong><br><span style=\"font-size:0.84rem;\">👉 <strong>梅田（西梅田まで直通22分）</strong>・心斎橋（四ツ橋）・USJ・海遊館・大阪城・京都方面へ、地下鉄ネットワークでスムーズにアクセスできます。</span>",
+    "lblSpots": "🗺️ 主要観光スポットへの所要時間目安（12選）",
     "btnHouseManual": "Web版ハウスマニュアルを見る ↗",
     "catBefore": "🛫 ご到着前",
     "catStay": "🏠 ご滞在中",
@@ -1801,8 +1970,10 @@
     "checkoutManualNote": "※チェックアウト手順や写真付き詳細ガイドは、ハウスマニュアルをご参照ください。",
     "btnCheckoutManual": "📖 ハウスマニュアル「9. Check-out / チェックアウト」を見る ↗",
     "btnNavi": "🚶 現在地からの徒歩ナビ",
-    "lblTrainSumiyoshi": "<strong>南海本線「住吉大社（すみよしたいしゃ）駅」西出口</strong>（徒歩5分 / なんば直通 約10分）<br/><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 改札・地上階ともにエレベーター完備（スーツケースでも安心）</span>",
-    "lblTrainKohama": "<strong>南海本線「粉浜（こはま）駅」西出口</strong>（徒歩7分 / なんば直通 約9分）<br/><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 改札・地上階ともにエレベーター完備</span>",
+    "lblTrainSumiyoshi": "<strong>南海本線「住吉大社駅 (NK08)」西出口</strong>（徒歩5分 / なんば直通 約10分）※普通のみ停車<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 改札・地上階ともにエレベーター完備（スーツケースでも安心）</span>",
+    "lblTrainKohama": "<strong>南海本線「粉浜駅 (NK07)」西出口</strong>（徒歩7分 / なんば直通 約9分）※普通のみ停車<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 改札・地上階ともにエレベーター完備</span>",
+    "lblTrainHankai": "<strong>阪堺電車（路面電車）🚋「住吉鳥居前 (HN12)」（徒歩5分）/「東粉浜 (HN61)」（徒歩7分）</strong>",
+    "lblTrainTamade": "<strong>Osaka Metro 四つ橋線「玉出駅 (Y19)」5番出口</strong>（徒歩11分 / 西梅田・四ツ橋・なんば直通）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 エレベーター完備</span>",
     "luggageNoticeTitle": "🧳 お荷物のお預かり・コインロッカーについて:",
     "luggageNoticeDesc": "清掃・準備のため、チェックイン前およびチェックアウト後の室内でのお荷物のお預かりは承っておりません。住吉大社駅構内、粉浜駅周辺、または主要ターミナル（南海なんば駅・関西国際空港）のコインロッカーや手荷物預かり所をご利用ください。",
     "faqLuggageQ": "Q. チェックイン前やチェックアウト後に荷物を預けられますか？",
@@ -1880,21 +2051,36 @@
     "accessSub": "Directions from nearest station and Kansai Airport (KIX)",
     "lblAddress": "📍 Address",
     "btnPhotoGuide": "View Photo Directions Guide",
-    "lblTrain": "🚃 Nearest Station & Access from Airport",
-    "stationSumiyoshi": "<strong>Nankai Main Line \"Sumiyoshitaisha Station\"</strong> (4 mins walk / Direct to Namba ~10 mins)",
-    "stationKohama": "<strong>Nankai Main Line \"Kohama Station\"</strong> (4 mins walk / Direct to Namba ~9 mins)",
-    "kixRouteTitle": "Route from Kansai International Airport (KIX):",
-    "kixRouteDesc": "Take the Nankai <strong>Limited Express \"Rapi:t\"</strong> or <strong>Airport Express</strong> to <strong>Tengachaya Station</strong>. Transfer to the Local train and get off at <strong>Sumiyoshi-taisha Station</strong> (5 min walk) or <strong>Kohama Station</strong> (7 min walk).",
-    "lblTransitGuide": "⏱ Estimated Travel Time to Key Spots",
-    "transitNamba": "Namba",
+    "lblTrain": "🚃 Nearest Stations & Kansai Airport (KIX) Access",
+    "stationSumiyoshi": "<strong>Nankai Main Line \"Sumiyoshitaisha Station\"</strong> (5 mins walk / Direct to Namba ~10 mins)",
+    "stationKohama": "<strong>Nankai Main Line \"Kohama Station\"</strong> (7 mins walk / Direct to Namba ~9 mins)",
+    "kixRouteTitle": "✈️ Arrival Route from Kansai Int'l Airport (KIX) (~45 mins):",
+    "kixRouteDesc": "Take the Nankai <strong>Limited Express \"Rapi:t\"</strong> or <strong>Airport Express</strong> to <strong>Tengachaya Station (NK05)</strong>. Transfer to a <strong>Local train</strong> and get off at <strong>Sumiyoshitaisha Station (NK08)</strong> (5 min walk) or <strong>Kohama Station (NK07)</strong> (7 min walk).",
+    "lblTransitGuide": "⏱ Estimated Travel Time to Key Spots (Official Route Map)",
+    "transitSumiyoshi": "Sumiyoshi Taisha & Tram",
+    "transitNamba": "Namba / Dotonbori / Kuromon",
+    "transitTsutenkaku": "Tsutenkaku / Tennoji",
+    "transitUmeda": "Umeda / Osaka (Yotsubashi Line)",
+    "transitKaiyukan": "Kaiyukan Aquarium (Osakako C11)",
+    "transitCastle": "Osaka Castle Park",
     "transitUsj": "USJ (Universal Studios Japan)",
-    "transitUmeda": "Umeda / Osaka Station",
     "transitKix": "Kansai Int'l Airport (KIX)",
-    "transitKyoto": "Kyoto",
-    "transitNara": "Nara",
+    "transitKobe": "Kobe (Hanshin / JR)",
+    "transitNara": "Nara Park (Kintetsu / JR)",
+    "transitItm": "Osaka Itami Airport (ITM)",
+    "transitKyoto": "Kyoto (JR / Keihan)",
+    "timeWalk5m": "5 min walk",
+    "timeDirect10m": "Direct ~10 min",
     "time10m": "approx. 10 mins",
-    "time25m": "approx. 25 mins",
+    "time18m": "approx. 18 mins",
+    "timeDirect22m": "Direct ~22 min",
+    "time25m": "approx. 22 mins",
+    "time30m": "approx. 30 mins",
+    "time35m": "approx. 35 mins",
+    "time40m": "approx. 40 mins",
     "time45m": "approx. 45 mins",
+    "time50m": "approx. 50 mins",
+    "time55m": "approx. 55 mins",
     "time60m": "approx. 60 mins",
     "carWarnTitle": "Important Notice for Drivers:",
     "carWarnDesc": "No private parking available. Stopping/parking in front of the building is strictly prohibited. Please use nearby paid coin parking.",
@@ -2002,6 +2188,20 @@
     "heroDesc": "Enjoy a comfortable stay in Osaka. Your official guide portal covering directions, check-in, Wi-Fi info, room amenities, and neighborhood map.",
     "navManual": "House Manual ↗",
     "quickManual": "📖 House Manual",
+    "navRouteMap": "Route Map & Transit",
+    "quickRouteMap": "🗺️ Route Map",
+    "btnRouteMap": "🗺️ Official Route Map",
+    "routeMapSectionTitle": "🗺️ Sightseeing Route Map & Transit Guide",
+    "routeMapSectionSub": "3 Nearest Lines & Travel Times to Major Spots",
+    "routeMapCardTitle": "🗺️ Official Kansai Sightseeing Route Map (High-Res)",
+    "routeMapCardDesc": "A visual guide showing the 3 train/tram lines available from our apartment and travel times to 12 major sightseeing spots & airports in Osaka/Kansai.",
+    "btnOpenRouteMapPage": "Open Full Route Map ↗",
+    "routeMapTapBadge": "Tap to open full-size Route Map",
+    "lblThreeLinesGuide": "🚃 How to Use the 3 Nearest Lines by Destination",
+    "routeLineNankai": "<strong>① Nankai Main Line: \"Sumiyoshitaisha (NK08)\" (5 min walk) / \"Kohama (NK07)\" (7 min walk)</strong><br><span style=\"font-size:0.84rem;\">👉 Fastest for <strong>Namba (Direct ~10 min)</strong>, <strong>Kansai Airport (KIX)</strong>, and <strong>Nara / Kobe (transfer at Namba)</strong>. *Local trains only</span>",
+    "routeLineHankai": "<strong>② Hankai Tramway (Streetcar): \"Sumiyoshitoriimae (HN12)\" (5 min walk) / \"Higashi-Kohama (HN61)\" (7 min walk)</strong><br><span style=\"font-size:0.84rem;\">👉 Direct to <strong>Tsutenkaku / Shinsekai & Tennoji (~18 min)</strong> on Osaka's iconic retro streetcar.</span>",
+    "routeLineMetro": "<strong>③ Osaka Metro Yotsubashi Line: \"Tamade Station (Y19)\" (11 min walk)</strong><br><span style=\"font-size:0.84rem;\">👉 Direct to <strong>Umeda / Osaka Sta. (Nishi-Umeda ~22 min)</strong>, Shinsaibashi (Yotsubashi), and easy transfers to USJ, Kaiyukan, Osaka Castle & Kyoto.</span>",
+    "lblSpots": "🗺️ Estimated Travel Time to Major Sightseeing Spots (12 Spots)",
     "btnHouseManual": "View Web House Manual ↗",
     "catBefore": "🛫 Before Arrival",
     "catStay": "🏠 During Stay",
@@ -2014,8 +2214,10 @@
     "checkoutManualNote": "* For detailed photo guides on check-out procedures, please check the House Manual.",
     "btnCheckoutManual": "📖 View \"9. Check-out\" in House Manual ↗",
     "btnNavi": "🚶 Walking Navigation",
-    "lblTrainSumiyoshi": "<strong>Nankai Main Line \"Sumiyoshi-taisha Station\" West Exit</strong> (5 min walk / ~10 min direct to Namba)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevators available at platforms and exits (Luggage-friendly)</span>",
-    "lblTrainKohama": "<strong>Nankai Main Line \"Kohama Station\" West Exit</strong> (7 min walk / ~9 min direct to Namba)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevators available at platforms and exits</span>",
+    "lblTrainSumiyoshi": "<strong>Nankai Main Line \"Sumiyoshitaisha Station (NK08)\" West Exit</strong> (5 min walk / ~10 min direct to Namba) *Local trains only<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevator available (Luggage-friendly)</span>",
+    "lblTrainKohama": "<strong>Nankai Main Line \"Kohama Station (NK07)\" West Exit</strong> (7 min walk / ~9 min direct to Namba) *Local trains only<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevator available</span>",
+    "lblTrainHankai": "<strong>Hankai Tramway (Streetcar) 🚋 \"Sumiyoshitoriimae (HN12)\" (5 min walk) / \"Higashi-Kohama (HN61)\" (7 min walk)</strong>",
+    "lblTrainTamade": "<strong>Osaka Metro Yotsubashi Line \"Tamade Station (Y19)\" Exit 5</strong> (11 min walk / Direct to Nishi-Umeda, Yotsubashi & Namba)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevator available</span>",
     "luggageNoticeTitle": "🧳 Luggage Storage & Lockers:",
     "luggageNoticeDesc": "Due to room cleaning and turnaround, luggage storage inside the room before check-in or after check-out is not available. Please use coin lockers or luggage storage services at Sumiyoshi-taisha Station, Nankai Namba Station, or Kansai Airport (KIX).",
     "faqLuggageQ": "Q. Can I store luggage before check-in or after check-out?",
@@ -2093,21 +2295,36 @@
     "accessSub": "从最近车站及关西机场（KIX）的路线",
     "lblAddress": "📍 详细地址",
     "btnPhotoGuide": "查看带图路线指南",
-    "lblTrain": "🚃 最近车站与机场交通",
-    "stationSumiyoshi": "<strong>南海本线“住吉大社站”</strong>（步行4分钟 / 直达难波约10分钟）",
-    "stationKohama": "<strong>南海本线“粉滨站”</strong>（步行4分钟 / 直达难波约9分钟）",
-    "kixRouteTitle": "关西国际机场（KIX）出发:",
-    "kixRouteDesc": "乘坐南海电铁<strong>特急“Rapi:t”</strong>或<strong>“机场急行”</strong>至<strong>“天下茶屋站”</strong>。在天下茶屋站换乘各站停车（普通列车），在<strong>“住吉大社站”</strong>（步行5分钟）或<strong>“粉滨站”</strong>（步行7分钟）下车。",
-    "lblTransitGuide": "⏱ 前往主要景点估计所需时间",
-    "transitNamba": "难波 (Namba)",
+    "lblTrain": "🚃 最近车站与关西机场（KIX）交通",
+    "stationSumiyoshi": "<strong>南海本线“住吉大社站”</strong>（步行5分钟 / 直达难波约10分钟）",
+    "stationKohama": "<strong>南海本线“粉滨站”</strong>（步行7分钟 / 直达难波约9分钟）",
+    "kixRouteTitle": "✈️ 关西国际机场（KIX）到达路线（约45分钟）:",
+    "kixRouteDesc": "乘坐南海电铁<strong>特急“Rapi:t”</strong>或<strong>“机场急行”</strong>至<strong>“天下茶屋站 (NK05)”</strong>。在天下茶屋站换乘<strong>普通列车（各站停车）</strong>，在<strong>“住吉大社站 (NK08)”</strong>（步行5分钟）或<strong>“粉滨站 (NK07)”</strong>（步行7分钟）下车。",
+    "lblTransitGuide": "⏱ 前往主要景点所需时间（依官方路线图）",
+    "transitSumiyoshi": "住吉大社·有轨电车",
+    "transitNamba": "难波·道顿堀·黑门市场",
+    "transitTsutenkaku": "通天阁·天王寺",
+    "transitUmeda": "梅田·大阪站（四桥线）",
+    "transitKaiyukan": "海游馆（大阪港站 C11）",
+    "transitCastle": "大阪城公园",
     "transitUsj": "日本环球影城 (USJ)",
-    "transitUmeda": "梅田·大阪站",
     "transitKix": "关西国际机场 (KIX)",
-    "transitKyoto": "京都",
-    "transitNara": "奈良",
+    "transitKobe": "神户（阪神·JR线）",
+    "transitNara": "奈良公园（近铁·JR线）",
+    "transitItm": "大阪伊丹机场 (ITM)",
+    "transitKyoto": "京都（JR·京阪线）",
+    "timeWalk5m": "步行5分钟",
+    "timeDirect10m": "直达 约10分钟",
     "time10m": "约10分钟",
-    "time25m": "约25分钟",
+    "time18m": "约18分钟",
+    "timeDirect22m": "直达 约22分钟",
+    "time25m": "约22分钟",
+    "time30m": "约30分钟",
+    "time35m": "约35分钟",
+    "time40m": "约40分钟",
     "time45m": "约45分钟",
+    "time50m": "约50分钟",
+    "time55m": "约55分钟",
     "time60m": "约60分钟",
     "carWarnTitle": "自驾住客请注意（重要）:",
     "carWarnDesc": "本设施无专用停车场，且门前道路极窄禁止违章停车。请务必使用附近的收费停车场。",
@@ -2215,6 +2432,20 @@
     "heroDesc": "祝您在大阪度过一段舒适愉快的时光！这是涵盖交通路线、开锁入住、Wi-Fi连接、房间设施及周边地图的官方住宿指南。",
     "navManual": "房屋手册 ↗",
     "quickManual": "📖 房屋手册",
+    "navRouteMap": "观光与路线图",
+    "quickRouteMap": "🗺️ 路线图",
+    "btnRouteMap": "🗺️ 电车与地铁全路线图",
+    "routeMapSectionTitle": "🗺️ 观光路线图 & 出行乘车指南",
+    "routeMapSectionSub": "3条可用电车路线与主要景点所需时间",
+    "routeMapCardTitle": "🗺️ 从公寓出发·关西观光路线图（高清版）",
+    "routeMapCardDesc": "汇集本设施周边可利用的3条电车/地铁线路（南海本线、阪堺电车、地铁四桥线），以及前往大阪与关西12大主要景点及机场的路线与所需时间。",
+    "btnOpenRouteMapPage": "打开专属大图页面 ↗",
+    "routeMapTapBadge": "点击放大查看高清路线图",
+    "lblThreeLinesGuide": "🚃 按目的地选择：3条电车线路乘车指南",
+    "routeLineNankai": "<strong>① 南海本线“住吉大社站 (NK08)”步行5分钟 ／“粉滨站 (NK07)”步行7分钟</strong><br><span style=\"font-size:0.84rem;\">👉 前往<strong>难波（直达10分钟）</strong>、<strong>关西国际机场</strong>、<strong>奈良／神户方向（难波换乘）</strong>最快捷便利。※两站仅停靠普通列车</span>",
+    "routeLineHankai": "<strong>② 阪堺电车（有轨电车）“住吉鸟居前站 (HN12)”步行5分钟 ／“东粉滨站 (HN61)”步行7分钟</strong><br><span style=\"font-size:0.84rem;\">👉 乘坐大阪唯一的复古有轨电车，悠闲直达<strong>通天阁·新世界与天王寺站前（直达约18分钟）</strong>。</span>",
+    "routeLineMetro": "<strong>③ 大阪地铁 四桥线“玉出站 (Y19)”步行11分钟</strong><br><span style=\"font-size:0.84rem;\">👉 直达<strong>梅田（西梅田直达22分钟）</strong>、心斋桥（四桥站），并可便捷换乘前往USJ环球影城、海游馆、大阪城与京都。</span>",
+    "lblSpots": "🗺️ 前往主要观光景点所需时间参考（12选）",
     "btnHouseManual": "查看Web版房屋手册 ↗",
     "catBefore": "🛫 行前及到达",
     "catStay": "🏠 入住期间",
@@ -2227,8 +2458,10 @@
     "checkoutManualNote": "※退房流程的图文详细说明，请参考房屋手册。",
     "btnCheckoutManual": "📖 查看房屋手册“9. Check-out / 退房” ↗",
     "btnNavi": "🚶 步行导航",
-    "lblTrainSumiyoshi": "<strong>南海本线“住吉大社站”西出口</strong>（步行5分钟 / 直达难波约10分钟）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 站台及出站口均配有电梯（方便携带大件行李）</span>",
-    "lblTrainKohama": "<strong>南海本线“粉滨站”西出口</strong>（步行7分钟 / 直达难波约9分钟）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 配有电梯</span>",
+    "lblTrainSumiyoshi": "<strong>南海本线“住吉大社站 (NK08)”西出口</strong>（步行5分钟 / 直达难波约10分钟）※仅停靠普通列车<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 配有电梯（携带大件行李也很方便）</span>",
+    "lblTrainKohama": "<strong>南海本线“粉滨站 (NK07)”西出口</strong>（步行7分钟 / 直达难波约9分钟）※仅停靠普通列车<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 配有电梯</span>",
+    "lblTrainHankai": "<strong>阪堺电车（有轨电车）🚋“住吉鸟居前 (HN12)”（步行5分钟）/“东粉滨 (HN61)”（步行7分钟）</strong>",
+    "lblTrainTamade": "<strong>大阪地铁 四桥线“玉出站 (Y19)”5号出口</strong>（步行11分钟 / 直达西梅田、四桥、难波）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 配有电梯</span>",
     "luggageNoticeTitle": "🧳 行李寄存与储物柜指南:",
     "luggageNoticeDesc": "由于需要进行保洁和消毒，入住前及退房后无法在房间内寄存行李。请使用住吉大社站内、粉滨站周边或主要交通枢纽（南海难波站、关西国际机场）的投币式储物柜或行李寄存服务。",
     "faqLuggageQ": "Q. 可以在入住前或退房后在房间存放行李吗？",
@@ -2306,21 +2539,36 @@
     "accessSub": "가까운 역 및 간사이 공항(KIX)에서의 오시는 길",
     "lblAddress": "📍 상세 주소",
     "btnPhotoGuide": "사진 포함 길안내 가이드 보기",
-    "lblTrain": "🚃 인근 역 및 공항 교통편",
-    "stationSumiyoshi": "<strong>난카이 본선 '스미요시타이샤역'</strong> (도보 4분 / 난바 직통 약 10분)",
-    "stationKohama": "<strong>난카이 본선 '코하마역'</strong> (도보 4분 / 난바 직통 약 9분)",
-    "kixRouteTitle": "간사이 국제공항(KIX) 출발 경로:",
-    "kixRouteDesc": "난카이 전철 <strong>특급 '라피트(Rapi:t)'</strong> 또는 <strong>'공항급행'</strong>을 타고 <strong>'텐가차야역'</strong>으로 이동하세요. 텐가차야역에서 각역정차(보통열차)로 환승한 후, <strong>'스미요시타이샤역'</strong>(도보 5분) 또는 <strong>'고하마역'</strong>(도보 7분)에서 하차해 주세요.",
-    "lblTransitGuide": "⏱ 주요 관광지 소요 시간",
-    "transitNamba": "난바 (Namba)",
+    "lblTrain": "🚃 인근 역 및 간사이 공항(KIX) 오시는 길",
+    "stationSumiyoshi": "<strong>난카이 본선 '스미요시타이샤역'</strong> (도보 5분 / 난바 직통 약 10분)",
+    "stationKohama": "<strong>난카이 본선 '고하마역'</strong> (도보 7분 / 난바 직통 약 9분)",
+    "kixRouteTitle": "✈️ 간사이 국제공항(KIX) 도착 경로 (약 45분):",
+    "kixRouteDesc": "난카이 전철 <strong>특급 '라피트(Rapi:t)'</strong> 또는 <strong>'공항급행'</strong>을 타고 <strong>'텐가차야역 (NK05)'</strong>으로 이동하세요. 텐가차야역에서 <strong>보통열차(각역정차)</strong>로 환승한 후, <strong>'스미요시타이샤역 (NK08)'</strong>(도보 5분) 또는 <strong>'고하마역 (NK07)'</strong>(도보 7분)에서 하차해 주세요.",
+    "lblTransitGuide": "⏱ 주요 관광지 소요 시간 (노선도 기준)",
+    "transitSumiyoshi": "스미요시 타이샤·노면전차",
+    "transitNamba": "난바·도톤보리·구로몬 시장",
+    "transitTsutenkaku": "쓰텐카쿠·텐노지",
+    "transitUmeda": "우메다·오사카역 (요쓰바시선)",
+    "transitKaiyukan": "가이유칸 수족관 (오사카코역 C11)",
+    "transitCastle": "오사카성 공원",
     "transitUsj": "유니버설 스튜디오 재팬 (USJ)",
-    "transitUmeda": "우메다·오사카역",
     "transitKix": "간사이 국제공항 (KIX)",
-    "transitKyoto": "교토",
-    "transitNara": "나라",
+    "transitKobe": "고베 (한신·JR선)",
+    "transitNara": "나라 공원 (긴테쓰·JR선)",
+    "transitItm": "오사카 이타미 공항 (ITM)",
+    "transitKyoto": "교토 (JR·게이한선)",
+    "timeWalk5m": "도보 5분",
+    "timeDirect10m": "직통 약 10분",
     "time10m": "약 10분",
-    "time25m": "약 25분",
+    "time18m": "약 18분",
+    "timeDirect22m": "직통 약 22분",
+    "time25m": "약 22분",
+    "time30m": "약 30분",
+    "time35m": "약 35분",
+    "time40m": "약 40분",
     "time45m": "약 45분",
+    "time50m": "약 50분",
+    "time55m": "약 55분",
     "time60m": "약 60분",
     "carWarnTitle": "차량 이용 게스트 주의사항 (중요):",
     "carWarnDesc": "전용 주차장이 없으며 건물 앞 도로는 주정차 금지구역입니다. 차량 이용 시 반드시 근처의 동전 주차장을 이용해 주세요.",
@@ -2428,6 +2676,20 @@
     "heroDesc": "오사카에서 편안하고 즐거운 시간 보내세요! 오시는 길, 객실 입실 방법, Wi-Fi 정보, 객실 비품 및 주변 지도를 정리한 공식 게스트 포털입니다.",
     "navManual": "하우스 매뉴얼 ↗",
     "quickManual": "📖 하우스 매뉴얼",
+    "navRouteMap": "관광·노선도",
+    "quickRouteMap": "🗺️ 노선도",
+    "btnRouteMap": "🗺️ 전철 노선도 (Route Map)",
+    "routeMapSectionTitle": "🗺️ 관광·노선도 & 외출 환승 가이드",
+    "routeMapSectionSub": "숙소 인근 3개 노선 활용법 및 주요 관광지 소요 시간",
+    "routeMapCardTitle": "🗺️ 숙소 출발·간사이 관광 노선도 (고화질판)",
+    "routeMapCardDesc": "숙소에서 이용 가능한 3개 노선(난카이 본선, 한카이 전차, 지하철 요쓰바시선)과 오사카·간사이 주요 관광지 12곳의 이동 경로 및 소요 시간을 한눈에 볼 수 있는 전용 맵입니다.",
+    "btnOpenRouteMapPage": "전용 페이지에서 크게 보기 ↗",
+    "routeMapTapBadge": "탭하여 확대 노선도 열기",
+    "lblThreeLinesGuide": "🚃 목적지별 3개 노선 활용 가이드",
+    "routeLineNankai": "<strong>① 난카이 본선 '스미요시타이샤역 (NK08)' 도보 5분 ／ '고하마역 (NK07)' 도보 7분</strong><br><span style=\"font-size:0.84rem;\">👉 <strong>난바(직통 10분)</strong>, <strong>간사이 국제공항</strong>, <strong>나라／고베 방면(난바 환승)</strong> 이동 시 가장 빠르고 편리합니다. ※두 역 모두 보통열차만 정차</span>",
+    "routeLineHankai": "<strong>② 한카이 전차(노면전차) '스미요시토리이마에역 (HN12)' 도보 5분 ／ '히가시코하마역 (HN61)' 도보 7분</strong><br><span style=\"font-size:0.84rem;\">👉 오사카 유일의 레트로 노면전차를 타고 <strong>쓰텐카쿠·신세카이 및 텐노지역 앞(직통 약 18분)</strong>까지 여유롭게 이동할 수 있습니다.</span>",
+    "routeLineMetro": "<strong>③ 오사카 메트로 요쓰바시선 '다마데역 (Y19)' 도보 11분</strong><br><span style=\"font-size:0.84rem;\">👉 <strong>우메다(니시우메다 직통 22분)</strong>, 신사이바시(요쓰바시), USJ, 가이유칸, 오사카성, 교토 방면으로 지하철 네트워크를 통해 편리하게 이동할 수 있습니다.</span>",
+    "lblSpots": "🗺️ 주요 관광지 소요 시간 안내 (12선)",
     "btnHouseManual": "웹 하우스 매뉴얼 보기 ↗",
     "catBefore": "🛫 도착 전 안내",
     "catStay": "🏠 체류 중 안내",
@@ -2440,8 +2702,10 @@
     "checkoutManualNote": "※사진이 포함된 자세한 체크아웃 절차는 하우스 매뉴얼을 참고해 주세요.",
     "btnCheckoutManual": "📖 하우스 매뉴얼 \"9. Check-out / 체크아웃\" 보기 ↗",
     "btnNavi": "🚶 도보 길찾기 내비",
-    "lblTrainSumiyoshi": "<strong>난카이 본선 '스미요시타이샤역' 서쪽 출구</strong> (도보 5분 / 난바 직통 약 10분)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 승강장 및 개찰구 엘리베이터 완비 (캐리어 이동 편리)</span>",
-    "lblTrainKohama": "<strong>난카이 본선 '고하마역' 서쪽 출구</strong> (도보 7분 / 난바 직통 약 9분)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 개찰구 엘리베이터 완비</span>",
+    "lblTrainSumiyoshi": "<strong>난카이 본선 '스미요시타이샤역 (NK08)' 서쪽 출구</strong> (도보 5분 / 난바 직통 약 10분) ※보통열차만 정차<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 엘리베이터 완비 (캐리어 이동 편리)</span>",
+    "lblTrainKohama": "<strong>난카이 본선 '고하마역 (NK07)' 서쪽 출구</strong> (도보 7분 / 난바 직통 약 9분) ※보통열차만 정차<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 개찰구 엘리베이터 완비</span>",
+    "lblTrainHankai": "<strong>한카이 전차 (노면전차) 🚋 '스미요시토리이마에 (HN12)' (도보 5분) / '히가시코하마 (HN61)' (도보 7분)</strong>",
+    "lblTrainTamade": "<strong>오사카 메트로 요쓰바시선 '다마데역 (Y19)' 5번 출구</strong> (도보 11분 / 니시우메다·요쓰바시·난바 직통)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 엘리베이터 완비</span>",
     "luggageNoticeTitle": "🧳 짐 보관 및 코인로커 안내:",
     "luggageNoticeDesc": "객실 청소 및 준비 관계로 체크인 전 및 체크아웃 후 객실 내 짐 보관은 불가합니다. 스미요시타이샤역 구내, 난카이 난바역, 간사이 국제공항(KIX) 등의 코인로커 또는 수하물 보관소를 이용해 주시기 바랍니다.",
     "faqLuggageQ": "Q. 체크인 전이나 체크아웃 후에 짐을 보관할 수 있나요?",

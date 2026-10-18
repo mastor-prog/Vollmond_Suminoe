@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1640">
+  <title>Vollmond Suminoe 101 - Official Route Map (Final Verified Edition)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Sans+KR:wght@700;900&family=Noto+Sans+SC:wght@700;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-ivory: #fcfbf7;
+      --navy-dark: #0f172a;
+      --navy-card: #1e293b;
+      --gold: #c59b27;
+      --gold-bright: #d4af37;
+      --gold-bg: #fef9e7;
+
+      /* High-Contrast Official Transit Colors */
+      --c-nankai: #ed6c00;     /* Nankai Orange */
+      --c-yotsubashi: #0068b7; /* Yotsubashi Blue */
+      --c-midosuji: #e5171f;   /* Midosuji Red */
+      --c-hankai: #009944;     /* Hankai Tram Green */
+      --c-chuo: #00a040;       /* Chuo Line Green */
+      --c-jr: #64748b;         /* JR / Other Railways Slate */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0f141c;
+      font-family: 'Poppins', 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans KR', sans-serif;
+      color: var(--navy-dark);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .poster {
+      margin: 0 auto;
+      width: 1600px;
+      height: 1760px;
+      background: radial-gradient(circle at 45% 75%, #fff9e6 0%, #fcfbf7 55%, #f4f1ea 100%);
+      position: relative;
+      overflow: hidden;
+      border: 10px solid var(--navy-dark);
+    }
+
+    /* Inner Luxury Gold Frame */
+    .poster::before {
+      content: '';
+      position: absolute;
+      inset: 10px;
+      border: 3px solid var(--gold);
+      pointer-events: none;
+      z-index: 60;
+    }
+
+    /* ================= 1. HEADER & LEGEND ================= */
+    .header-bar {
+      position: absolute;
+      top: 24px;
+      left: 28px;
+      right: 28px;
+      height: 132px;
+      background: var(--navy-dark);
+      border-bottom: 5px solid var(--gold-bright);
+      border-radius: 16px;
+      padding: 14px 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 40;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+    }
+
+    .title-area {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo-circle {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f9e79f, #d4af37, #9a7d0a);
+      color: var(--navy-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 38px;
+      line-height: 0.95;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+      flex-shrink: 0;
+    }
+    .logo-circle span {
+      font-size: 13px;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .title-text h1 {
+      font-size: 40px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      white-space: nowrap;
+    }
+    .title-text h1 .gold-sub {
+      color: #fde047;
+      font-size: 30px;
+    }
+    .title-text .sub-langs {
+      font-size: 18px;
+      font-weight: 700;
+      color: #cbd5e1;
+      margin-top: 6px;
+      white-space: nowrap;
+    }
+    .title-text .sub-langs strong {
+      color: #f8fafc;
+    }
+
+    /* Bold Line Legend */
+    .legend-box {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 10px 20px;
+      background: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 3px solid var(--gold-bright);
+    }
+
+    .leg-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      white-space: nowrap;
+    }
+
+    .leg-bar {
+      width: 48px;
+      height: 13px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .leg-symbol {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2.5px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    }
+
+    .leg-label {
+      line-height: 1.1;
+    }
+    .leg-label .jp {
+      font-size: 16.5px;
+      font-weight: 900;
+      color: var(--navy-dark);
+      display: block;
+    }
+    .leg-label .en {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #475569;
+    }
+
+    /* ================= 2. SVG TRANSIT LINES ================= */
+    .map-svg {
+      position: absolute;
+      inset: 0;
+      width: 1600px;
+      height: 1760px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* ================= 3. STATION PILLS (LARGE & CRISP) ================= */
+    .st-node {
+      position: absolute;
+      z-index: 25;
+      background: #ffffff;
+      border: 3px solid var(--navy-dark);
+      border-radius: 12px;
+      padding: 5px 11px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
+      white-space: nowrap;
+    }
+
+    .st-node.major {
+      border: 4px solid var(--navy-dark);
+      background: #fffbeb;
+      padding: 6px 14px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+    }
+
+    .st-node.home-st {
+      border: 4px solid var(--c-nankai);
+      background: #fff7ed;
+      padding: 7px 14px;
+      box-shadow: 0 8px 22px rgba(237, 108, 0, 0.3);
+    }
+
+    .badge {
+      font-size: 14.5px;
+      font-weight: 900;
+      padding: 3px 7px;
+      border-radius: 6px;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: 0.3px;
+    }
+    .b-nk { background: var(--c-nankai); }
+    .b-y  { background: var(--c-yotsubashi); }
+    .b-m  { background: var(--c-midosuji); }
+    .b-hn { background: var(--c-hankai); }
+    .b-c  { background: var(--c-chuo); }
+    .b-k  { background: #92400e; }
+    .b-jr { background: #334155; }
+
+    .st-txt {
+      line-height: 1.12;
+    }
+    .st-txt .jp {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--navy-dark);
+      display: block;
+    }
+    .st-txt .en {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #334155;
+      display: block;
+    }
+
+    .ev-tag {
+      background: #059669;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      padding: 4px 7px;
+      border-radius: 6px;
+    }
+
+    .local-tag {
+      background: #fff;
+      border: 2px solid var(--c-nankai);
+      color: #c2410c;
+      font-size: 13px;
+      font-weight: 900;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    /* ================= 4. TOURIST SPOT BLOCKS (BIG PHOTO + GIANT TEXT) ================= */
+    .spot-block {
+      position: absolute;
+      z-index: 30;
+      background: #ffffff;
+      border: 4px solid var(--navy-dark);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.25);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .spot-block.gold-border {
+      border: 4px solid var(--gold);
+      box-shadow: 0 12px 30px rgba(197, 155, 39, 0.35);
+    }
+
+    .spot-photo {
+      position: relative;
+      width: 100%;
+      height: 140px;
+      overflow: hidden;
+    }
+    .spot-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pill-time {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: var(--navy-dark);
+      color: #fde047;
+      border: 2.5px solid #fde047;
+      font-size: 18px;
+      font-weight: 900;
+      padding: 3px 12px;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    .pill-direct {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #dc2626;
+      color: #fff;
+      font-size: 14.5px;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .spot-caption {
+      padding: 10px 14px 12px;
+      background: #fff;
+      line-height: 1.15;
+    }
+    .spot-caption .big-title {
+      font-size: 25px;
+      font-weight: 900;
+      color: var(--navy-dark);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .spot-caption .big-title .jp-name {
+      font-size: 22px;
+      font-weight: 900;
+      color: #b45309;
+    }
+    .spot-caption .sub-info {
+      font-size: 14px;
+      font-weight: 700;
+      color: #475569;
+      margin-top: 3px;
+      white-space: nowrap;
+    }
+
+    /* ================= 5. GIANT "HOUSE" HUB (VOLLMOND SUMINOE 101) ================= */
+    .house-box {
+      position: absolute;
+      left: 28px;
+      top: 1245px;
+      width: 445px;
+      z-index: 35;
+      background: var(--navy-dark);
+      border: 5px solid var(--gold-bright);
+      border-radius: 22px;
+      padding: 16px 18px;
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.45);
+    }
+
+    .house-top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .house-icon {
+      width: 76px;
+      height: 76px;
+      background: linear-gradient(135deg, #fde047, #f59e0b);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy-dark);
+      font-weight: 900;
+      font-size: 40px;
+      line-height: 1;
+      border: 3px solid #fff;
+      flex-shrink: 0;
+    }
+    .house-icon span {
+      font-size: 12.5px;
+      font-weight: 900;
+      margin-top: 2px;
+    }
+
+    .house-titles .here-badge {
+      background: #ef4444;
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 900;
+      padding: 2px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+    .house-titles h2 {
+      font-size: 27px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .house-titles p {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fde047;
+      margin-top: 2px;
+    }
+
+    .house-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hl-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 6px solid #fff;
+      gap: 8px;
+    }
+    .hl-item.nk { border-left-color: var(--c-nankai); }
+    .hl-item.y  { border-left-color: #38bdf8; }
+    .hl-item.hn { border-left-color: #34d399; }
+
+    .hl-left {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+    .hl-left small {
+      display: block;
+      font-size: 11.5px;
+      color: #e2e8f0;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .hl-right {
+      background: #fde047;
+      color: var(--navy-dark);
+      font-size: 14.5px;
+      font-weight: 900;
+      padding: 4px 9px;
+      border-radius: 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-align: center;
+      line-height: 1.15;
+    }
+    .hl-right small {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #334155;
+    }
+
+    /* ================= 6. GIANT AIRPORT BOXES ================= */
+    .airport-box {
+      position: absolute;
+      z-index: 35;
+      background: var(--navy-dark);
+      color: #fff;
+      border: 4px solid var(--c-nankai);
+      border-radius: 18px;
+      padding: 13px 18px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
+    }
+
+    .plane-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      background: var(--c-nankai);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      flex-shrink: 0;
+      border: 2.5px solid #fff;
+    }
+
+    .ap-text h3 {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+    .ap-text .ap-sub {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fde047;
+      margin-top: 3px;
+      white-space: nowrap;
+    }
+
+    /* Transfer Tip Callout (Exact Requested JP & EN Text) */
+    .transfer-banner {
+      position: absolute;
+      left: 625px;
+      top: 1206px;
+      z-index: 32;
+      background: #fff7ed;
+      border: 3.5px solid var(--c-nankai);
+      border-radius: 14px;
+      padding: 7px 13px;
+      box-shadow: 0 8px 20px rgba(237, 108, 0, 0.22);
+      line-height: 1.24;
+    }
+    .transfer-banner .tb-head {
+      font-size: 14.5px;
+      font-weight: 900;
+      color: #c2410c;
+      white-space: nowrap;
+    }
+    .transfer-banner .tb-body {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--navy-dark);
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+    .transfer-banner .tb-en {
+      font-size: 12.8px;
+      font-weight: 800;
+      color: #b45309;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="poster">
+
+  <!-- ==================== 1. HEADER & LEGEND ==================== -->
+  <header class="header-bar">
+    <div class="title-area">
+      <div class="logo-circle">V<span>101</span></div>
+      <div class="title-text">
+        <h1>全線路線図 ROUTE MAP <span class="gold-sub">フォルモント住之江 101</span></h1>
+        <div class="sub-langs">
+          <strong>Vollmond Suminoe 101</strong> &nbsp;|&nbsp; 地铁与电车路线图 &nbsp;|&nbsp; 전철 노선도 (3 Lines Direct Access!)
+        </div>
+      </div>
+    </div>
+
+    <div class="legend-box">
+      <div class="leg-item">
+        <div class="leg-bar" style="background: var(--c-nankai);">
+          <div class="leg-symbol" style="background: var(--c-nankai);">NK</div>
+        </div>
+        <div class="leg-label">
+          <span class="jp">南海本線</span>
+          <span class="en">Nankai Line</span>
+        </div>
+      </div>
+      <div class="leg-item">
+        <div class="leg-bar" style="background: var(--c-yotsubashi);">
+          <div class="leg-symbol" style="background: var(--c-yotsubashi);">Y</div>
+        </div>
+        <div class="leg-label">
+          <span class="jp">四つ橋線</span>
+          <span class="en">Yotsubashi</span>
+        </div>
+      </div>
+      <div class="leg-item">
+        <div class="leg-bar" style="background: var(--c-hankai);">
+          <div class="leg-symbol" style="background: var(--c-hankai);">HN</div>
+        </div>
+        <div class="leg-label">
+          <span class="jp">阪堺電車 🚋</span>
+          <span class="en">Hankai Tram</span>
+        </div>
+      </div>
+      <div class="leg-item">
+        <div class="leg-bar" style="background: var(--c-midosuji);">
+          <div class="leg-symbol" style="background: var(--c-midosuji);">M</div>
+        </div>
+        <div class="leg-label">
+          <span class="jp">御堂筋線</span>
+          <span class="en">Midosuji Line</span>
+        </div>
+      </div>
+      <div class="leg-item">
+        <div class="leg-bar" style="background: var(--c-chuo);">
+          <div class="leg-symbol" style="background: var(--c-chuo);">C</div>
+        </div>
+        <div class="leg-label">
+          <span class="jp">中央線</span>
+          <span class="en">Chuo Line</span>
+        </div>
+      </div>
+      <div class="leg-item">
+        <div class="leg-bar" style="background: var(--c-jr);">
+          <div class="leg-symbol" style="background: var(--c-jr);">JR</div>
+        </div>
+        <div class="leg-label">
+          <span class="jp">JR・他社線</span>
+          <span class="en">Other Lines</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== 2. ULTRA-BOLD SVG TRANSIT NETWORK ==================== -->
+  <svg class="map-svg" viewBox="0 0 1600 1760" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- === OTHER RAILWAYS (JR / HANSHIN / HANKYU / KEIHAN / KINTETSU) === -->
+    <!-- Shinkansen (Y=315) -->
+    <path d="M 60 315 L 1250 315" stroke="#475569" stroke-width="12"/>
+    <path d="M 60 315 L 1250 315" stroke="#ffffff" stroke-width="6" stroke-dasharray="18 14"/>
+
+    <!-- Itami Airport Line (Umeda 680,530 -> Itami 300, 235) -->
+    <path d="M 680 530 L 490 380 L 380 235 L 280 235" stroke="#64748b" stroke-width="10" stroke-dasharray="14 8"/>
+
+    <!-- Kobe Line (Umeda 680,530 -> West 260, 530) -->
+    <path d="M 680 530 L 260 530" stroke="#64748b" stroke-width="11"/>
+
+    <!-- Kyoto Lines (JR from Shin-Osaka/Umeda & Keihan from Yodoyabashi 680,650 -> Kyoto 1280, 315) -->
+    <path d="M 680 530 L 850 530 L 1060 280 L 1280 280" stroke="#64748b" stroke-width="11" stroke-dasharray="16 8"/>
+    <path d="M 680 650 L 1020 650 L 1220 400 L 1320 400" stroke="#64748b" stroke-width="10"/>
+
+    <!-- JR Osaka Loop Line (Umeda 680,530 -> Nishikujo 370,705 -> Bentencho 370,795 -> Shin-Imamiya 600,1135 -> Dobutsuen-mae 680,1135 -> Tennoji 1060,1135 -> Osaka Castle 1200,795 -> Umeda) -->
+    <path d="M 680 530 L 450 530 Q 370 530 370 610 L 370 1045 Q 370 1135 460 1135 L 1110 1135 Q 1200 1135 1200 1045 L 1200 620 Q 1200 530 1110 530 L 680 530"
+          stroke="#64748b" stroke-width="12"/>
+    <path d="M 680 530 L 450 530 Q 370 530 370 610 L 370 1045 Q 370 1135 460 1135 L 1110 1135 Q 1200 1135 1200 1045 L 1200 620 Q 1200 530 1110 530 L 680 530"
+          stroke="#ffffff" stroke-width="5" stroke-dasharray="16 12"/>
+
+    <!-- JR Yumesaki Branch to USJ (Nishikujo 370,705 -> USJ 250, 705) -->
+    <path d="M 370 705 L 250 705" stroke="#334155" stroke-width="14"/>
+
+    <!-- NARA LINES:
+         1) Kintetsu Nara Line directly from Namba (680, 940) -> East (1215, 1015) -> Nara (1320, 1200)
+         2) JR Yamatoji Line from Tennoji (1060, 1135) -> Nara (1360, 1255) -->
+    <path d="M 680 940 L 845 940 L 845 1015 L 1215 1015 L 1320 1200" stroke="#64748b" stroke-width="10" stroke-dasharray="14 8"/>
+    <path d="M 1060 1135 L 1190 1135 L 1300 1255 L 1360 1255" stroke="#64748b" stroke-width="12"/>
+
+    <!-- === OSAKA METRO CHUO LINE: Passes straight through Bentencho (370,795) to Osakako/Kaiyukan (245,795) === -->
+    <path d="M 245 795 L 370 795 L 1200 795" stroke="#00a040" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- === 1. NANKAI MAIN LINE (ORANGE):
+         - Solid Orange Line: Nankai Main Line (Sumiyoshitaisha 600,1490 -> Kohama 600,1400 -> Tengachaya 600,1255 -> Shin-Imamiya 600,1135 -> Namba 600,940)
+         - Dashed Express Bypass Curve: Airport Express between KIX (535,1660) and Tengachaya (600,1255) === -->
+    <path d="M 400 1660 L 550 1660 Q 600 1660 600 1610 L 600 940"
+          stroke="#ed6c00" stroke-width="20" stroke-linecap="round"/>
+    <path d="M 535 1660 Q 545 1440 545 1330 Q 545 1255 600 1255"
+          stroke="#c2410c" stroke-width="9" stroke-dasharray="14 8" fill="none"/>
+
+    <!-- === 2. OSAKA METRO YOTSUBASHI LINE (ULTRA BOLD BLUE: TAMADE 515,1375 -> DAIKOKUCHO 515,1045 -> NAMBA 515,940 -> YOTSUBASHI 515,865 -> HOMMACHI 515,795 -> NISHI-UMEDA 515,575 -> UMEDA 680,530) === -->
+    <path d="M 515 1375 L 515 575 L 680 530"
+          stroke="#0068b7" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- === 3. OSAKA METRO MIDOSUJI LINE (ULTRA BOLD RED: SHIN-OSAKA 680,315 -> UMEDA 680,530 -> YODOYABASHI 680,650 -> HOMMACHI 680,795 -> SHINSAIBASHI 680,865 -> NAMBA 680,940 -> DAIKOKUCHO 680,1045 -> DOBUTSUEN-MAE 680,1135 -> TENNOJI 1060,1135) === -->
+    <path d="M 680 315 L 680 1135 L 1060 1135"
+          stroke="#e5171f" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- === 4. HANKAI TRAMWAY (ULTRA BOLD EMERALD):
+         - Hankai Line: Sumiyoshitoriimae (HN12: 700,1490) -> Higashi-Kohama (HN61: 700,1400) -> Ebisucho (HN51: 930,1075)
+         - Uemachi Line: Branches from Sumiyoshi / Sumiyoshitoriimae (HN12: 700,1490) -> Tennoji-ekimae (HN01: 1060,1135) === -->
+    <path d="M 700 1530 L 700 1310 L 930 1075"
+          stroke="#009944" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 700 1490 L 1185 1490 Q 1225 1490 1195 1380 L 1060 1135"
+          stroke="#009944" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- === GOLDEN ARROWS FROM HOUSE (473, 1390) TO 3 NEAREST STATIONS === -->
+    <path d="M 473 1375 L 515 1375" stroke="#d97706" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 473 1400 L 700 1400" stroke="#d97706" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 473 1490 L 700 1490" stroke="#d97706" stroke-width="14" stroke-linecap="round"/>
+
+    <!-- === STATION CIRCLES === -->
+    <!-- Shin-Osaka -->
+    <circle cx="680" cy="315" r="14" fill="#fff" stroke="#e5171f" stroke-width="7"/>
+    <!-- Umeda & Nishi-Umeda -->
+    <circle cx="680" cy="530" r="16" fill="#fff" stroke="#e5171f" stroke-width="7"/>
+    <circle cx="515" cy="575" r="13" fill="#fff" stroke="#0068b7" stroke-width="6"/>
+    <!-- Yodoyabashi -->
+    <circle cx="680" cy="650" r="11" fill="#fff" stroke="#e5171f" stroke-width="6"/>
+    <!-- Nishikujo & Bentencho & Osakako -->
+    <circle cx="370" cy="705" r="12" fill="#fff" stroke="#334155" stroke-width="6"/>
+    <circle cx="370" cy="795" r="14" fill="#fff" stroke="#00a040" stroke-width="7"/>
+    <circle cx="255" cy="795" r="12" fill="#fff" stroke="#00a040" stroke-width="6"/>
+    <!-- Hommachi Transfer Pill -->
+    <rect x="495" y="779" width="205" height="32" rx="16" fill="#fff" stroke="#0f172a" stroke-width="5"/>
+    <circle cx="515" cy="795" r="9" fill="#0068b7"/>
+    <circle cx="600" cy="795" r="9" fill="#00a040"/>
+    <circle cx="680" cy="795" r="9" fill="#e5171f"/>
+    <!-- Separate Nodes for Y14 Yotsubashi (515,865) and M19 Shinsaibashi (680,865) -->
+    <circle cx="515" cy="865" r="11" fill="#fff" stroke="#0068b7" stroke-width="6"/>
+    <circle cx="680" cy="865" r="11" fill="#fff" stroke="#e5171f" stroke-width="6"/>
+    <!-- NAMBA MEGA HUB -->
+    <rect x="492" y="920" width="212" height="40" rx="20" fill="#fef08a" stroke="#0f172a" stroke-width="6"/>
+    <circle cx="515" cy="940" r="11" fill="#0068b7"/>
+    <circle cx="600" cy="940" r="11" fill="#ed6c00"/>
+    <circle cx="680" cy="940" r="11" fill="#e5171f"/>
+    <!-- Daikokucho -->
+    <rect x="498" y="1032" width="198" height="26" rx="13" fill="#fff" stroke="#0f172a" stroke-width="4"/>
+    <circle cx="515" cy="1045" r="8" fill="#0068b7"/>
+    <circle cx="680" cy="1045" r="8" fill="#e5171f"/>
+    <!-- Ebisucho -->
+    <circle cx="930" cy="1075" r="14" fill="#fff" stroke="#009944" stroke-width="7"/>
+    <!-- Separate Distinct Nodes for NK03 Shin-Imamiya (600,1135) and M22 Dobutsuen-mae (680,1135) -->
+    <circle cx="600" cy="1135" r="12" fill="#fff" stroke="#ed6c00" stroke-width="6"/>
+    <circle cx="680" cy="1135" r="12" fill="#fff" stroke="#e5171f" stroke-width="6"/>
+    <!-- Tennoji / Tennoji-ekimae -->
+    <circle cx="1060" cy="1135" r="16" fill="#fff" stroke="#e5171f" stroke-width="7"/>
+    <!-- Tengachaya -->
+    <circle cx="600" cy="1255" r="16" fill="#fde047" stroke="#0f172a" stroke-width="6"/>
+
+    <!-- 3 HOME STATIONS -->
+    <circle cx="515" cy="1375" r="15" fill="#0068b7" stroke="#fff" stroke-width="5"/>
+    <circle cx="600" cy="1400" r="15" fill="#ed6c00" stroke="#fff" stroke-width="5"/>
+    <circle cx="700" cy="1400" r="14" fill="#009944" stroke="#fff" stroke-width="5"/>
+    <circle cx="600" cy="1490" r="16" fill="#ed6c00" stroke="#fff" stroke-width="5"/>
+    <circle cx="700" cy="1490" r="15" fill="#009944" stroke="#fff" stroke-width="5"/>
+  </svg>
+
+  <!-- ==================== 3. LARGE READABLE STATION LABELS ==================== -->
+  <!-- Shin-Osaka -->
+  <div class="st-node major" style="left: 706px; top: 282px;">
+    <span class="badge b-m">M13</span>
+    <span class="badge b-jr">JR</span>
+    <div class="st-txt"><span class="jp">新大阪 (新幹線)</span><span class="en">Shin-Osaka (Shinkansen)</span></div>
+  </div>
+
+  <!-- Umeda -->
+  <div class="st-node major" style="left: 705px; top: 538px;">
+    <span class="badge b-m">M16</span>
+    <span class="badge b-jr">JR</span>
+    <div class="st-txt"><span class="jp">梅田・大阪駅</span><span class="en">Umeda / Osaka</span></div>
+  </div>
+
+  <!-- Nishi-Umeda -->
+  <div class="st-node" style="left: 335px; top: 552px;">
+    <span class="badge b-y">Y11</span>
+    <div class="st-txt"><span class="jp">西梅田</span><span class="en">Nishi-Umeda</span></div>
+  </div>
+
+  <!-- Yodoyabashi -->
+  <div class="st-node" style="left: 705px; top: 622px;">
+    <span class="badge b-m">M17</span>
+    <div class="st-txt"><span class="jp">淀屋橋 (京阪線)</span><span class="en">Yodoyabashi</span></div>
+  </div>
+
+  <!-- Nishikujo -->
+  <div class="st-node" style="left: 392px; top: 668px;">
+    <span class="badge b-jr">JR</span>
+    <div class="st-txt"><span class="jp">西九条</span><span class="en">Nishikujo</span></div>
+  </div>
+
+  <!-- Bentencho -->
+  <div class="st-node" style="left: 285px; top: 730px;">
+    <span class="badge b-c">C13</span>
+    <span class="badge b-jr">JR</span>
+    <div class="st-txt"><span class="jp">弁天町</span><span class="en">Bentencho</span></div>
+  </div>
+
+  <!-- Hommachi -->
+  <div class="st-node major" style="left: 712px; top: 760px;">
+    <span class="badge b-y">Y13</span>
+    <span class="badge b-m">M18</span>
+    <span class="badge b-c">C16</span>
+    <div class="st-txt"><span class="jp">本町 (中央線乗換)</span><span class="en">Hommachi</span></div>
+  </div>
+
+  <!-- SEPARATE STATION LABELS FOR Y14 YOTSUBASHI & M19 SHINSAIBASHI -->
+  <div class="st-node" style="left: 335px; top: 838px;">
+    <span class="badge b-y">Y14</span>
+    <div class="st-txt">
+      <span class="jp">四ツ橋</span>
+      <span class="en">Yotsubashi</span>
+    </div>
+  </div>
+
+  <div class="st-node" style="left: 702px; top: 838px;">
+    <span class="badge b-m">M19</span>
+    <div class="st-txt">
+      <span class="jp">心斎橋</span>
+      <span class="en">Shinsaibashi</span>
+    </div>
+  </div>
+
+  <!-- NAMBA -->
+  <div class="st-node major" style="left: 268px; top: 912px;">
+    <span class="badge b-nk">NK01</span>
+    <span class="badge b-y">Y15</span>
+    <span class="badge b-m">M20</span>
+    <div class="st-txt"><span class="jp">なんば (難波)</span><span class="en">NAMBA (Direct 10 min)</span></div>
+  </div>
+
+  <!-- Daikokucho -->
+  <div class="st-node" style="left: 318px; top: 1020px;">
+    <span class="badge b-y">Y16</span>
+    <span class="badge b-m">M21</span>
+    <div class="st-txt"><span class="jp">大国町</span><span class="en">Daikokucho</span></div>
+  </div>
+
+  <!-- [FIX 3] SEPARATE STATION LABELS FOR SHIN-IMAMIYA (NK03/JR) & DOBUTSUEN-MAE (M22) -->
+  <!-- Left of Nankai Line (600, 1135): Shin-Imamiya -->
+  <div class="st-node" style="left: 365px; top: 1105px;">
+    <span class="badge b-nk">NK03</span>
+    <span class="badge b-jr">JR</span>
+    <div class="st-txt">
+      <span class="jp">新今宮</span>
+      <span class="en">Shin-Imamiya</span>
+    </div>
+  </div>
+
+  <!-- Right of Midosuji Line (680, 1135): M22 Dobutsuen-mae -->
+  <div class="st-node" style="left: 698px; top: 1082px;">
+    <span class="badge b-m">M22</span>
+    <div class="st-txt">
+      <span class="jp">動物園前</span>
+      <span class="en">Dobutsuen-mae</span>
+    </div>
+  </div>
+
+  <!-- Ebisucho -->
+  <div class="st-node" style="left: 950px; top: 1045px;">
+    <span class="badge b-hn">HN51</span>
+    <div class="st-txt"><span class="jp">恵美須町</span><span class="en">Ebisucho</span></div>
+  </div>
+
+  <!-- Tennoji / Tennoji-ekimae (HN01) -->
+  <div class="st-node major" style="left: 805px; top: 1144px;">
+    <span class="badge b-m">M23</span>
+    <span class="badge b-hn">HN01</span>
+    <span class="badge b-jr">JR</span>
+    <div class="st-txt">
+      <span class="jp">天王寺 / 天王寺駅前</span>
+      <span class="en">Tennoji / Tennoji-ekimae</span>
+    </div>
+  </div>
+
+  <!-- Tengachaya -->
+  <div class="st-node major" style="left: 280px; top: 1185px; border-color:#d97706;">
+    <span class="badge b-nk">NK05</span>
+    <div class="st-txt"><span class="jp">天下茶屋 (急行⇔普通 乗換)</span><span class="en">Tengachaya (Transfer Hub)</span></div>
+  </div>
+
+  <!-- === 3 NEAREST STATIONS TO HOUSE === -->
+  <!-- 1. Tamade (Y19) - 11 min walk + EV badge (Exit 5) -->
+  <div class="st-node home-st" style="left: 482px; top: 1298px; border-color: var(--c-yotsubashi);">
+    <span class="badge b-y">Y19</span>
+    <div class="st-txt"><span class="jp">玉出駅 (徒歩11分)</span><span class="en">Tamade (Exit 5 / 11 min walk)</span></div>
+    <span class="ev-tag">🛗 EV有</span>
+  </div>
+
+  <!-- [FIX 2] 2. Kohama (NK07) / Higashi-Kohama (HN61) -->
+  <div class="st-node home-st" style="left: 725px; top: 1362px;">
+    <span class="badge b-nk">NK07</span>
+    <span class="badge b-hn">HN61</span>
+    <div class="st-txt">
+      <span class="jp">粉浜駅 / 東粉浜 (徒歩7分)</span>
+      <span class="en">Kohama (NK07) / Higashi-Kohama (HN61) · 7 min walk</span>
+    </div>
+    <span class="local-tag">普通のみ Local Only</span>
+    <span class="ev-tag">🛗 EV有</span>
+  </div>
+
+  <!-- 3. Sumiyoshitaisha (NK08) / Sumiyoshitoriimae (HN12) -->
+  <div class="st-node home-st" style="left: 725px; top: 1455px;">
+    <span class="badge b-nk">NK08</span>
+    <span class="badge b-hn">HN12</span>
+    <div class="st-txt">
+      <span class="jp">住吉大社駅 / 住吉鳥居前 (徒歩5分)</span>
+      <span class="en">Sumiyoshitaisha (NK08) / Torii-mae (HN12) · 5 min walk</span>
+    </div>
+    <span class="local-tag">普通のみ Local Only</span>
+    <span class="ev-tag">🛗 EV有</span>
+  </div>
+
+  <!-- [FIX 1] KIX Transfer Callout (Exact Requested JP & EN Text for Going to KIX Airport) -->
+  <div class="transfer-banner">
+    <div class="tb-head">✈️ 関西空港(KIX)へのアクセス / To Kansai Airport (KIX):</div>
+    <div class="tb-body">住吉大社駅から<strong>普通列車</strong>で<strong>天下茶屋</strong>へ。<strong>天下茶屋</strong>で<strong>空港急行</strong>に乗換！</div>
+    <div class="tb-en">👉 Take a <strong>local train</strong> to <strong>Tengachaya (NK05)</strong>, then transfer to an <strong>Airport Express</strong>.</div>
+  </div>
+
+  <!-- ==================== 4. GIANT HOUSE HUB ==================== -->
+  <div class="house-box">
+    <div class="house-top">
+      <div class="house-icon">🏠<span>HOUSE</span></div>
+      <div class="house-titles">
+        <span class="here-badge">📍 YOUR STAY / 当施設</span>
+        <h2>Vollmond Suminoe</h2>
+        <p>フォルモント住之江 101</p>
+      </div>
+    </div>
+    <div class="house-lines">
+      <div class="hl-item nk">
+        <div class="hl-left">① 南海本線 Nankai Line<small>住吉大社(NK08)・粉浜(NK07) ※普通のみ 🛗EV有</small></div>
+        <div class="hl-right">徒歩 5〜7分<small>5–7 min walk</small></div>
+      </div>
+      <div class="hl-item hn">
+        <div class="hl-left">② 阪堺電車 Hankai Tram 🚋<small>住吉鳥居前(HN12)→天王寺駅前(HN01) / 東粉浜(HN61)</small></div>
+        <div class="hl-right">徒歩 5〜7分<small>5–7 min walk</small></div>
+      </div>
+      <div class="hl-item y">
+        <div class="hl-left">③ 地下鉄 四つ橋線 Yotsubashi<small>玉出駅(Y19) 西梅田・四ツ橋・難波へ直通 🛗EV有</small></div>
+        <div class="hl-right">徒歩 11分<small>11 min walk</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 5. BIG TOURIST SPOT CARDS ==================== -->
+
+  <!-- (1) SUMIYOSHI TAISHA (5 min walk) -->
+  <div class="spot-block gold-border" style="left: 725px; top: 1545px; width: 520px; flex-direction: row; height: 175px;">
+    <div class="spot-photo" style="width: 215px; height: 100%; flex-shrink: 0;">
+      <img src="assets/sumiyoshi.jpg" alt="Sumiyoshi Taisha">
+      <span class="pill-direct" style="background:#d97706;">⛩️ 徒歩5分 / 5 min</span>
+    </div>
+    <div class="spot-caption" style="display:flex; flex-direction:column; justify-content:center; padding: 12px 18px; width: 305px;">
+      <div style="font-size:25px; font-weight:900; color:var(--navy-dark); line-height:1.15; white-space:nowrap;">住吉大社・路面電車</div>
+      <div style="font-size:21px; font-weight:900; color:#b45309; margin-top:3px; white-space:nowrap;">Sumiyoshi Taisha</div>
+      <div class="sub-info" style="margin-top:4px;">住吉大社 / 스미요시 타이샤</div>
+      <div style="margin-top:8px; background:var(--navy-dark); color:#fde047; font-size:15px; font-weight:900; padding:5px 12px; border-radius:8px; white-space:nowrap; width:fit-content;">
+        🚶 施設から徒歩 5分 (5 min walk)
+      </div>
+    </div>
+  </div>
+
+  <!-- (2) NAMBA & KUROMON (Direct 10 min) -->
+  <div class="spot-block gold-border" style="left: 28px; top: 965px; width: 230px;">
+    <div class="spot-photo" style="height: 125px;">
+      <img src="assets/namba_kuromon.jpg" alt="Namba">
+      <span class="pill-direct">⚡ 直通 DIRECT</span>
+      <span class="pill-time">⏱ 10 min</span>
+    </div>
+    <div class="spot-caption">
+      <div class="big-title" style="font-size:22px;"><span>Namba</span><span class="jp-name" style="font-size:19px;">難波・黒門</span></div>
+      <div class="sub-info" style="font-size:13px;">道頓堀・黒門市場 / 도톤보리</div>
+    </div>
+  </div>
+
+  <!-- (3) KAIYUKAN AQUARIUM (30 min) -->
+  <div class="spot-block" style="left: 28px; top: 735px; width: 230px;">
+    <div class="spot-photo" style="height: 120px;">
+      <img src="assets/kaiyukan.jpg" alt="Kaiyukan">
+      <span class="pill-time">⏱ 30 min</span>
+    </div>
+    <div class="spot-caption">
+      <div class="big-title" style="font-size:23px;"><span>Kaiyukan</span><span class="jp-name" style="font-size:20px;">海遊館</span></div>
+      <div class="sub-info">大阪港駅 (C11) / 해유관</div>
+    </div>
+  </div>
+
+  <!-- (4) USJ (40 min) -->
+  <div class="spot-block" style="left: 28px; top: 510px; width: 230px;">
+    <div class="spot-photo" style="height: 120px;">
+      <img src="assets/usj.jpg" alt="USJ">
+      <span class="pill-time">⏱ 40 min</span>
+    </div>
+    <div class="spot-caption">
+      <div class="big-title"><span>USJ</span><span class="jp-name">ユニバ</span></div>
+      <div class="sub-info">环球影城 / 유니버설 스튜디오</div>
+    </div>
+  </div>
+
+  <!-- (5) KOBE (50 min) -->
+  <div class="spot-block" style="left: 28px; top: 295px; width: 230px;">
+    <div class="spot-photo" style="height: 115px;">
+      <img src="assets/kobe.jpg" alt="Kobe">
+      <span class="pill-time">⏱ 50 min</span>
+    </div>
+    <div class="spot-caption">
+      <div class="big-title"><span>Kobe</span><span class="jp-name">神戸</span></div>
+      <div class="sub-info">神户港 / 고베 (阪神・JR線)</div>
+    </div>
+  </div>
+
+  <!-- (6) UMEDA & SHIN-OSAKA (Direct 22 min) -->
+  <div class="spot-block gold-border" style="left: 915px; top: 332px; width: 315px;">
+    <div class="spot-photo" style="height: 122px;">
+      <img src="assets/umeda_shinosaka.jpg" alt="Umeda">
+      <span class="pill-direct">⚡ 直通 DIRECT</span>
+      <span class="pill-time">⏱ 22 min</span>
+    </div>
+    <div class="spot-caption">
+      <div class="big-title"><span>Umeda</span><span class="jp-name">梅田・大阪</span></div>
+      <div class="sub-info">四つ橋線で西梅田へ直通1本！</div>
+    </div>
+  </div>
+
+  <!-- (7) KYOTO (60 min) -->
+  <div class="spot-block gold-border" style="left: 1245px; top: 185px; width: 325px;">
+    <div class="spot-photo" style="height: 145px;">
+      <img src="assets/kyoto.jpg" alt="Kyoto">
+      <span class="pill-time">⏱ 60 min</span>
+    </div>
+    <div class="spot-caption">
+      <div class="big-title"><span>Kyoto</span><span class="jp-name">京都</span></div>
+      <div class="sub-info">金閣寺・伏見稲荷 / 교토 (JR・京阪)</div>
+    </div>
+  </div>
+
+  <!-- (8) OSAKA CASTLE PARK (35 min) -->
+  <div class="spot-block gold-border" style="left: 1245px; top: 650px; width: 325px;">
+    <div class="spot-photo" style="height: 145px;">
+      <img src="assets/osaka_castle.jpg" alt="Osaka Castle">
+      <span class="pill-time">⏱ 35 min</span>
+    </div>
+    <div class="spot-caption">
+      <div class="big-title"><span>Osaka Castle</span><span class="jp-name">大阪城公園</span></div>
+      <div class="sub-info">大阪城天守阁 / 오사카성 공원</div>
+    </div>
+  </div>
+
+  <!-- (9) TSUTENKAKU & TENNOJI -->
+  <div class="spot-block gold-border" style="left: 880px; top: 820px; width: 340px;">
+    <div class="spot-photo" style="height: 122px;">
+      <img src="assets/tsutenkaku.jpg" alt="Tsutenkaku">
+      <span class="pill-direct" style="background:#009944;">🚋 路面電車・南海</span>
+      <span class="pill-time">⏱ 18 min</span>
+    </div>
+    <div class="spot-caption">
+      <div class="big-title" style="font-size:23px;"><span>Tsutenkaku</span><span class="jp-name" style="font-size:20px;">通天閣・天王寺</span></div>
+      <div class="sub-info" style="color:#065f46; font-weight:900; font-size:12.5px;">※天王寺駅前(HN01)へは住吉鳥居前(HN12)から直通</div>
+    </div>
+  </div>
+
+  <!-- (10) NARA PARK (55 min) -->
+  <div class="spot-block gold-border" style="left: 1245px; top: 1150px; width: 325px;">
+    <div class="spot-photo" style="height: 140px;">
+      <img src="assets/nara.jpg" alt="Nara">
+      <span class="pill-time">⏱ 55 min</span>
+    </div>
+    <div class="spot-caption">
+      <div class="big-title"><span>Nara</span><span class="jp-name">奈良公園</span></div>
+      <div class="sub-info" style="font-size:13.5px;">難波・天王寺から近鉄/JR (Kintetsu / JR)</div>
+    </div>
+  </div>
+
+  <!-- ==================== 6. GIANT AIRPORT CARDS ==================== -->
+  <!-- KIX -->
+  <div class="airport-box" style="left: 28px; top: 1615px; width: 535px;">
+    <div class="plane-badge">✈️</div>
+    <div class="ap-text">
+      <h3>関西国際空港 Kansai Airport (KIX)</h3>
+      <div class="ap-sub">⏱ 約45分 (45 min) | 南海空港線 (天下茶屋 NK05 乗換)</div>
+    </div>
+  </div>
+
+  <!-- ITM -->
+  <div class="airport-box" style="left: 28px; top: 175px; width: 475px; border-color: #64748b;">
+    <div class="plane-badge" style="background:#475569;">✈️</div>
+    <div class="ap-text">
+      <h3 style="font-size:23px;">大阪空港 Osaka Airport (ITM)</h3>
+      <div class="ap-sub" style="font-size:15.5px; color:#cbd5e1;">⏱ 約55分 (55 min) | 伊丹空港 (梅田経由)</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
