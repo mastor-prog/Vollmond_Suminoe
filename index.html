@@ -39,6 +39,7 @@
       padding: 0;
     }
 
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
     body {
       font-family: 'Poppins', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-main);
@@ -155,11 +156,86 @@
       }
     }
 
-    /* Sticky Sidebar for PC */
+    /* Sticky Sidebar for PC & Slide-up Drawer for Mobile */
     .sidebar {
       display: flex;
       flex-direction: column;
       gap: 16px;
+    }
+
+    .mobile-menu-header {
+      display: none;
+    }
+
+    .mobile-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 1400;
+    }
+
+    .mobile-backdrop.active {
+      display: block;
+    }
+
+    @media (max-width: 899px) {
+      .sidebar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1500;
+        max-height: 82dvh;
+        overflow-y: auto;
+        padding: 0 14px 24px 14px;
+        background: #141c27;
+        border-top: 2px solid var(--accent-gold);
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.8);
+        transform: translateY(105%);
+        transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .sidebar.mobile-open {
+        transform: translateY(0);
+      }
+
+      .sidebar .nav-card {
+        background: transparent;
+        border: none;
+        padding: 8px 4px;
+      }
+
+      .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 8px 10px 8px;
+        border-bottom: 1px solid var(--border-subtle);
+        position: sticky;
+        top: 0;
+        background: #141c27;
+        z-index: 2;
+      }
+
+      .mobile-menu-title {
+        font-weight: 700;
+        color: var(--accent-gold-light);
+        font-size: 0.95rem;
+      }
+
+      .mobile-menu-close {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--border-subtle);
+        color: #fff;
+        border-radius: 20px;
+        padding: 4px 12px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
     }
 
     @media (min-width: 900px) {
@@ -167,6 +243,59 @@
         position: sticky;
         top: 80px;
         height: fit-content;
+      }
+    }
+
+    /* Floating Quick Navigation / Back to Top */
+    .floating-nav {
+      position: fixed;
+      bottom: 18px;
+      right: 16px;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fab-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(20, 28, 39, 0.95);
+      color: var(--accent-gold-light);
+      border: 1.5px solid var(--accent-gold);
+      border-radius: 30px;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65);
+      transition: var(--transition);
+    }
+
+    .fab-btn:hover {
+      background: var(--accent-gold);
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    .fab-top {
+      padding: 10px 13px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+    }
+
+    .fab-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 900px) {
+      .fab-menu {
+        display: none;
       }
     }
 
@@ -801,10 +930,11 @@
       margin: 5px 0;
     }
 
-    /* Transit List */
-    .transit-list {
+    /* Transit List & Grid */
+    .transit-list,
+    .transit-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 10px;
       margin-top: 12px;
     }
@@ -819,6 +949,12 @@
       align-items: center;
       font-size: 0.88rem;
       gap: 8px;
+      transition: var(--transition);
+    }
+
+    .transit-item:hover {
+      border-color: var(--border-color);
+      background: rgba(212, 175, 55, 0.06);
     }
 
     .transit-time {
@@ -834,6 +970,88 @@
       border-radius: var(--radius-md);
       padding: 16px;
       margin: 18px 0;
+    }
+
+    .route-map-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    /* Local Train Warning Badge */
+    .local-only-badge {
+      display: inline-block;
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+      border: 1px solid #ef4444;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* Nearby Category Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .filter-btn {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-sub);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent-gold);
+      color: var(--text-main);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+      color: #000;
+      border-color: var(--accent-gold);
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    }
+
+    .place-card.hidden-place {
+      display: none;
+    }
+
+    /* Host Recommended Morning Course */
+    .morning-walk-box {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(24, 32, 44, 0.92));
+      border: 1px solid var(--accent-gold);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .morning-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .morning-step {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
     }
 
     .route-map-preview {
@@ -1036,7 +1254,7 @@
   <div id="toast" class="toast">コピーしました！ / Copied!</div>
 
   <!-- Modal: Taxi Driver Card -->
-  <div id="taxiModal" class="modal-overlay">
+  <div id="taxiModal" class="modal-overlay" onclick="if(event.target===this)toggleTaxiModal(false)">
     <div class="modal-card">
       <button class="modal-close" onclick="toggleTaxiModal(false)">&times;</button>
       <h3 style="color:#fff;" data-i18n="taxiModalTitle">🚖 タクシー運転手に見せる画面</h3>
@@ -1049,6 +1267,30 @@
       <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:15px;" data-i18n="taxiModalNote">※前道が狭いため、近くで停車してもらうことをお勧めします。</p>
       <button class="btn btn-primary" onclick="copyAddress()" data-i18n="btnCopyAddress">住所をコピーする</button>
     </div>
+  </div>
+
+  <!-- Modal: Train Station Staff Card -->
+  <div id="stationModal" class="modal-overlay" onclick="if(event.target===this)toggleStationModal(false)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="toggleStationModal(false)">&times;</button>
+      <h3 style="color:#fff;" data-i18n="stationModalTitle">🚃 駅の係員に見せる画面</h3>
+      <p style="color:var(--text-sub); font-size:0.85rem;" data-i18n="stationModalDesc">乗り場や電車に迷った際は、駅の係員にこの画面をお見せください。</p>
+      <div class="taxi-address-jp" style="font-size:1.18rem; text-align:left; padding:18px;">
+        <div style="color:#fde047; font-size:0.9rem; margin-bottom:6px;">【駅係員様へ / To Station Staff】</div>
+        南海本線<strong>「住吉大社駅 (NK08)」</strong><br>
+        （または「粉浜駅 (NK07)」）に行きたいです。<br>
+        <span style="display:inline-block; margin-top:8px; color:#fca5a5; font-size:1.02rem;">※普通車（各駅停車）が停まる乗り場と、次に乗るべき電車を教えてください。</span>
+      </div>
+      <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:15px;" data-i18n="stationModalNote">※急行・空港急行・ラピートは通過するため、必ず「普通（LOCAL）」にご乗車ください。</p>
+      <button class="btn btn-primary" onclick="toggleStationModal(false)" data-i18n="viewerCloseBtn">✕ 閉じる</button>
+    </div>
+  </div>
+
+  <!-- Mobile Quick Menu Backdrop & Floating Nav Buttons -->
+  <div id="mobileBackdrop" class="mobile-backdrop" onclick="toggleMobileMenu(false)"></div>
+  <div class="floating-nav">
+    <button type="button" id="backToTopFab" class="fab-btn fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+    <button type="button" id="mobileMenuFab" class="fab-btn fab-menu" onclick="toggleMobileMenu()" data-i18n="fabQuickMenu">☰ 目次メニュー</button>
   </div>
 
   <!-- Modal: Fullscreen Guide / Map Viewer -->
@@ -1074,8 +1316,12 @@
   </div>
 
   <div class="main-wrapper">
-    <!-- Sidebar Navigation for PC -->
-    <aside class="sidebar">
+    <!-- Sidebar Navigation for PC & Slide-up Quick Menu for Mobile -->
+    <aside id="sidebarMenu" class="sidebar">
+      <div class="mobile-menu-header">
+        <span class="mobile-menu-title" data-i18n="mobileMenuTitle">📑 ガイド目次 (Quick Menu)</span>
+        <button type="button" class="mobile-menu-close" onclick="toggleMobileMenu(false)" data-i18n="viewerCloseBtn">✕ 閉じる</button>
+      </div>
       <div class="nav-card">
         <ul class="nav-menu">
           <li><a href="#welcome" class="nav-link active"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span data-i18n="navHome">トップ・概要</span></a></li>
@@ -1176,6 +1422,9 @@
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
               <span data-i18n="btnPhotoGuide">写真付き道順ガイド</span>
             </a>
+            <button type="button" class="btn btn-outline" onclick="toggleStationModal(true)">
+              <span data-i18n="btnStationCard">🚃 駅員に見せる画面</span>
+            </button>
           </div>
         </div>
 
@@ -1184,8 +1433,19 @@
           <ul style="color:var(--text-sub); font-size:0.9rem; margin-left:20px; display:flex; flex-direction:column; gap:6px;">
             <li data-i18n="lblTrainSumiyoshi"><strong>南海本線「住吉大社駅 (NK08)」西出口</strong>（徒歩5分 / なんば直通 約10分）※普通のみ停車<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 改札・地上階ともにエレベーター完備（スーツケースでも安心）</span></li>
             <li data-i18n="lblTrainKohama"><strong>南海本線「粉浜駅 (NK07)」西出口</strong>（徒歩7分 / なんば直通 約9分）※普通のみ停車<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 改札・地上階ともにエレベーター完備</span></li>
-            <li data-i18n="lblTrainTamade"><strong>Osaka Metro 四つ橋線「玉出駅 (Y19)」5番出口</strong>（徒歩11分 / 西梅田・四ツ橋・なんば直通）<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 エレベーター完備</span></li>
+            <li data-i18n="lblTrainTamade"><strong>Osaka Metro 四つ橋線「玉出駅 (Y19)」5番出口</strong>（徒歩11分 / 西梅田・四ツ橋・なんば直通）<br><span style="font-size:0.82rem; color:var(--accent-gold-light);">🛗 エレベーターは「3番出口（南改札）」に完備（5番出口は階段のみ）</span></li>
           </ul>
+
+          <!-- Local Train Only Alert (Prevent Overshooting) -->
+          <div class="alert-box alert-gold" style="margin-top:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+            <div style="flex:1; min-width:220px;">
+              <strong data-i18n="localTrainWarnTitle">⚠️ 乗り間違い注意：南海本線は「普通（LOCAL）」のみ停車します！</strong><br>
+              <span style="font-size:0.84rem; color:var(--text-sub);" data-i18n="localTrainWarnDesc">急行・空港急行・ラピート・サザンは「住吉大社駅」「粉浜駅」を通過します。なんば駅・天下茶屋駅からは必ず<strong>「普通（各駅停車）」</strong>にご乗車ください。</span>
+            </div>
+            <button type="button" class="btn btn-outline" style="padding:8px 12px; font-size:0.82rem; white-space:nowrap;" onclick="toggleStationModal(true)">
+              <span data-i18n="btnStationCard">🚃 駅員に見せる画面</span>
+            </button>
+          </div>
 
           <!-- Luggage & Locker Notice -->
           <div class="alert-box alert-info" style="margin-top:10px;">
@@ -1446,6 +1706,22 @@
               <div class="rule-desc" data-i18n="amKitchenDesc">シンク下に食器・鍋、引き出しにカトラリー、家電ラックに電子レンジ・ケトル・炊飯器がございます。</div>
             </div>
           </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">🔌</div>
+            <div>
+              <div class="rule-title" data-i18n="amPowerTitle">電源・USB充電</div>
+              <div class="rule-desc" data-i18n="amPowerDesc">ベッドサイドに電源コンセントがございます。</div>
+            </div>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-icon" style="font-size:1.5rem;">☂️</div>
+            <div>
+              <div class="rule-title" data-i18n="amUmbrellaTitle">雨傘（無料貸出）</div>
+              <div class="rule-desc" data-i18n="amUmbrellaDesc">玄関スペースに雨天用の傘をご用意しております。ご自由にご利用ください。</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1522,8 +1798,37 @@
           </a>
         </div>
 
+        <!-- Host Recommended Morning Walk Course (#8) -->
+        <div class="morning-walk-box">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+            <span style="font-size:1.3rem;">🌅</span>
+            <h4 style="color:var(--accent-gold-light); font-size:1.02rem;" data-i18n="morningCourseTitle">ホストおすすめ！朝の「住吉大社 ＆ 純喫茶モーニング」お散歩コース</h4>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-sub);" data-i18n="morningCourseSub">徒歩5分の立地だからこそ味わえる、爽やかな大阪の下町・朝のモデルプランです。</p>
+          <div class="morning-steps">
+            <div class="morning-step">
+              <div style="color:var(--accent-gold); font-weight:700; font-size:0.85rem; margin-bottom:4px;" data-i18n="morningStep1Time">STEP 1｜6:30〜7:30 AM（徒歩5分）</div>
+              <div style="color:#fff; font-weight:700; font-size:0.92rem; margin-bottom:4px;" data-i18n="morningStep1Title">⛩️ 早朝の「住吉大社」を参拝</div>
+              <div style="color:var(--text-sub); font-size:0.82rem;" data-i18n="morningStep1Desc">朝6:00（10〜3月は6:30）開門。早朝は参拝客が少なく、澄んだ空気の中で名物「反橋（太鼓橋）」の写真撮影や国宝本殿のお参りがゆっくり楽しめます。</div>
+            </div>
+            <div class="morning-step">
+              <div style="color:var(--accent-gold); font-weight:700; font-size:0.85rem; margin-bottom:4px;" data-i18n="morningStep2Time">STEP 2｜8:00 AM〜（参拝帰りに徒歩4分）</div>
+              <div style="color:#fff; font-weight:700; font-size:0.92rem; margin-bottom:4px;" data-i18n="morningStep2Title">☕ 純喫茶「サンローズ」でモーニング</div>
+              <div style="color:var(--text-sub); font-size:0.82rem;" data-i18n="morningStep2Desc">粉浜商店街のレトロな老舗純喫茶で、香り高いサイフォン珈琲と焼きたてトーストのモーニングセット（8:00開店・水曜は12:00まで・木曜定休）をどうぞ。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Filter Tabs (#6) -->
+        <div class="filter-tabs" role="tablist">
+          <button type="button" class="filter-btn active" onclick="filterPlaces('all', this)" data-i18n="filterAll">すべて表示</button>
+          <button type="button" class="filter-btn" onclick="filterPlaces('food', this)" data-i18n="filterFood">🍽️ グルメ・喫茶</button>
+          <button type="button" class="filter-btn" onclick="filterPlaces('shop', this)" data-i18n="filterShop">🛒 買い物・駐車場</button>
+          <button type="button" class="filter-btn" onclick="filterPlaces('sight', this)" data-i18n="filterSight">⛩️ 観光・銭湯</button>
+        </div>
+
         <div class="places-grid">
-          <div class="place-card">
+          <div class="place-card" data-category="shop">
             <div>
               <div class="place-header">
                 <span class="place-emoji">🅿️</span>
@@ -1537,63 +1842,63 @@
             <a href="https://www.google.com/maps/search/%E3%82%B3%E3%82%A4%E3%83%B3%E3%83%91%E3%83%BC%E3%82%AD%E3%83%B3%E3%82%B0/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchPark">近くの駐車場を探す ↗</a>
           </div>
 
-          <div class="place-card">
+          <div class="place-card" data-category="shop">
             <div>
               <div class="place-header">
                 <span class="place-emoji">🛒</span>
                 <div>
-                  <div class="place-name" data-i18n="placeSuperTitle">スーパー「KINSHO（近商ストア）」</div>
+                  <div class="place-name" data-i18n="placeSuperTitle">スーパー「KINSHO（近商ストア住吉店）」</div>
                   <span class="place-tag" data-i18n="placeSuperTag">食料品・日用品</span>
                 </div>
               </div>
-              <p class="place-desc" style="margin-top:8px;" data-i18n="placeSuperDesc">最寄りの便利なスーパーマーケット「近商ストア住吉店」。新鮮な食料品やお惣菜が揃っています。（営業時間 9:00〜21:50 ／ 徒歩約4〜5分）</p>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeSuperDesc">最寄りの便利なスーパーマーケット「近商ストア住吉店」。新鮮な食料品やお惣菜が揃っています。（営業時間 9:00〜21:50 ／ 徒歩約5〜6分）</p>
             </div>
-            <a href="https://www.google.com/maps/search/%E8%BF%91%E5%95%86%E3%82%B9%E3%83%88%E3%82%A2+%E4%BD%8F%E3%83%AF%E6%B1%9F%E5%BA%97/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchSuper">ルートを見る ↗</a>
+            <a href="https://www.google.com/maps/search/%E8%BF%91%E5%95%86%E3%82%B9%E3%83%88%E3%82%A2+%E4%BD%8F%E5%90%89%E5%BA%97/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchSuper">ルートを見る ↗</a>
           </div>
 
-          <div class="place-card">
+          <div class="place-card" data-category="shop">
             <div>
               <div class="place-header">
                 <span class="place-emoji">🏪</span>
                 <div>
-                  <div class="place-name" data-i18n="placeStoreTitle">コンビニ「ローソン」</div>
+                  <div class="place-name" data-i18n="placeStoreTitle">コンビニ「ローソン 粉浜西三丁目店」</div>
                   <span class="place-tag" data-i18n="placeStoreTag">24時間営業・ATM</span>
                 </div>
               </div>
-              <p class="place-desc" style="margin-top:8px;" data-i18n="placeStoreDesc">深夜の買い物やATMでの現金引き出しに便利です。（徒歩約3分）</p>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeStoreDesc">深夜の買い物やATMでの現金引き出しに便利です。（24時間営業 ／ 徒歩約3〜4分）</p>
             </div>
-            <a href="https://www.google.com/maps/search/%E3%83%AD%E3%83%BC%E3%82%BD%E3%83%B3/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchStore">ルートを見る ↗</a>
+            <a href="https://www.google.com/maps/search/%E3%83%AD%E3%83%BC%E3%82%BD%E3%83%B3+%E7%B2%89%E6%B5%9C%E8%A5%BF%E4%B8%89%E4%B8%81%E7%9B%AE%E5%BA%97/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchStore">ルートを見る ↗</a>
           </div>
 
-          <div class="place-card">
+          <div class="place-card" data-category="shop">
             <div>
               <div class="place-header">
                 <span class="place-emoji">💊</span>
                 <div>
-                  <div class="place-name" data-i18n="placeDrugTitle">ドラッグストア「ダイコクドラッグ（粉浜商店街）」</div>
-                  <span class="place-tag" data-i18n="placeDrugTag">医薬品・日用品・免税</span>
+                  <div class="place-name" data-i18n="placeDrugTitle">ドラッグストア「ダイコクドラッグ 粉浜駅前店」</div>
+                  <span class="place-tag" data-i18n="placeDrugTag">医薬品・日用品・100円ショップ併設</span>
                 </div>
               </div>
-              <p class="place-desc" style="margin-top:8px;" data-i18n="placeDrugDesc">医薬品や化粧品、日用品、お菓子などが豊富に揃う人気のドラッグストア。（営業時間 9:05〜19:50 ／ 粉浜商店街内・徒歩約5分）</p>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeDrugDesc">医薬品や化粧品、日用品、お菓子などが豊富に揃う100円ショップ併設のドラッグストア。（営業時間 9:05〜19:50 ／ 粉浜駅前・徒歩約6〜7分）</p>
             </div>
-            <a href="https://www.google.com/maps/search/%E3%83%80%E3%82%A4%E3%82%B3%E3%82%AF%E3%83%89%E3%83%A9%E3%83%83%E3%82%B0+%E7%B2%89%E6%B5%9C/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchDrug">「ダイコクドラッグ」の地図を見る ↗</a>
+            <a href="https://www.google.com/maps/search/%E3%83%80%E3%82%A4%E3%82%B3%E3%82%AF%E3%83%89%E3%83%A9%E3%83%83%E3%82%B0+%E7%B2%89%E6%B5%9C%E9%A7%85%E5%89%8D%E5%BA%97/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchDrug">「ダイコクドラッグ」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card">
+          <div class="place-card" data-category="food">
             <div>
               <div class="place-header">
                 <span class="place-emoji">🍽️</span>
                 <div>
-                  <div class="place-name" data-i18n="placeFoodTitle">洋食・ローカルグルメ「弥六（やろく）」</div>
+                  <div class="place-name" data-i18n="placeFoodTitle">老舗洋食・ローカルグルメ「洋食やろく（弥六）」</div>
                   <span class="place-tag" data-i18n="placeFoodTag">洋食・名物玉子コロッケ</span>
                 </div>
               </div>
-              <p class="place-desc" style="margin-top:8px;" data-i18n="placeFoodDesc">地元で大人気の老舗洋食店「弥六」。名物の玉子コロッケやオムライスが絶品です。（営業時間 11:00-13:30, 17:00-19:30 ／ <span style="color:#ff5252; font-weight:bold;">火曜はランチのみ・水曜定休日</span>／粉浜商店街エリア・徒歩約6分）</p>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeFoodDesc">創業昭和10年の大人気老舗洋食店「やろく 本店」。名物の玉子コロッケやオムライスが絶品です。（営業時間 11:00-13:30, 17:00-19:30 ※売切次第終了 ／ <span style="color:#ff5252; font-weight:bold;">火曜はランチのみ・水曜定休日</span>／徒歩約6分）</p>
             </div>
-            <a href="https://www.google.com/maps/search/%E6%B4%8B%E9%A3%9F+%E5%BC%A5%E5%85%AD/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchFood">「弥六」の地図・詳細を見る ↗</a>
+            <a href="https://www.google.com/maps/search/%E6%B4%8B%E9%A3%9F%E3%82%84%E3%82%8D%E3%81%8F/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchFood">「洋食やろく」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card">
+          <div class="place-card" data-category="food">
             <div>
               <div class="place-header">
                 <span class="place-emoji">🐙</span>
@@ -1602,12 +1907,12 @@
                   <span class="place-tag" data-i18n="placeTakoTag">たこ焼き・大阪名物</span>
                 </div>
               </div>
-              <p class="place-desc" style="margin-top:8px;" data-i18n="placeTakoDesc">粉浜商店街にある地元で人気のたこ焼き店。焼きたてアツアツの大阪名物たこ焼きが楽しめます。（粉浜商店街内・徒歩約2分）</p>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeTakoDesc">粉浜商店街（3番街）にある地元で人気のたこ焼き・粉もの店。焼きたてアツアツの大阪名物たこ焼きが楽しめます。（営業時間 10:00〜19:00 ／ 木曜定休 ／ 徒歩約2分）</p>
             </div>
-            <a href="https://www.google.com/maps/search/%E3%81%9F%E3%81%93%E7%84%BC%E3%81%8D+%E7%B2%89%E6%B5%9C/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchTako">「たこ焼き店」の地図を見る ↗</a>
+            <a href="https://www.google.com/maps/search/%E3%82%AD%E3%83%A3%E3%83%99%E3%83%84%E3%83%8F%E3%82%A6%E3%82%B9+%E7%B2%89%E6%B5%9C/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchTako">「キャベツハウス」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card">
+          <div class="place-card" data-category="sight">
             <div>
               <div class="place-header">
                 <span class="place-emoji">⛩️</span>
@@ -1616,12 +1921,12 @@
                   <span class="place-tag" data-i18n="placeShrineTag">国宝・神社・太鼓橋</span>
                 </div>
               </div>
-              <p class="place-desc" style="margin-top:8px;" data-i18n="placeShrineDesc">全国の住吉神社の総本社。名物の急勾配「反橋（太鼓橋）」での写真撮影や、末社・大歳社で願いを占う「おもかる石」が人気です。（開門 6:00〜17:00 ／ 徒歩約5分）</p>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeShrineDesc">全国の住吉神社の総本社。名物の急勾配「反橋（太鼓橋）」での写真撮影や、末社・大歳社で願いを占う「おもかる石」が人気です。（開門 6:00［10〜3月は6:30］〜17:00 ／ 徒歩約5分）</p>
             </div>
             <a href="https://www.google.com/maps/search/%E4%BD%8F%E5%90%89%E5%A4%A7%E7%A4%BE/@34.6133,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchShrine">「住吉大社」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card">
+          <div class="place-card" data-category="food">
             <div>
               <div class="place-header">
                 <span class="place-emoji">☕</span>
@@ -1630,12 +1935,12 @@
                   <span class="place-tag" data-i18n="placeCafeTag">喫茶・モーニング・サイフォン珈琲</span>
                 </div>
               </div>
-              <p class="place-desc" style="margin-top:8px;" data-i18n="placeCafeDesc">昭和50年から続く粉浜商店街の老舗純喫茶。朝8:00からサイフォン式珈琲と美味しいモーニングセットが楽しめます。（営業時間 8:00〜16:00 ／ 木曜定休 ／ 徒歩約4分）</p>
+              <p class="place-desc" style="margin-top:8px;" data-i18n="placeCafeDesc">昭和50年から続く粉浜商店街の老舗純喫茶。朝8:00からサイフォン式珈琲と美味しいモーニングセットが楽しめます。（営業時間 8:00〜16:00 ※水曜は12:00まで ／ 木曜定休 ／ 徒歩約4分）</p>
             </div>
             <a href="https://www.google.com/maps/search/%E5%96%AB%E8%8C%B6%E3%82%B5%E3%83%B3%E3%83%AD%E3%83%BC%E3%82%BA+%E7%B2%89%E6%B5%9C/@34.614,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchCafe">「喫茶サンローズ」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card">
+          <div class="place-card" data-category="sight">
             <div>
               <div class="place-header">
                 <span class="place-emoji">♨️</span>
@@ -1649,7 +1954,7 @@
             <a href="https://www.google.com/maps/search/%E6%97%A5%E4%B9%8B%E5%87%BA%E6%B8%A9%E6%B3%89+%E7%B2%89%E6%B5%9C/@34.616,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchOnsen">「日之出温泉」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card">
+          <div class="place-card" data-category="shop sight">
             <div>
               <div class="place-header">
                 <span class="place-emoji">☔</span>
@@ -1661,6 +1966,15 @@
               <p class="place-desc" style="margin-top:8px;" data-i18n="placeArcadeDesc">全長約350mの屋根付きアーケード商店街。雨の日でも濡れずに買い物や食べ歩き、お惣菜めぐりが楽しめます。（徒歩約2分）</p>
             </div>
             <a href="https://www.google.com/maps/search/%E7%B2%89%E6%B5%9C%E5%95%86%E5%BA%97%E8%A1%97/@34.614,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchArcade">「粉浜商店街」の地図を見る ↗</a>
+          </div>
+        </div>
+
+        <!-- Late-Night Arrival / Dinner Info Box (#6) -->
+        <div class="alert-box alert-info" style="margin-top:16px; align-items:flex-start;">
+          <div class="alert-icon" style="font-size:1.2rem;">🌙</div>
+          <div>
+            <strong data-i18n="lateDinnerTitle">20:00以降の夕食・夜遅いご到着時の買い物ヒント:</strong><br>
+            <span data-i18n="lateDinnerDesc">粉浜商店街の店舗は19:30〜20:00頃に閉まりますが、<strong>スーパー「近商ストア住吉店」は21:50まで営業</strong>（お弁当・お惣菜あり）、<strong>「ローソン」は24時間営業</strong>です。また、玉出駅周辺や住吉大社駅周辺には夜遅くまで営業しているラーメン店・居酒屋もございます（Uber Eats等のデリバリーも利用可能です）。</span>
           </div>
         </div>
       </section>
@@ -1701,7 +2015,7 @@
           <h4 style="color:var(--accent-gold-light); margin-bottom:8px;" data-i18n="lblThreeLinesGuide">🚃 目的地別・3路線の使い分けガイド</h4>
           <ul style="color:var(--text-sub); font-size:0.9rem; margin-left:20px; display:flex; flex-direction:column; gap:8px;">
             <li data-i18n="routeLineNankai"><strong>① 南海本線「住吉大社駅 (NK08)」徒歩5分 ／「粉浜駅 (NK07)」徒歩7分</strong><br><span style="font-size:0.84rem;">👉 <strong>難波（直通10分）</strong>・<strong>関西国際空港</strong>・<strong>奈良／神戸方面（難波乗換）</strong>へ行くのに最速・便利です。※両駅とも普通列車のみ停車</span></li>
-            <li data-i18n="routeLineHankai"><strong>② 阪堺電車（路面電車）「住吉鳥居前駅 (HN12)」徒歩5分 ／「住吉駅 (HN10)」徒歩7分</strong><br><span style="font-size:0.84rem;">👉 <strong>通天閣・新世界（恵美須町駅まで直通18分）</strong>や天王寺方面へ、大阪唯一のレトロな路面電車でのんびり観光移動できます。</span></li>
+            <li data-i18n="routeLineHankai"><strong>② 阪堺電車（路面電車）「住吉鳥居前駅 (HN12)」徒歩5分 ／「東粉浜駅 (HN61)」徒歩7分</strong><br><span style="font-size:0.84rem;">👉 <strong>通天閣・新世界（恵美須町駅）・天王寺駅前駅（直通 約18分）</strong>へ、大阪唯一のレトロな路面電車でのんびり観光移動できます。</span></li>
             <li data-i18n="routeLineMetro"><strong>③ Osaka Metro 四つ橋線「玉出駅 (Y19)」徒歩11分</strong><br><span style="font-size:0.84rem;">👉 <strong>梅田（西梅田まで直通22分）</strong>・心斎橋（四ツ橋）・USJ・海遊館・大阪城・京都方面へ、地下鉄ネットワークでスムーズにアクセスできます。</span></li>
           </ul>
         </div>
@@ -1791,6 +2105,13 @@
             <div>
               <div class="rule-title" data-i18n="cul3Title">大阪のエスカレーター</div>
               <div class="rule-desc" data-i18n="cul3Desc">大阪ではエスカレーターに乗る際、<strong>右側</strong>に立ち、左側を歩く人のためにあけます。</div>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon">🚋</div>
+            <div>
+              <div class="rule-title" data-i18n="cul4Title">阪堺電車（路面電車）の乗り方</div>
+              <div class="rule-desc" data-i18n="cul4Desc"><strong>後ろのドア</strong>から乗車し、降りる際に<strong>前の運賃箱</strong>でお支払いください（全区間均一運賃・ICカードまたは現金利用可）。</div>
             </div>
           </div>
         </div>
@@ -2041,26 +2362,26 @@
     "placeParkTag": "専用駐車場なし・路上駐車不可",
     "placeParkDesc": "車でお越しの際は、周辺の有料コインパーキングをご利用ください。",
     "btnSearchPark": "近くの駐車場を探す ↗",
-    "placeSuperTitle": "スーパー「KINSHO（近商ストア）」",
+    "placeSuperTitle": "スーパー「KINSHO（近商ストア 住吉店）」",
     "placeSuperTag": "食料品・日用品",
-    "placeSuperDesc": "最寄りの便利なスーパーマーケット「近商ストア住吉店」。新鮮な食料品やお惣菜が揃っています。（営業時間 9:00〜21:50 ／ 徒歩約4〜5分）",
+    "placeSuperDesc": "最寄りの便利なスーパーマーケット「近商ストア住吉店」。新鮮な食料品やお惣菜・お弁当が揃っています。（営業時間 9:00〜21:50 ／ 徒歩約5〜6分）",
     "btnSearchSuper": "ルートを見る ↗",
-    "placeStoreTitle": "コンビニ「ローソン」",
+    "placeStoreTitle": "コンビニ「ローソン 粉浜西三丁目店」",
     "placeStoreTag": "24時間営業・ATM",
-    "placeStoreDesc": "深夜の買い物やATMでの現金引き出しに便利です。（徒歩約3分）",
+    "placeStoreDesc": "深夜の買い物やATMでの現金引き出しに便利です。（24時間営業 ／ 徒歩約3〜4分）",
     "btnSearchStore": "ルートを見る ↗",
-    "placeDrugTitle": "ドラッグストア「ダイコクドラッグ（粉浜商店街）」",
-    "placeDrugTag": "医薬品・日用品・免税",
-    "placeDrugDesc": "医薬品や化粧品、日用品、お菓子などが豊富に揃う人気のドラッグストア。（営業時間 9:05〜19:50 ／ 粉浜商店街内・徒歩約5分）",
+    "placeDrugTitle": "ドラッグストア「ダイコクドラッグ 粉浜駅前店」",
+    "placeDrugTag": "医薬品・100円ショップ併設・免税",
+    "placeDrugDesc": "医薬品や化粧品、日用品、お菓子に加え、100円ショップも併設された便利な店舗です。（営業時間 9:05〜19:50 ／ 粉浜駅前・徒歩約6〜7分）",
     "btnSearchDrug": "「ダイコクドラッグ」の地図を見る ↗",
-    "placeFoodTitle": "洋食・ローカルグルメ「弥六（やろく）」",
+    "placeFoodTitle": "老舗洋食「やろく（弥六）本店」",
     "placeFoodTag": "洋食・名物玉子コロッケ",
-    "placeFoodDesc": "地元で大人気の老舗洋食店「弥六」。名物の玉子コロッケやオムライスが絶品です。（営業時間 11:00-13:30, 17:00-19:30 ／ <span style=\"color:#ff5252; font-weight:bold;\">火曜はランチのみ・水曜定休日</span>／粉浜商店街エリア・徒歩約6分）",
-    "btnSearchFood": "「弥六」の地図・詳細を見る ↗",
+    "placeFoodDesc": "昭和10年創業・地元で大人気の老舗洋食店。名物の玉子コロッケやオムライスが絶品です。（営業時間 11:00-13:30, 17:00-19:30 ※売切次第終了 ／ <span style=\"color:#ff5252; font-weight:bold;\">火曜はランチのみ・水曜定休日</span> ／ 徒歩約5分）",
+    "btnSearchFood": "「やろく」の地図・詳細を見る ↗",
     "placeTakoTitle": "たこ焼き・粉もの「キャベツハウス」",
-    "placeTakoTag": "たこ焼き・大阪名物",
-    "placeTakoDesc": "粉浜商店街にある地元で人気のたこ焼き店。焼きたてアツアツの大阪名物たこ焼きが楽しめます。（粉浜商店街内・徒歩約2分）",
-    "btnSearchTako": "「たこ焼き店」の地図を見る ↗",
+    "placeTakoTag": "たこ焼き・お好み焼き・焼きそば",
+    "placeTakoDesc": "粉浜商店街にある地元で人気の粉もの店。焼きたてアツアツの大阪名物たこ焼きやお好み焼きが楽しめます。（営業時間 10:00〜19:00 ／ 木曜定休 ／ 粉浜商店街内・徒歩約2分）",
+    "btnSearchTako": "「キャベツハウス」の地図を見る ↗",
     "cultureTitle": "🇯🇵 日本滞在マナー &amp; ミニガイド",
     "cultureSub": "Japan Travel Etiquette Tips",
     "cul1Title": "靴を脱ぐ習慣",
@@ -2130,7 +2451,7 @@
     "lblTrainSumiyoshi": "<strong>南海本線「住吉大社駅 (NK08)」西出口</strong>（徒歩5分 / なんば直通 約10分）※普通のみ停車<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 改札・地上階ともにエレベーター完備（スーツケースでも安心）</span>",
     "lblTrainKohama": "<strong>南海本線「粉浜駅 (NK07)」西出口</strong>（徒歩7分 / なんば直通 約9分）※普通のみ停車<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 改札・地上階ともにエレベーター完備</span>",
     "lblTrainHankai": "<strong>阪堺電車（路面電車）🚋「住吉鳥居前 (HN12)」（徒歩5分）/「東粉浜 (HN61)」（徒歩7分）</strong>",
-    "lblTrainTamade": "<strong>Osaka Metro 四つ橋線「玉出駅 (Y19)」5番出口</strong>（徒歩11分 / 西梅田・四ツ橋・なんば直通）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 エレベーター完備</span>",
+    "lblTrainTamade": "<strong>Osaka Metro 四つ橋線「玉出駅 (Y19)」5番出口</strong>（徒歩11分 / 西梅田・四ツ橋・なんば直通）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 エレベーターは「3番出口（南改札）」に完備（5番出口は階段のみ）</span>",
     "luggageNoticeTitle": "🧳 お荷物のお預かり・コインロッカーについて:",
     "luggageNoticeDesc": "清掃・準備のため、チェックイン前およびチェックアウト後の室内でのお荷物のお預かりは承っておりません。住吉大社駅構内、粉浜駅周辺、または主要ターミナル（南海なんば駅・関西国際空港）のコインロッカーや手荷物預かり所をご利用ください。",
     "faqLuggageQ": "Q. チェックイン前やチェックアウト後に荷物を預けられますか？",
@@ -2152,16 +2473,16 @@
     "amRemoteTitle": "各種リモコン（エアコン / TV）",
     "amRemoteDesc": "ダイニングテーブルの上（ハウスガイド横）に並べて設置しております。",
     "amPowerTitle": "電源・USB充電",
-    "amPowerDesc": "ベッドサイドおよびテーブル付近に電源コンセントがございます。",
+    "amPowerDesc": "ベッドサイドに電源コンセントがございます。",
     "amUmbrellaTitle": "雨傘（無料貸出）",
     "amUmbrellaDesc": "玄関スペースに雨天用の傘をご用意しております。ご自由にご利用ください。",
     "placeShrineTitle": "パワースポット「住吉大社」",
     "placeShrineTag": "国宝・神社・太鼓橋",
-    "placeShrineDesc": "全国の住吉神社の総本社。名物の急勾配「反橋（太鼓橋）」での写真撮影や、末社・大歳社で願いを占う「おもかる石」が人気です。（開門 6:00〜17:00 ／ 徒歩約5分）",
+    "placeShrineDesc": "全国の住吉神社の総本社。名物の急勾配「反橋（太鼓橋）」での写真撮影や、末社・大歳社で願いを占う「おもかる石」が人気です。（開門 6:00［10〜3月は6:30］〜17:00 ／ 徒歩約5分）",
     "btnSearchShrine": "「住吉大社」の地図を見る ↗",
     "placeCafeTitle": "レトロ純喫茶「サンローズ」",
     "placeCafeTag": "喫茶・モーニング・サイフォン珈琲",
-    "placeCafeDesc": "昭和50年から続く粉浜商店街の老舗純喫茶。朝8:00からサイフォン式珈琲と美味しいモーニングセットが楽しめます。（営業時間 8:00〜16:00 ／ 木曜定休 ／ 徒歩約4分）",
+    "placeCafeDesc": "昭和50年から続く粉浜商店街の老舗純喫茶。朝8:00からサイフォン式珈琲と美味しいモーニングセットが楽しめます。（営業時間 8:00〜16:00 ※水曜は12:00まで ／ 木曜定休 ／ 徒歩約4分）",
     "btnSearchCafe": "「喫茶サンローズ」の地図を見る ↗",
     "placeOnsenTitle": "天然温泉・サウナ「日之出温泉」",
     "placeOnsenTag": "銭湯・露天風呂・サウナ",
@@ -2180,7 +2501,31 @@
     "amKitchenTitle": "キッチン備品 &amp; 調理家電",
     "amKitchenDesc": "シンク下に食器・鍋、引き出しにカトラリー、家電ラックに電子レンジ・ケトル・炊飯器がございます。",
     "viewerBackBtn": "← ガイドに戻る",
-    "viewerCloseBtn": "✕ 閉じる"
+    "viewerCloseBtn": "✕ 閉じる",
+    "fabQuickMenu": "☰ 目次メニュー",
+    "mobileMenuTitle": "📑 ガイド目次 (Quick Menu)",
+    "btnStationCard": "🚃 駅員に見せる画面",
+    "stationModalTitle": "🚃 駅の係員に見せる画面",
+    "stationModalDesc": "乗り場や電車に迷った際は、駅の係員にこの画面をお見せください。",
+    "stationModalNote": "※急行・空港急行・ラピートは通過するため、必ず「普通（LOCAL）」にご乗車ください。",
+    "localTrainWarnTitle": "⚠️ 乗り間違い注意：南海本線は「普通（LOCAL）」のみ停車します！",
+    "localTrainWarnDesc": "急行・空港急行・ラピート・サザンは「住吉大社駅」「粉浜駅」を通過します。なんば駅・天下茶屋駅からは必ず<strong>「普通（各駅停車）」</strong>にご乗車ください。",
+    "morningCourseTitle": "ホストおすすめ！朝の「住吉大社 ＆ 純喫茶モーニング」お散歩コース",
+    "morningCourseSub": "徒歩5分の立地だからこそ味わえる、爽やかな大阪の下町・朝のモデルプランです。",
+    "morningStep1Time": "STEP 1｜6:30〜7:30 AM（徒歩5分）",
+    "morningStep1Title": "⛩️ 早朝の「住吉大社」を参拝",
+    "morningStep1Desc": "朝6:00開門（10〜3月は6:30開門）。早朝は参拝客が少なく、澄んだ空気の中で名物「反橋（太鼓橋）」の写真撮影や国宝本殿のお参りがゆっくり楽しめます。",
+    "morningStep2Time": "STEP 2｜8:00 AM〜（参拝帰りに徒歩4分）",
+    "morningStep2Title": "☕ 純喫茶「サンローズ」でモーニング",
+    "morningStep2Desc": "粉浜商店街のレトロな老舗純喫茶で、香り高いサイフォン珈琲と焼きたてトーストのモーニングセット（8:00開店・水曜は12:00まで・木曜定休）をどうぞ。",
+    "filterAll": "すべて表示",
+    "filterFood": "🍽️ グルメ・喫茶",
+    "filterShop": "🛒 買い物・駐車場",
+    "filterSight": "⛩️ 観光・銭湯",
+    "lateDinnerTitle": "20:00以降の夕食・夜遅いご到着時の買い物ヒント:",
+    "lateDinnerDesc": "粉浜商店街の店舗は19:30〜20:00頃に閉まりますが、<strong>スーパー「近商ストア住吉店」は21:50まで営業</strong>（お弁当・お惣菜あり）、<strong>「ローソン」は24時間営業</strong>です。また、玉出駅周辺や住吉大社駅周辺には夜遅くまで営業しているラーメン店・居酒屋もございます（Uber Eats等のデリバリーも利用可能です）。",
+    "cul4Title": "阪堺電車（路面電車）の乗り方",
+    "cul4Desc": "<strong>後ろのドア</strong>から乗車し、降りる際に<strong>前の運賃箱</strong>でお支払いください（全区間均一運賃・ICカードまたは現金利用可）。"
   },
   "en": {
     "navHome": "Home",
@@ -2287,26 +2632,26 @@
     "placeParkTag": "No private parking / No street parking",
     "placeParkDesc": "Please use nearby paid coin parking spaces if traveling by car.",
     "btnSearchPark": "Find Nearby Parking",
-    "placeSuperTitle": "Supermarket 'KINSHO'",
+    "placeSuperTitle": "Supermarket 'KINSHO (Sumiyoshi Store)'",
     "placeSuperTag": "Groceries & Daily Needs",
-    "placeSuperDesc": "Nearest convenient supermarket 'KINSHO' (Sumiyoshi branch). Offers fresh groceries and daily necessities. (Hours: 9:00 - 21:50 / ~4-5 mins walk)",
+    "placeSuperDesc": "Nearest convenient supermarket 'KINSHO Sumiyoshi Store'. Offers fresh groceries, bento, and daily necessities. (Hours: 9:00 - 21:50 / ~5-6 mins walk)",
     "btnSearchSuper": "Get Route",
-    "placeStoreTitle": "Convenience Store 'Lawson'",
+    "placeStoreTitle": "Convenience Store 'Lawson (Kohama Nishi 3-chome)'",
     "placeStoreTag": "24h Open / ATM",
-    "placeStoreDesc": "24h open store for drinks, snacks, and ATM cash withdrawal (~3 mins walk).",
+    "placeStoreDesc": "24h open store for drinks, snacks, and ATM cash withdrawal (~3-4 mins walk).",
     "btnSearchStore": "Get Route",
-    "placeDrugTitle": "Drugstore 'Daikoku Drug' (Kohama Arcade)",
-    "placeDrugTag": "Pharmacy / Daily Goods / Tax-Free",
-    "placeDrugDesc": "Popular drugstore for medicine, cosmetics, snacks, and daily necessities. (Hours: 9:05 - 19:50 / Kohama Arcade, ~5 mins walk)",
+    "placeDrugTitle": "Drugstore 'Daikoku Drug (Kohama Sta. Front)'",
+    "placeDrugTag": "Pharmacy / 100-Yen Shop / Tax-Free",
+    "placeDrugDesc": "Popular drugstore with a 100-yen shop attached, offering medicine, cosmetics, snacks, and daily items. (Hours: 9:05 - 19:50 / Near Kohama Sta., ~6-7 mins walk)",
     "btnSearchDrug": "View Map for Daikoku Drug ↗",
-    "placeFoodTitle": "Local Dining 'Yaroku' (Western Food)",
+    "placeFoodTitle": "Historic Western Restaurant 'Yaroku Honten'",
     "placeFoodTag": "Famous Egg Croquette",
-    "placeFoodDesc": "Famous long-established Western restaurant 'Yaroku' in Kohama, renowned for its specialty Egg Croquette. (Hours: 11:00-13:30, 17:00-19:30 / <span style=\"color:#ff5252; font-weight:bold;\">Tue: Lunch only, Wed: Closed</span> / Kohama Arcade, ~6 mins walk)",
+    "placeFoodDesc": "Established in 1935, famous local restaurant 'Yaroku' renowned for its specialty Egg Croquette. (Hours: 11:00-13:30, 17:00-19:30 *closes when sold out / <span style=\"color:#ff5252; font-weight:bold;\">Tue: Lunch only, Wed: Closed</span> / ~5 mins walk)",
     "btnSearchFood": "Open 'Yaroku' on Maps ↗",
-    "placeTakoTitle": "Takoyaki 'Cabbage House'",
-    "placeTakoTag": "Takoyaki / Osaka Specialty",
-    "placeTakoDesc": "Popular local Takoyaki spot in Kohama Shopping Street. Enjoy fresh and hot Osaka octopus balls! (Kohama Arcade, ~2 mins walk)",
-    "btnSearchTako": "Find Takoyaki Shops ↗",
+    "placeTakoTitle": "Takoyaki & Okonomiyaki 'Cabbage House'",
+    "placeTakoTag": "Takoyaki / Okonomiyaki / Osaka Specialty",
+    "placeTakoDesc": "Popular local spot in Kohama Shopping Street for freshly grilled Osaka Takoyaki & Okonomiyaki! (Hours: 10:00 - 19:00 / Closed Thu / Kohama Arcade, ~2 mins walk)",
+    "btnSearchTako": "Open 'Cabbage House' on Maps ↗",
     "cultureTitle": "🇯🇵 Japan Travel Tips & Etiquette",
     "cultureSub": "Useful Local Tips",
     "cul1Title": "Remove Shoes",
@@ -2376,7 +2721,7 @@
     "lblTrainSumiyoshi": "<strong>Nankai Main Line \"Sumiyoshitaisha Station (NK08)\" West Exit</strong> (5 min walk / ~10 min direct to Namba) *Local trains only<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevator available (Luggage-friendly)</span>",
     "lblTrainKohama": "<strong>Nankai Main Line \"Kohama Station (NK07)\" West Exit</strong> (7 min walk / ~9 min direct to Namba) *Local trains only<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevator available</span>",
     "lblTrainHankai": "<strong>Hankai Tramway (Streetcar) 🚋 \"Sumiyoshitoriimae (HN12)\" (5 min walk) / \"Higashi-Kohama (HN61)\" (7 min walk)</strong>",
-    "lblTrainTamade": "<strong>Osaka Metro Yotsubashi Line \"Tamade Station (Y19)\" Exit 5</strong> (11 min walk / Direct to Nishi-Umeda, Yotsubashi & Namba)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevator available</span>",
+    "lblTrainTamade": "<strong>Osaka Metro Yotsubashi Line \"Tamade Station (Y19)\" Exit 5</strong> (11 min walk / Direct to Nishi-Umeda, Yotsubashi & Namba)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 Elevator at Exit 3 (South Gate); Exit 5 is stairs only</span>",
     "luggageNoticeTitle": "🧳 Luggage Storage & Lockers:",
     "luggageNoticeDesc": "Due to room cleaning and turnaround, luggage storage inside the room before check-in or after check-out is not available. Please use coin lockers or luggage storage services at Sumiyoshi-taisha Station, Nankai Namba Station, or Kansai Airport (KIX).",
     "faqLuggageQ": "Q. Can I store luggage before check-in or after check-out?",
@@ -2398,16 +2743,16 @@
     "amRemoteTitle": "Remotes (AC & TV)",
     "amRemoteDesc": "Arranged neatly on the dining table next to the house guide.",
     "amPowerTitle": "Power Outlets & Charging",
-    "amPowerDesc": "Power sockets are conveniently located beside the bed and desks.",
+    "amPowerDesc": "Power sockets are conveniently located beside the bed.",
     "amUmbrellaTitle": "Umbrellas (Free to use)",
     "amUmbrellaDesc": "Available at the entrance area for rainy days. Feel free to borrow them.",
     "placeShrineTitle": "Sumiyoshi-taisha Grand Shrine",
     "placeShrineTag": "National Treasure / Historic Shrine",
-    "placeShrineDesc": "Headquarters of all Sumiyoshi shrines in Japan. Famous for the iconic curved Sorihashi (Taiko) Bridge and the fortune-telling Omokaru Stone. (Open 6:00-17:00 / ~5 min walk)",
+    "placeShrineDesc": "Headquarters of all Sumiyoshi shrines in Japan. Famous for the iconic curved Sorihashi (Taiko) Bridge and the fortune-telling Omokaru Stone. (Open 6:00 [6:30 Oct–Mar] - 17:00 / ~5 min walk)",
     "btnSearchShrine": "View Sumiyoshi Shrine on Map ↗",
     "placeCafeTitle": "Retro Kissaten Cafe 'Sunrose'",
     "placeCafeTag": "Japanese Morning Breakfast & Syphon Coffee",
-    "placeCafeDesc": "Classic Showa-style coffee shop in Kohama Shopping Street. Enjoy siphon-brewed coffee and traditional morning toast sets from 8:00 AM. (Hours: 8:00-16:00 / Closed Thursdays / ~4 min walk)",
+    "placeCafeDesc": "Classic Showa-style coffee shop in Kohama Shopping Street. Enjoy siphon-brewed coffee and traditional morning toast sets from 8:00 AM. (Hours: 8:00-16:00 *Wed until 12:00 / Closed Thursdays / ~4 min walk)",
     "btnSearchCafe": "View 'Sunrose' on Map ↗",
     "placeOnsenTitle": "Sento Public Bath 'Hinode Onsen'",
     "placeOnsenTag": "Japanese Bath / Sauna / Outdoor Bath",
@@ -2426,7 +2771,31 @@
     "amKitchenTitle": "Kitchenware & Appliances",
     "amKitchenDesc": "Dishes and cookware under the sink, cutlery in the drawer, and microwave/kettle on the appliance rack.",
     "viewerBackBtn": "← Back to Guide",
-    "viewerCloseBtn": "✕ Close"
+    "viewerCloseBtn": "✕ Close",
+    "fabQuickMenu": "☰ Quick Menu",
+    "mobileMenuTitle": "📑 Guide Menu",
+    "btnStationCard": "🚃 Show to Station Staff",
+    "stationModalTitle": "🚃 Screen for Train Station Staff",
+    "stationModalDesc": "If you are unsure which platform or train to take, please show this screen to station staff.",
+    "stationModalNote": "*Express, Airport Express, and Rapi:t trains do NOT stop at Sumiyoshitaisha or Kohama. Please take a LOCAL train.",
+    "localTrainWarnTitle": "⚠️ Important: Only LOCAL Trains Stop at Nearest Stations!",
+    "localTrainWarnDesc": "Express, Airport Express, Rapi:t, and Southern trains pass right through Sumiyoshitaisha & Kohama Stations. From Namba or Tengachaya, please make sure to board a <strong>LOCAL (普通)</strong> train.",
+    "morningCourseTitle": "Host's Pick! Morning Walk: Sumiyoshi Shrine & Retro Cafe Breakfast",
+    "morningCourseSub": "A refreshing local morning itinerary you can enjoy just 5 minutes on foot from our apartment.",
+    "morningStep1Time": "STEP 1 | 6:30–7:30 AM (5 min walk)",
+    "morningStep1Title": "⛩️ Early Morning Visit to Sumiyoshi-taisha",
+    "morningStep1Desc": "Opens at 6:00 AM (6:30 AM Oct–Mar). Visit early to enjoy the peaceful grounds, fresh morning air, and crowd-free photos at the iconic Sorihashi (Taiko) Bridge.",
+    "morningStep2Time": "STEP 2 | From 8:00 AM (4 min walk on the way back)",
+    "morningStep2Title": "☕ Morning Coffee & Toast at Retro Cafe 'Sunrose'",
+    "morningStep2Desc": "Stop by Kohama Arcade's classic 1975 kissaten for siphon-brewed coffee and a Japanese morning toast set (Opens 8:00 AM, Wed until 12:00 / Closed Thu).",
+    "filterAll": "All Spots",
+    "filterFood": "🍽️ Food & Cafe",
+    "filterShop": "🛒 Shopping & Parking",
+    "filterSight": "⛩️ Shrine & Bath",
+    "lateDinnerTitle": "Late Arrival & Dinner Tips (After 20:00):",
+    "lateDinnerDesc": "While shops in Kohama Arcade close around 19:30–20:00, <strong>KINSHO Supermarket is open until 21:50</strong> (bento boxes & deli items available) and <strong>Lawson is open 24 hours</strong>. You can also find late-night ramen and izakaya spots around Tamade & Sumiyoshitaisha Stations (or order via Uber Eats).",
+    "cul4Title": "How to Ride the Retro Streetcar (Hankai Tram)",
+    "cul4Desc": "Board from the <strong>REAR door</strong>, and pay the flat fare at the <strong>FRONT fare box</strong> near the driver when getting off (IC cards like ICOCA/Suica or cash accepted)."
   },
   "zh": {
     "navHome": "首页·概要",
@@ -2533,26 +2902,26 @@
     "placeParkTag": "无专用停车位·禁止路边停放",
     "placeParkDesc": "自驾前往时，请利用周边的收费停车场。",
     "btnSearchPark": "查找附近停车场",
-    "placeSuperTitle": "超市 'KINSHO (近商超市)'",
+    "placeSuperTitle": "超市 'KINSHO (近商超市 住吉店)'",
     "placeSuperTag": "生鲜·食品·日用品",
-    "placeSuperDesc": "最近的便利超市“KINSHO 住吉店”。提供新鲜食材、熟食及日常用品。（营业时间 9:00〜21:50 ／ 步行约4-5分钟）",
+    "placeSuperDesc": "最近的便利超市“KINSHO 住吉店”。提供新鲜食材、便当熟食及日常用品。（营业时间 9:00〜21:50 ／ 步行约5-6分钟）",
     "btnSearchSuper": "查看路线",
-    "placeStoreTitle": "便利店 'Lawson'",
+    "placeStoreTitle": "便利店 'Lawson (粉滨西三丁目店)'",
     "placeStoreTag": "24小时营业·ATM",
-    "placeStoreDesc": "方便夜间购物及ATM取现（步行约3分钟）。",
+    "placeStoreDesc": "方便夜间购物及ATM取现（24小时营业 ／ 步行约3-4分钟）。",
     "btnSearchStore": "查看路线",
-    "placeDrugTitle": "药妆店 '大国药妆 (粉浜商店街)'",
-    "placeDrugTag": "药品 / 日用品 / 免税",
-    "placeDrugDesc": "备受游客欢迎的药妆店，提供丰富药品、化妆品、零食及日用品。（营业时间 9:05〜19:50 ／ 位于粉浜商店街内・步行约5分钟）",
+    "placeDrugTitle": "药妆店 '大国药妆 (粉滨站前店)'",
+    "placeDrugTag": "药品 / 附设百元店 / 免税",
+    "placeDrugDesc": "备受游客欢迎的药妆店，附设100日元百元店，提供药品、化妆品、零食及日用品。（营业时间 9:05〜19:50 ／ 位于粉滨站前・步行约6-7分钟）",
     "btnSearchDrug": "查看大国药妆地图 ↗",
-    "placeFoodTitle": "地道西餐·老字号“弥六 (Yaroku)”",
+    "placeFoodTitle": "百年老字号西餐“弥六 (Yaroku) 本店”",
     "placeFoodTag": "招牌鸡蛋可乐饼",
-    "placeFoodDesc": "创业多年的当地知名西餐厅“弥六”，招牌鸡蛋可乐饼深受喜爱。（营业时间 11:00-13:30, 17:00-19:30 / <span style=\"color:#ff5252; font-weight:bold;\">周二仅限午餐，周三休息</span> / 粉滨商店街・步行约6分钟）",
+    "placeFoodDesc": "创立于1935年的当地知名西餐厅“弥六”，招牌鸡蛋可乐饼深受喜爱。（营业时间 11:00-13:30, 17:00-19:30 ※售完即止 / <span style=\"color:#ff5252; font-weight:bold;\">周二仅限午餐，周三休息</span> / 步行约5分钟）",
     "btnSearchFood": "在地图上查看“弥六” ↗",
-    "placeTakoTitle": "章鱼烧“Cabbage House”",
-    "placeTakoTag": "章鱼烧·大阪名产",
-    "placeTakoDesc": "粉浜商店街当地极具人气的章鱼烧店。尽情品尝现做热气腾腾的大阪名产章鱼烧。（粉浜商店街内・步行约2分钟）",
-    "btnSearchTako": "在地图上查看章鱼烧店 ↗",
+    "placeTakoTitle": "章鱼烧·大阪烧“Cabbage House”",
+    "placeTakoTag": "章鱼烧·大阪烧·大阪名产",
+    "placeTakoDesc": "粉浜商店街当地极具人气的章鱼烧与大阪烧店。尽情品尝现做热气腾腾的大阪名产章鱼烧。（营业时间 10:00〜19:00 / 周四休息 / 粉浜商店街内・步行约2分钟）",
+    "btnSearchTako": "在地图上查看“Cabbage House” ↗",
     "cultureTitle": "🇯🇵 日本礼仪与旅行小贴士",
     "cultureSub": "实用文化指南",
     "cul1Title": "脱鞋习惯",
@@ -2622,7 +2991,7 @@
     "lblTrainSumiyoshi": "<strong>南海本线“住吉大社站 (NK08)”西出口</strong>（步行5分钟 / 直达难波约10分钟）※仅停靠普通列车<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 配有电梯（携带大件行李也很方便）</span>",
     "lblTrainKohama": "<strong>南海本线“粉滨站 (NK07)”西出口</strong>（步行7分钟 / 直达难波约9分钟）※仅停靠普通列车<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 配有电梯</span>",
     "lblTrainHankai": "<strong>阪堺电车（有轨电车）🚋“住吉鸟居前 (HN12)”（步行5分钟）/“东粉滨 (HN61)”（步行7分钟）</strong>",
-    "lblTrainTamade": "<strong>大阪地铁 四桥线“玉出站 (Y19)”5号出口</strong>（步行11分钟 / 直达西梅田、四桥、难波）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 配有电梯</span>",
+    "lblTrainTamade": "<strong>大阪地铁 四桥线“玉出站 (Y19)”5号出口</strong>（步行11分钟 / 直达西梅田、四桥、难波）<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 电梯设于“3号出口（南检票口）”（5号出口仅有楼梯）</span>",
     "luggageNoticeTitle": "🧳 行李寄存与储物柜指南:",
     "luggageNoticeDesc": "由于需要进行保洁和消毒，入住前及退房后无法在房间内寄存行李。请使用住吉大社站内、粉滨站周边或主要交通枢纽（南海难波站、关西国际机场）的投币式储物柜或行李寄存服务。",
     "faqLuggageQ": "Q. 可以在入住前或退房后在房间存放行李吗？",
@@ -2644,16 +3013,16 @@
     "amRemoteTitle": "各类遥控器（空调 / 电视）",
     "amRemoteDesc": "整齐放置在餐桌上（房屋指南手册旁）。",
     "amPowerTitle": "电源与充电",
-    "amPowerDesc": "床头及书桌旁均设有便利的电源插座。",
+    "amPowerDesc": "床头设有便利的电源插座。",
     "amUmbrellaTitle": "雨伞（免费借用）",
     "amUmbrellaDesc": "玄关处备有雨伞供您雨天外出时免费借用。",
     "placeShrineTitle": "祈福胜地“住吉大社”",
     "placeShrineTag": "国宝级神社·太鼓桥·能量景点",
-    "placeShrineDesc": "全日本住吉神社的全国总本社。著名的拱形太鼓桥是热门打卡拍照点，末社大岁社的“重轻石”（占卜心愿）非常受旅客喜爱。（开放时间 6:00〜17:00 / 步行约5分钟）",
+    "placeShrineDesc": "全日本住吉神社的全国总本社。著名的拱形太鼓桥是热门打卡拍照点，末社大岁社的“重轻石”（占卜心愿）非常受旅客喜爱。（开放时间 6:00［10〜3月为6:30］〜17:00 / 步行约5分钟）",
     "btnSearchShrine": "查看“住吉大社”地图 ↗",
     "placeCafeTitle": "昭和复古咖啡厅“Sunrose”",
     "placeCafeTag": "纯吃茶·日式早餐·虹吸咖啡",
-    "placeCafeDesc": "创业于昭和50年的粉滨商业街老牌纯咖啡馆。早晨8:00起供应虹吸咖啡与日式吐司早间套餐。（营业时间 8:00〜16:00 / 周四公休 / 步行约4分钟）",
+    "placeCafeDesc": "创业于昭和50年的粉滨商业街老牌纯咖啡馆。早晨8:00起供应虹吸咖啡与日式吐司早间套餐。（营业时间 8:00〜16:00 ※周三营业至12:00 / 周四公休 / 步行约4分钟）",
     "btnSearchCafe": "查看“Sunrose”地图 ↗",
     "placeOnsenTitle": "天然温泉·桑拿“日之出温泉”",
     "placeOnsenTag": "钱汤·露天浴池·桑拿",
@@ -2672,7 +3041,31 @@
     "amKitchenTitle": "厨房用具与家电",
     "amKitchenDesc": "水槽下方备有碗碟锅具，抽屉内备有餐具，微波炉、电水壶及电饭煲位于家电架上。",
     "viewerBackBtn": "← 返回指南",
-    "viewerCloseBtn": "✕ 关闭"
+    "viewerCloseBtn": "✕ 关闭",
+    "fabQuickMenu": "☰ 快捷目录",
+    "mobileMenuTitle": "📑 指南目录 (Quick Menu)",
+    "btnStationCard": "🚃 给车站职员看",
+    "stationModalTitle": "🚃 给车站工作人员看的乘车询问画面",
+    "stationModalDesc": "如果不确定站台或列车，请向车站工作人员出示此画面。",
+    "stationModalNote": "※急行、机场急行及特急Rapi:t均不停靠住吉大社站与粉滨站，请务必乘坐“普通（各站停车）”列车。",
+    "localTrainWarnTitle": "⚠️ 乘车注意：南海本线仅“普通（LOCAL）”列车停靠本站！",
+    "localTrainWarnDesc": "急行、机场急行、特急Rapi:t及Southern均会直接通过“住吉大社站”和“粉滨站”。从难波站或天下茶屋站出发时，请务必换乘<strong>“普通（各站停车）”</strong>列车。",
+    "morningCourseTitle": "房东推荐！清晨“住吉大社 ＆ 昭和复古早餐”散步路线",
+    "morningCourseSub": "正因为步行仅需5分钟，才能体验到的清爽大阪下町晨间漫步。",
+    "morningStep1Time": "STEP 1｜6:30〜7:30 AM（步行5分钟）",
+    "morningStep1Title": "⛩️ 参拜清晨宁静的“住吉大社”",
+    "morningStep1Desc": "早上6:00开门（10〜3月为6:30开门）。清晨游客稀少，您可以在清新的空气中独享著名的红色“反桥（太鼓桥）”拍照打卡，静心参拜国宝本殿。",
+    "morningStep2Time": "STEP 2｜8:00 AM起（回程顺路步行4分钟）",
+    "morningStep2Title": "☕ 复古咖啡厅“Sunrose”享用日式早餐",
+    "morningStep2Desc": "在粉滨商业街创业于1975年的老牌纯咖啡馆，品尝醇香虹吸咖啡与现烤吐司早餐套餐（8:00营业·周三至12:00·周四公休）。",
+    "filterAll": "全部显示",
+    "filterFood": "🍽️ 美食·咖啡",
+    "filterShop": "🛒 购物·停车场",
+    "filterSight": "⛩️ 景点·温泉钱汤",
+    "lateDinnerTitle": "20:00以后晚到及夜间觅食贴士:",
+    "lateDinnerDesc": "粉滨商业街的店铺大多在19:30〜20:00左右关门，但<strong>超市“KINSHO 住吉店”营业至21:50</strong>（有便当与熟食），<strong>“Lawson便利店”24小时营业</strong>。此外，玉出站及住吉大社站周边也有营业至深夜的拉面店与居酒屋（也可使用Uber Eats外卖）。",
+    "cul4Title": "复古有轨电车（阪堺电车）乘车方法",
+    "cul4Desc": "请从<strong>后门上车</strong>，下车时在靠近司机的<strong>前门投币箱</strong>付费（全线统一票价，支持ICOCA/Suica等交通卡或现金）。"
   },
   "ko": {
     "navHome": "홈·개요",
@@ -2779,26 +3172,26 @@
     "placeParkTag": "전용 주차장 없음·주정차 금지",
     "placeParkDesc": "차량 이용 시 근처의 유료 동전 주차장을 이용해 주세요.",
     "btnSearchPark": "가까운 주차장 찾기",
-    "placeSuperTitle": "슈퍼마켓 'KINSHO (킨쇼)'",
+    "placeSuperTitle": "슈퍼마켓 'KINSHO (킨쇼 스미요시점)'",
     "placeSuperTag": "식료품·생필품",
-    "placeSuperDesc": "가장 가까운 편리한 슈퍼마켓 'KINSHO (킨쇼) 스미요시점'. 신선한 식료품과 조리 식품을 구매할 수 있습니다. (영업시간 9:00~21:50 / 도보 약 4~5분)",
+    "placeSuperDesc": "가장 가까운 편리한 슈퍼마켓 'KINSHO (킨쇼) 스미요시점'. 신선한 식료품과 도시락·조리 식품을 구매할 수 있습니다. (영업시간 9:00~21:50 / 도보 약 5~6분)",
     "btnSearchSuper": "경로 보기",
-    "placeStoreTitle": "편의점 '로손'",
+    "placeStoreTitle": "편의점 '로손 (고하마니시 3초메점)'",
     "placeStoreTag": "24시간 영업·ATM",
-    "placeStoreDesc": "심야 쇼핑 및 현금 인출이 가능한 편의점 (도보 약 3분).",
+    "placeStoreDesc": "심야 쇼핑 및 현금 인출이 가능한 편의점 (24시간 영업 / 도보 약 3~4분).",
     "btnSearchStore": "경로 보기",
-    "placeDrugTitle": "드럭스토어 '다이코쿠 드럭 (고하마 상가)'",
-    "placeDrugTag": "의약품 / 생필품 / 면세",
-    "placeDrugDesc": "의약품, 화장품, 과자, 생필품 등이 다양하게 구비된 인기 드럭스토어입니다. (영업시간 9:05~19:50 / 고하마 상점가 내·도보 약 5분)",
+    "placeDrugTitle": "드럭스토어 '다이코쿠 드럭 (고하마역 앞점)'",
+    "placeDrugTag": "의약품 / 100엔숍 병설 / 면세",
+    "placeDrugDesc": "의약품, 화장품, 과자, 생필품과 함께 100엔숍도 병설된 인기 드럭스토어입니다. (영업시간 9:05~19:50 / 고하마역 앞·도보 약 6~7분)",
     "btnSearchDrug": "다이코쿠 드럭 지도 보기 ↗",
-    "placeFoodTitle": "현지 맛집 '야로쿠 (Yaroku)'",
+    "placeFoodTitle": "전통 양식 맛집 '야로쿠 (Yaroku) 본점'",
     "placeFoodTag": "명물 타마고 고로케",
-    "placeFoodDesc": "현지에서 대인기인 전통 양식당 '야로쿠'. 명물 타마고 고로케(계란 고로케)가 유명합니다. (영업시간 11:00-13:30, 17:00-19:30 / <span style=\"color:#ff5252; font-weight:bold;\">화요일은 점심만, 수요일 휴무</span> / 고하마 상가·도보 약 6분)",
+    "placeFoodDesc": "1935년 창업한 현지 인기 전통 양식당 '야로쿠'. 명물 타마고 고로케(계란 고로케)가 유명합니다. (영업시간 11:00-13:30, 17:00-19:30 ※재료 소진 시 마감 / <span style=\"color:#ff5252; font-weight:bold;\">화요일은 점심만, 수요일 휴무</span> / 도보 약 5분)",
     "btnSearchFood": "지도에서 '야로쿠' 보기 ↗",
-    "placeTakoTitle": "타코야끼 '양배추 하우스'",
-    "placeTakoTag": "타코야끼·오사카 명물",
-    "placeTakoDesc": "코하마 상점가에 위치한 현지 인기 타코야끼 가게. 갓 구운 따끈따끈한 오사카 명물 타코야끼를 즐겨보세요. (고하마 상점가 내·도보 약 2분)",
-    "btnSearchTako": "지도에서 타코야끼 가게 보기 ↗",
+    "placeTakoTitle": "타코야끼·오코노미야끼 '양배추 하우스'",
+    "placeTakoTag": "타코야끼·오코노미야끼·오사카 명물",
+    "placeTakoDesc": "고하마 상점가에 위치한 현지 인기 타코야끼·오코노미야끼 가게. 갓 구운 따끈따끈한 오사카 명물 타코야끼를 즐겨보세요. (영업시간 10:00~19:00 / 목요일 휴무 / 고하마 상점가 내·도보 약 2분)",
+    "btnSearchTako": "지도에서 '양배추 하우스' 보기 ↗",
     "cultureTitle": "🇯🇵 일본 숙박 매너 & 여행 팁",
     "cultureSub": "유용한 현지 에티켓 가이드",
     "cul1Title": "신발 벗는 문화",
@@ -2868,7 +3261,7 @@
     "lblTrainSumiyoshi": "<strong>난카이 본선 '스미요시타이샤역 (NK08)' 서쪽 출구</strong> (도보 5분 / 난바 직통 약 10분) ※보통열차만 정차<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 엘리베이터 완비 (캐리어 이동 편리)</span>",
     "lblTrainKohama": "<strong>난카이 본선 '고하마역 (NK07)' 서쪽 출구</strong> (도보 7분 / 난바 직통 약 9분) ※보통열차만 정차<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 개찰구 엘리베이터 완비</span>",
     "lblTrainHankai": "<strong>한카이 전차 (노면전차) 🚋 '스미요시토리이마에 (HN12)' (도보 5분) / '히가시코하마 (HN61)' (도보 7분)</strong>",
-    "lblTrainTamade": "<strong>오사카 메트로 요쓰바시선 '다마데역 (Y19)' 5번 출구</strong> (도보 11분 / 니시우메다·요쓰바시·난바 직통)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 엘리베이터 완비</span>",
+    "lblTrainTamade": "<strong>오사카 메트로 요쓰바시선 '다마데역 (Y19)' 5번 출구</strong> (도보 11분 / 니시우메다·요쓰바시·난바 직통)<br><span style=\"font-size:0.82rem; color:var(--accent-gold-light);\">🛗 엘리베이터는 '3번 출구(남쪽 개찰구)'에 완비 (5번 출구는 계단만 있음)</span>",
     "luggageNoticeTitle": "🧳 짐 보관 및 코인로커 안내:",
     "luggageNoticeDesc": "객실 청소 및 준비 관계로 체크인 전 및 체크아웃 후 객실 내 짐 보관은 불가합니다. 스미요시타이샤역 구내, 난카이 난바역, 간사이 국제공항(KIX) 등의 코인로커 또는 수하물 보관소를 이용해 주시기 바랍니다.",
     "faqLuggageQ": "Q. 체크인 전이나 체크아웃 후에 짐을 보관할 수 있나요?",
@@ -2890,16 +3283,16 @@
     "amRemoteTitle": "각종 리모컨 (에어컨 / TV)",
     "amRemoteDesc": "식탁 테이블 위(하우스 가이드 옆)에 가지런히 놓여 있습니다.",
     "amPowerTitle": "콘센트 및 충전",
-    "amPowerDesc": "침대 옆과 테이블 주변에 편리하게 콘센트가 마련되어 있습니다.",
+    "amPowerDesc": "침대 옆에 편리하게 콘센트가 마련되어 있습니다.",
     "amUmbrellaTitle": "우산 (무료 대여)",
     "amUmbrellaDesc": "현관 공간에 비치되어 있으니 비 오는 날 자유롭게 이용하세요.",
     "placeShrineTitle": "오사카 대표 신사 '스미요시타이샤'",
     "placeShrineTag": "국보·소리하시(태고교)·파워스팟",
-    "placeShrineDesc": "일본 전국 스미요시 신사의 총본사. 붉은 아치형 '태고교' 사진 촬영과 소원을 점치는 '오모카루이시' 바위 체험이 인기입니다. (개문 6:00~17:00 / 도보 약 5분)",
+    "placeShrineDesc": "일본 전국 스미요시 신사의 총본사. 붉은 아치형 '태고교' 사진 촬영과 소원을 점치는 '오모카루이시' 바위 체험이 인기입니다. (개문 6:00［10~3월은 6:30］~17:00 / 도보 약 5분)",
     "btnSearchShrine": "'스미요시타이샤' 지도 보기 ↗",
     "placeCafeTitle": "레트로 다방 '산로즈 (Sunrose)'",
     "placeCafeTag": "쇼와 감성·모닝 세트·사이폰 커피",
-    "placeCafeDesc": "고하마 상점가에서 1975년부터 이어진 전통 다방. 아침 8시부터 사이폰 커피와 토스트 모닝 세트를 즐길 수 있습니다. (영업시간 8:00~16:00 / 목요일 휴무 / 도보 약 4분)",
+    "placeCafeDesc": "고하마 상점가에서 1975년부터 이어진 전통 다방. 아침 8시부터 사이폰 커피와 토스트 모닝 세트를 즐길 수 있습니다. (영업시간 8:00~16:00 ※수요일은 12:00까지 / 목요일 휴무 / 도보 약 4분)",
     "btnSearchCafe": "'산로즈' 지도 보기 ↗",
     "placeOnsenTitle": "대중목욕탕·사우나 '히노데 온천'",
     "placeOnsenTag": "센토(목욕탕)·노천탕·사우나",
@@ -2918,7 +3311,31 @@
     "amKitchenTitle": "주방 비품 & 가전",
     "amKitchenDesc": "싱크대 아래에 식기 및 냄비, 서랍에 수저류, 가전 랙에 전자레인지·전기주전자·밥솥이 있습니다.",
     "viewerBackBtn": "← 가이드로 돌아가기",
-    "viewerCloseBtn": "✕ 닫기"
+    "viewerCloseBtn": "✕ 닫기",
+    "fabQuickMenu": "☰ 빠른 메뉴",
+    "mobileMenuTitle": "📑 가이드 목차 (Quick Menu)",
+    "btnStationCard": "🚃 역무원에게 보여주기",
+    "stationModalTitle": "🚃 역무원에게 보여주는 승차 안내 화면",
+    "stationModalDesc": "승강장이나 열차가 헷갈릴 때 역무원에게 이 화면을 보여주세요.",
+    "stationModalNote": "※급행·공항급행·라피트는 스미요시타이샤역 및 고하마역에 정차하지 않습니다. 반드시 '보통(LOCAL)' 열차를 이용해 주세요.",
+    "localTrainWarnTitle": "⚠️ 탑승 주의: 난카이 본선은 '보통(LOCAL)' 열차만 정차합니다!",
+    "localTrainWarnDesc": "급행, 공항급행, 특급 라피트, 서던 열차는 '스미요시타이샤역'과 '고하마역'을 통과합니다. 난바역이나 텐가차야역에서 반드시 <strong>'보통(각역정차)'</strong> 열차에 탑승해 주세요.",
+    "morningCourseTitle": "호스트 추천! 아침 '스미요시타이샤 & 레트로 다방 모닝' 산책 코스",
+    "morningCourseSub": "도보 5분 거리이기에 누릴 수 있는 상쾌한 오사카 로컬 아침 산책 플랜입니다.",
+    "morningStep1Time": "STEP 1｜6:30〜7:30 AM (도보 5분)",
+    "morningStep1Title": "⛩️ 이른 아침 '스미요시타이샤' 참배",
+    "morningStep1Desc": "아침 6:00 개문 (10~3월은 6:30 개문). 이른 아침에는 참배객이 적어 맑은 공기 속에서 명물 '반교(태고교)' 사진 촬영과 국보 본전 산책을 여유롭게 즐길 수 있습니다.",
+    "morningStep2Time": "STEP 2｜8:00 AM〜 (참배 후 돌아오는 길 도보 4분)",
+    "morningStep2Title": "☕ 레트로 다방 '산로즈'에서 모닝 세트",
+    "morningStep2Desc": "고하마 상점가의 1975년 창업 전통 다방에서 향긋한 사이폰 커피와 구운 토스트 모닝 세트(8:00 오픈·수요일 12:00까지·목요일 휴무)를 즐겨보세요.",
+    "filterAll": "전체 보기",
+    "filterFood": "🍽️ 맛집·카페",
+    "filterShop": "🛒 쇼핑·주차장",
+    "filterSight": "⛩️ 관광·온천목욕탕",
+    "lateDinnerTitle": "20:00 이후 늦은 도착 시 저녁 식사 & 쇼핑 팁:",
+    "lateDinnerDesc": "고하마 상점가 점포들은 19:30~20:00경에 문을 닫지만, <strong>슈퍼마켓 'KINSHO 스미요시점'은 21:50까지 영업</strong>(도시락·반찬 구비)하며, <strong>'로손 편의점'은 24시간 영업</strong>합니다. 또한 다마데역 및 스미요시타이샤역 주변에는 늦게까지 영업하는 라멘집과 이자카야도 있습니다 (Uber Eats 배달 가능).",
+    "cul4Title": "레트로 노면전차 (한카이 전차) 타는 법",
+    "cul4Desc": "<strong>뒷문으로 승차</strong>하시고, 내리실 때 기관사 옆 <strong>앞문 요금함</strong>에서 지불해 주세요 (전 구간 단일 요금·ICOCA/Suica 등 교통카드 및 현금 사용 가능)."
   }
 };
 
@@ -2964,6 +3381,54 @@
         modal.classList.remove('active');
       }
     }
+
+    function toggleStationModal(show) {
+      const modal = document.getElementById('stationModal');
+      if (!modal) return;
+      if (show) {
+        modal.classList.add('active');
+      } else {
+        modal.classList.remove('active');
+      }
+    }
+
+    function toggleMobileMenu(forceState) {
+      const sidebar = document.getElementById('sidebarMenu');
+      const backdrop = document.getElementById('mobileBackdrop');
+      if (!sidebar || !backdrop) return;
+      const shouldOpen = typeof forceState === 'boolean' ? forceState : !sidebar.classList.contains('mobile-open');
+      if (shouldOpen) {
+        sidebar.classList.add('mobile-open');
+        backdrop.classList.add('active');
+      } else {
+        sidebar.classList.remove('mobile-open');
+        backdrop.classList.remove('active');
+      }
+    }
+
+    function filterPlaces(category, btnEl) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      document.querySelectorAll('.place-card').forEach(card => {
+        const cats = (card.getAttribute('data-category') || '').split(/\s+/);
+        if (category === 'all' || cats.includes(category)) {
+          card.classList.remove('hidden-place');
+        } else {
+          card.classList.add('hidden-place');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      const topFab = document.getElementById('backToTopFab');
+      if (topFab) {
+        if (window.scrollY > 320) {
+          topFab.classList.add('visible');
+        } else {
+          topFab.classList.remove('visible');
+        }
+      }
+    }, { passive: true });
 
     function openViewerModal(url, titleText) {
       const modal = document.getElementById('viewerModal');
@@ -3014,6 +3479,12 @@
       if (!link || link.id === 'viewerExtLink') return;
 
       const href = link.getAttribute('href');
+      if (href && href.startsWith('#') && link.classList.contains('nav-link')) {
+        document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+        link.classList.add('active');
+        toggleMobileMenu(false);
+        return;
+      }
       if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:')) return;
 
       // Open Route Map and all Guide / Manual / Map / Chatbot subpages in the fullscreen viewer with Close button
