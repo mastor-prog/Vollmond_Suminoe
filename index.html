@@ -1108,6 +1108,62 @@
       padding: 12px 14px;
     }
 
+    .morning-shop-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .morning-shop-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-left: 3px solid var(--accent-gold);
+      border-radius: 8px;
+      padding: 9px 11px;
+      line-height: 1.45;
+    }
+
+    .morning-shop-item.shop-retro {
+      border-left-color: #d49a6a;
+    }
+
+    .morning-shop-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .morning-shop-name {
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .morning-shop-badge {
+      display: inline-block;
+      font-size: 0.71rem;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: rgba(76, 175, 80, 0.2);
+      color: #81c784;
+      border: 1px solid rgba(129, 199, 132, 0.35);
+    }
+
+    .morning-shop-badge.badge-retro {
+      background: rgba(212, 154, 106, 0.2);
+      color: #ffcc80;
+      border: 1px solid rgba(255, 204, 128, 0.35);
+    }
+
+    .morning-shop-detail {
+      color: var(--text-sub);
+      font-size: 0.79rem;
+    }
+
     .route-map-preview {
       display: block;
       position: relative;
@@ -2442,8 +2498,25 @@
             </div>
             <div class="morning-step">
               <div style="color:var(--accent-gold); font-weight:700; font-size:0.85rem; margin-bottom:4px;" data-i18n="morningStep2Time">STEP 2｜7:00 AM〜（参拝帰りに徒歩4〜5分）</div>
-              <div style="color:#fff; font-weight:700; font-size:0.92rem; margin-bottom:4px;" data-i18n="morningStep2Title">☕ 参拝帰りにベーカリーカフェや純喫茶でモーニング</div>
-              <div style="color:var(--text-sub); font-size:0.82rem;" data-i18n="morningStep2Desc"><strong>【禁煙・ファミリーに安心】</strong>住吉大社駅高架下のベーカリーカフェ<strong>「ヴィ・ド・フランス」</strong>（7:00開店・無休・イートイン＆テイクアウト可）で焼きたてパンとコーヒーを。<br><strong>【昭和レトロ派に】</strong>粉浜商店街の老舗純喫茶<strong>「サンローズ」</strong>（8:00開店・水曜は12:00まで・木曜定休 ／ <span style="color:#ff8a80;">⚠️全席喫煙可のため非喫煙者・お子様連れはご注意ください</span>）でサイフォン珈琲モーニングも楽しめます。</div>
+              <div style="color:#fff; font-weight:700; font-size:0.92rem; margin-bottom:4px;" data-i18n="morningStep2Title">☕ 参拝帰りに選べる2つのモーニング</div>
+              <div style="color:var(--text-sub); font-size:0.82rem;" data-i18n="morningStep2Desc">
+                <div class="morning-shop-list">
+                  <div class="morning-shop-item">
+                    <div class="morning-shop-head">
+                      <span class="morning-shop-name">🥐 ベーカリーカフェ「ヴィ・ド・フランス」</span>
+                      <span class="morning-shop-badge">🚭 禁煙・ファミリー安心</span>
+                    </div>
+                    <div class="morning-shop-detail">📍 住吉大社駅 高架下（7:00開店・無休 ／ イートイン＆テイクアウト可）<br>焼きたてパンとコーヒーで手軽にモーニング。</div>
+                  </div>
+                  <div class="morning-shop-item shop-retro">
+                    <div class="morning-shop-head">
+                      <span class="morning-shop-name">☕ 老舗純喫茶「サンローズ」</span>
+                      <span class="morning-shop-badge badge-retro">昭和レトロ・純喫茶</span>
+                    </div>
+                    <div class="morning-shop-detail">📍 粉浜商店街（8:00開店・水曜12:00まで・木曜定休）<br>サイフォン珈琲モーニングが人気。<span style="color:#ff8a80;">⚠️全席喫煙可のため非喫煙者・お子様連れはご注意ください</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -3144,8 +3217,8 @@
     "morningStep1Title": "⛩️ 早朝の「住吉大社」を参拝",
     "morningStep1Desc": "朝6:00開門（10〜3月は6:30開門）。早朝は参拝客が少なく、澄んだ空気の中で名物「反橋（太鼓橋）」の写真撮影や国宝本殿のお参りがゆっくり楽しめます。",
     "morningStep2Time": "STEP 2｜7:00 AM〜（参拝帰りに徒歩4〜5分）",
-    "morningStep2Title": "☕ 参拝帰りにベーカリーカフェや純喫茶でモーニング",
-    "morningStep2Desc": "<strong>【禁煙・ファミリーに安心】</strong>住吉大社駅高架下のベーカリーカフェ<strong>「ヴィ・ド・フランス」</strong>（7:00開店・無休・イートイン＆テイクアウト可）で焼きたてパンとコーヒーを。<br><strong>【昭和レトロ派に】</strong>粉浜商店街の老舗純喫茶<strong>「サンローズ」</strong>（8:00開店・水曜は12:00まで・木曜定休 ／ <span style=\"color:#ff8a80;\">⚠️全席喫煙可のため非喫煙者・お子様連れはご注意ください</span>）でサイフォン珈琲モーニングも楽しめます。",
+    "morningStep2Title": "☕ 参拝帰りに選べる2つのモーニング",
+    "morningStep2Desc": "<div class=\"morning-shop-list\"><div class=\"morning-shop-item\"><div class=\"morning-shop-head\"><span class=\"morning-shop-name\">🥐 ベーカリーカフェ「ヴィ・ド・フランス」</span><span class=\"morning-shop-badge\">🚭 禁煙・ファミリー安心</span></div><div class=\"morning-shop-detail\">📍 住吉大社駅 高架下（7:00開店・無休 ／ イートイン＆テイクアウト可）<br>焼きたてパンとコーヒーで手軽にモーニング。</div></div><div class=\"morning-shop-item shop-retro\"><div class=\"morning-shop-head\"><span class=\"morning-shop-name\">☕ 老舗純喫茶「サンローズ」</span><span class=\"morning-shop-badge badge-retro\">昭和レトロ・純喫茶</span></div><div class=\"morning-shop-detail\">📍 粉浜商店街（8:00開店・水曜12:00まで・木曜定休）<br>サイフォン珈琲モーニングが人気。<span style=\"color:#ff8a80;\">⚠️全席喫煙可のため非喫煙者・お子様連れはご注意ください</span></div></div></div>",
     "filterAll": "すべて表示",
     "filterFood": "🍽️ グルメ・喫茶",
     "filterShop": "🛒 買い物・駐車場",
@@ -3427,8 +3500,8 @@
     "morningStep1Title": "⛩️ Early Morning Visit to Sumiyoshi-taisha",
     "morningStep1Desc": "Opens at 6:00 AM (6:30 AM Oct–Mar). Visit early to enjoy the peaceful grounds, fresh morning air, and crowd-free photos at the iconic Sorihashi (Taiko) Bridge.",
     "morningStep2Time": "STEP 2 | From 7:00 AM (4–5 min walk on the way back)",
-    "morningStep2Title": "☕ Morning Breakfast at a Bakery Cafe or Retro Kissaten",
-    "morningStep2Desc": "<strong>[Non-Smoking & Family-Friendly]</strong> Enjoy freshly baked pastries and coffee at <strong>\"VIE DE FRANCE\"</strong> (under Sumiyoshitaisha Sta., opens 7:00 AM daily, dine-in & takeout).<br><strong>[Showa Retro Style]</strong> Or try siphon coffee & morning toast at 1975 kissaten <strong>\"Sunrose\"</strong> in Kohama Arcade (Opens 8:00 AM, Wed until 12:00 / Closed Thu / <span style=\"color:#ff8a80;\">⚠️Smoking allowed at all seats; please take note if you are a non-smoker or with children</span>).",
+    "morningStep2Title": "☕ Choose from 2 Morning Breakfast Spots",
+    "morningStep2Desc": "<div class=\"morning-shop-list\"><div class=\"morning-shop-item\"><div class=\"morning-shop-head\"><span class=\"morning-shop-name\">🥐 Bakery Cafe \"VIE DE FRANCE\"</span><span class=\"morning-shop-badge\">🚭 Non-Smoking & Family-Friendly</span></div><div class=\"morning-shop-detail\">📍 Under Sumiyoshitaisha Sta. (Opens 7:00 AM daily / Dine-in & Takeout)<br>Enjoy freshly baked pastries and coffee.</div></div><div class=\"morning-shop-item shop-retro\"><div class=\"morning-shop-head\"><span class=\"morning-shop-name\">☕ Retro Kissaten \"Sunrose\"</span><span class=\"morning-shop-badge badge-retro\">Showa Retro Since 1975</span></div><div class=\"morning-shop-detail\">📍 Kohama Arcade (Opens 8:00 AM, Wed until 12:00 / Closed Thu)<br>Siphon coffee & morning toast. <span style=\"color:#ff8a80;\">⚠️Smoking allowed at all seats; take note if non-smoking or with children</span></div></div></div>",
     "filterAll": "All Spots",
     "filterFood": "🍽️ Food & Cafe",
     "filterShop": "🛒 Shopping & Parking",
@@ -3710,8 +3783,8 @@
     "morningStep1Title": "⛩️ 参拜清晨宁静的“住吉大社”",
     "morningStep1Desc": "早上6:00开门（10〜3月为6:30开门）。清晨游客稀少，您可以在清新的空气中独享著名的红色“反桥（太鼓桥）”拍照打卡，静心参拜国宝本殿。",
     "morningStep2Time": "STEP 2｜7:00 AM起（回程顺路步行4〜5分钟）",
-    "morningStep2Title": "☕ 参拜回程享用烘焙咖啡馆或复古咖啡厅早餐",
-    "morningStep2Desc": "<strong>【全面禁烟·适合家庭】</strong>在住吉大社站高架下的烘焙咖啡馆<strong>“VIE DE FRANCE”</strong>（7:00营业·无休·可堂食及外带）享用现烤面包与咖啡。<br><strong>【昭和复古风】</strong>也可前往粉滨商业街1975年创业的老牌纯咖啡馆<strong>“Sunrose”</strong>品尝虹吸咖啡早餐（8:00营业·周三至12:00·周四公休 ／ <span style=\"color:#ff8a80;\">⚠️全席可吸烟，非吸烟者及携儿童住客请注意</span>）。",
+    "morningStep2Title": "☕ 参拜回程可选的2家早餐店",
+    "morningStep2Desc": "<div class=\"morning-shop-list\"><div class=\"morning-shop-item\"><div class=\"morning-shop-head\"><span class=\"morning-shop-name\">🥐 烘焙咖啡馆 “VIE DE FRANCE”</span><span class=\"morning-shop-badge\">🚭 全面禁烟·适合家庭</span></div><div class=\"morning-shop-detail\">📍 住吉大社站高架下（7:00营业·无休 ／ 可堂食及外带）<br>轻松享用现烤面包与香浓咖啡。</div></div><div class=\"morning-shop-item shop-retro\"><div class=\"morning-shop-head\"><span class=\"morning-shop-name\">☕ 老牌纯咖啡馆 “Sunrose”</span><span class=\"morning-shop-badge badge-retro\">昭和复古风（1975年创业）</span></div><div class=\"morning-shop-detail\">📍 粉滨商业街（8:00营业·周三至12:00·周四公休）<br>品尝传统虹吸咖啡早餐。<span style=\"color:#ff8a80;\">⚠️全席可吸烟，非吸烟者及携儿童住客请注意</span></div></div></div>",
     "filterAll": "全部显示",
     "filterFood": "🍽️ 美食·咖啡",
     "filterShop": "🛒 购物·停车场",
@@ -3993,8 +4066,8 @@
     "morningStep1Title": "⛩️ 이른 아침 '스미요시타이샤' 참배",
     "morningStep1Desc": "아침 6:00 개문 (10~3월은 6:30 개문). 이른 아침에는 참배객이 적어 맑은 공기 속에서 명물 '반교(태고교)' 사진 촬영과 국보 본전 산책을 여유롭게 즐길 수 있습니다.",
     "morningStep2Time": "STEP 2｜7:00 AM〜 (참배 후 돌아오는 길 도보 4~5분)",
-    "morningStep2Title": "☕ 참배 후 베이커리 카페 또는 레트로 다방 모닝",
-    "morningStep2Desc": "<strong>[전석 금연·가족 추천]</strong> 스미요시타이샤역 고가 아래 베이커리 카페 <strong>'VIE DE FRANCE(비드프랑스)'</strong>(7:00 오픈·연중무휴·매장 식사 및 포장 가능)에서 갓 구운 빵과 커피를 즐겨보세요.<br><strong>[쇼와 레트로 감성]</strong> 고하마 상점가의 전통 다방 <strong>'산로즈(Sunrose)'</strong>(8:00 오픈·수요일 12:00까지·목요일 휴무 / <span style=\"color:#ff8a80;\">⚠️전석 흡연 가능 매장이므로 비흡연자·어린이 동반 시 주의</span>)에서 사이폰 커피 모닝도 가능합니다.",
+    "morningStep2Title": "☕ 참배 후 선택 가능한 모닝 카페 2곳",
+    "morningStep2Desc": "<div class=\"morning-shop-list\"><div class=\"morning-shop-item\"><div class=\"morning-shop-head\"><span class=\"morning-shop-name\">🥐 베이커리 카페 'VIE DE FRANCE(비드프랑스)'</span><span class=\"morning-shop-badge\">🚭 전석 금연·가족 추천</span></div><div class=\"morning-shop-detail\">📍 스미요시타이샤역 고가 아래 (7:00 오픈·연중무휴 / 매장 식사 및 포장 가능)<br>갓 구운 빵과 커피로 간편하게 모닝 식사.</div></div><div class=\"morning-shop-item shop-retro\"><div class=\"morning-shop-head\"><span class=\"morning-shop-name\">☕ 전통 다방 '산로즈(Sunrose)'</span><span class=\"morning-shop-badge badge-retro\">쇼와 레트로 감성</span></div><div class=\"morning-shop-detail\">📍 고하마 상점가 (8:00 오픈·수요일 12:00까지·목요일 휴무)<br>사이폰 커피 모닝 세트.<span style=\"color:#ff8a80;\"> ⚠️전석 흡연 가능 매장이므로 비흡연자·어린이 동반 시 주의</span></div></div></div>",
     "filterAll": "전체 보기",
     "filterFood": "🍽️ 맛집·카페",
     "filterShop": "🛒 쇼핑·주차장",
