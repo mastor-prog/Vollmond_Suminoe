@@ -14,15 +14,15 @@
       --bg-main: #0f141c;
       --bg-card: #18202c;
       --bg-card-hover: #1e2938;
-      --bg-glass: rgba(24, 32, 44, 0.85);
+      --bg-glass: rgba(20, 27, 38, 0.92);
       --accent-gold: #d4af37;
-      --accent-gold-light: #f3e5ab;
+      --accent-gold-light: #f5e7b2;
       --accent-gold-dark: #aa8625;
-      --text-main: #f0f4f8;
-      --text-sub: #94a3b8;
-      --text-muted: #64748b;
-      --border-color: rgba(212, 175, 55, 0.2);
-      --border-subtle: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-sub: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-color: rgba(212, 175, 55, 0.25);
+      --border-subtle: rgba(255, 255, 255, 0.1);
       --danger-color: #ef4444;
       --success-color: #10b981;
       --info-color: #3b82f6;
@@ -30,7 +30,7 @@
       --radius-md: 14px;
       --radius-lg: 20px;
       --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * {
@@ -1227,6 +1227,516 @@
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
     }
+
+    /* Stay Phase Switcher (Sticky / Prominent Filter Tabs) */
+    .phase-switcher {
+      background: linear-gradient(135deg, rgba(24, 32, 44, 0.96), rgba(15, 20, 28, 0.98));
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .phase-switcher-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-gold-light);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .phase-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .phase-tab {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-sub);
+      padding: 9px 6px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .phase-tab:hover {
+      border-color: var(--accent-gold);
+      color: #fff;
+    }
+
+    .phase-tab.active {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+      color: #000;
+      border-color: var(--accent-gold);
+      box-shadow: 0 3px 12px rgba(212, 175, 55, 0.35);
+    }
+
+    .phase-hidden {
+      display: none !important;
+    }
+
+    /* Collapsible / Show More Toggle Button */
+    .collapse-toggle-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 11px 16px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px dashed var(--accent-gold);
+      border-radius: var(--radius-sm);
+      color: var(--accent-gold-light);
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .collapse-toggle-btn:hover {
+      background: rgba(212, 175, 55, 0.22);
+    }
+
+    .extra-item-collapsed {
+      display: none !important;
+    }
+
+    /* Wi-Fi QR Collapsible Details */
+    .wifi-qr-details {
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .wifi-qr-summary {
+      padding: 11px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-gold-light);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      user-select: none;
+    }
+
+    .wifi-qr-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .wifi-qr-summary::after {
+      content: '▼';
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+      transition: transform 0.25s ease;
+    }
+
+    .wifi-qr-details[open] .wifi-qr-summary::after {
+      transform: rotate(180deg);
+    }
+
+    .wifi-qr-body {
+      padding: 12px 14px 14px 14px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Mobile Fixed Bottom Navigation Bar */
+    .mobile-bottom-nav {
+      display: none;
+    }
+
+    @media (max-width: 899px) {
+      body {
+        padding-bottom: 84px;
+      }
+
+      .mobile-bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1200;
+        background: rgba(15, 20, 28, 0.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1.5px solid rgba(212, 175, 55, 0.45);
+        box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.7);
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px)) 4px;
+      }
+
+      .bnav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        color: var(--text-sub);
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 5px 2px;
+        border-radius: 8px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .bnav-item:active,
+      .bnav-item.active {
+        color: var(--accent-gold-light);
+        background: rgba(212, 175, 55, 0.14);
+      }
+
+      .bnav-icon {
+        font-size: 1.15rem;
+        line-height: 1;
+      }
+
+      .floating-nav {
+        bottom: 74px;
+        right: 12px;
+      }
+
+      .fab-menu {
+        display: none;
+      }
+    }
+
+    /* Mobile Typography, Spacing & Grid Optimizations */
+    @media (max-width: 640px) {
+      html {
+        scroll-padding-top: 64px;
+      }
+
+      header {
+        padding: 8px 12px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .brand-logo {
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
+      }
+
+      .brand-title {
+        font-size: 0.95rem;
+      }
+
+      .brand-sub {
+        font-size: 0.68rem;
+      }
+
+      .lang-selector {
+        padding: 3px;
+      }
+
+      .lang-btn {
+        font-size: 0.72rem;
+        padding: 5px 8px;
+      }
+
+      .main-wrapper {
+        padding: 12px 10px;
+        gap: 14px;
+      }
+
+      .content-section {
+        gap: 14px;
+      }
+
+      .hero-banner {
+        padding: 18px 14px;
+        border-radius: var(--radius-md);
+      }
+
+      .hero-badge {
+        font-size: 0.72rem;
+        padding: 3px 10px;
+        margin-bottom: 8px;
+      }
+
+      .hero-title {
+        font-size: 1.32rem;
+        line-height: 1.35;
+      }
+
+      .hero-desc {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 14px;
+      }
+
+      .quick-actions {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .action-btn {
+        padding: 10px 6px;
+        font-size: 0.75rem;
+        gap: 5px;
+        border-radius: 10px;
+      }
+
+      .action-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .phase-switcher {
+        padding: 10px;
+      }
+
+      .phase-tabs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+      }
+
+      .phase-tab {
+        font-size: 0.8rem;
+        padding: 8px 6px;
+      }
+
+      .card {
+        padding: 16px 14px;
+        border-radius: var(--radius-md);
+      }
+
+      .card-header {
+        gap: 10px;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+      }
+
+      .card-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+      }
+
+      .card-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .card-title {
+        font-size: 1.08rem;
+        line-height: 1.3;
+      }
+
+      .btn-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .btn-group .btn-primary {
+        grid-column: 1 / -1;
+      }
+
+      .btn {
+        padding: 10px 12px;
+        font-size: 0.84rem;
+      }
+
+      /* Compact Timeline on Mobile */
+      .timeline {
+        gap: 12px;
+      }
+
+      .timeline::before {
+        left: 13px;
+      }
+
+      .step-item {
+        gap: 10px;
+      }
+
+      .step-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+      }
+
+      .step-content {
+        padding: 12px;
+      }
+
+      .step-title {
+        font-size: 0.94rem;
+      }
+
+      .step-desc {
+        font-size: 0.84rem;
+        margin-bottom: 8px;
+      }
+
+      .key-box {
+        padding: 12px 10px;
+        margin: 10px 0 4px 0;
+      }
+
+      .alert-box {
+        padding: 11px 12px;
+        gap: 8px;
+        font-size: 0.83rem;
+        line-height: 1.5;
+      }
+
+      /* Wi-Fi Box Mobile */
+      .wifi-box {
+        padding: 12px;
+        gap: 10px;
+      }
+
+      .wifi-row {
+        padding: 10px 12px;
+      }
+
+      .wifi-info-label {
+        font-size: 0.72rem;
+      }
+
+      .wifi-info-val {
+        font-size: 0.94rem;
+      }
+
+      .wifi-qr-body {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      /* 2-Column Compact Grid for Amenities & Rules on Mobile */
+      .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .amenities-grid .rule-item {
+        flex-direction: column;
+        padding: 11px 10px;
+        gap: 6px;
+      }
+
+      .amenities-grid .rule-title {
+        font-size: 0.84rem;
+        line-height: 1.25;
+      }
+
+      .amenities-grid .rule-desc {
+        font-size: 0.75rem;
+        line-height: 1.4;
+      }
+
+      .rules-grid:not(.amenities-grid) {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .rules-grid:not(.amenities-grid) .rule-item {
+        padding: 12px;
+      }
+
+      /* 2-Column Transit Times on Mobile */
+      .transit-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 7px;
+      }
+
+      .transit-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 10px;
+        gap: 3px;
+        font-size: 0.78rem;
+      }
+
+      .transit-time {
+        font-size: 0.8rem;
+        align-self: flex-end;
+      }
+
+      /* Compact Nearby Places on Mobile */
+      .filter-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .filter-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding: 7px 12px;
+        font-size: 0.8rem;
+      }
+
+      .places-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .place-card {
+        padding: 13px;
+        gap: 10px;
+      }
+
+      .place-emoji {
+        font-size: 22px;
+      }
+
+      .place-name {
+        font-size: 0.92rem;
+      }
+
+      .place-desc {
+        font-size: 0.81rem;
+        line-height: 1.48;
+      }
+
+      .morning-walk-box {
+        padding: 13px;
+      }
+
+      .faq-header {
+        padding: 13px 14px;
+        font-size: 0.88rem;
+      }
+
+      .faq-body {
+        padding: 10px 14px 14px 14px;
+        font-size: 0.84rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1285,12 +1795,34 @@
     </div>
   </div>
 
-  <!-- Mobile Quick Menu Backdrop & Floating Nav Buttons -->
+  <!-- Mobile Quick Menu Backdrop, Floating Top Button & Bottom Navigation Bar -->
   <div id="mobileBackdrop" class="mobile-backdrop" onclick="toggleMobileMenu(false)"></div>
   <div class="floating-nav">
     <button type="button" id="backToTopFab" class="fab-btn fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
     <button type="button" id="mobileMenuFab" class="fab-btn fab-menu" onclick="toggleMobileMenu()" data-i18n="fabQuickMenu">☰ 目次メニュー</button>
   </div>
+  <nav class="mobile-bottom-nav" aria-label="Mobile Quick Navigation">
+    <a href="#checkin" class="bnav-item">
+      <span class="bnav-icon">🔑</span>
+      <span data-i18n="bnavCheckin">入室・鍵</span>
+    </a>
+    <a href="#wifi" class="bnav-item">
+      <span class="bnav-icon">📶</span>
+      <span data-i18n="bnavWifi">Wi-Fi</span>
+    </a>
+    <a href="#nearby" class="bnav-item">
+      <span class="bnav-icon">🗺️</span>
+      <span data-i18n="bnavMap">周辺・路線</span>
+    </a>
+    <a href="https://mastor-prog.github.io/house-guide/" target="_blank" rel="noopener noreferrer" class="bnav-item">
+      <span class="bnav-icon">📖</span>
+      <span data-i18n="bnavManual">マニュアル</span>
+    </a>
+    <button type="button" class="bnav-item" onclick="toggleMobileMenu()">
+      <span class="bnav-icon">☰</span>
+      <span data-i18n="bnavMenu">目次</span>
+    </button>
+  </nav>
 
   <!-- Modal: Fullscreen Guide / Map Viewer -->
   <div id="viewerModal" class="viewer-modal" aria-hidden="true">
@@ -1381,8 +1913,19 @@
         </div>
       </section>
 
+      <!-- Stay Phase Switcher (Filter by Current Need) -->
+      <div class="phase-switcher" id="phaseSwitcher">
+        <div class="phase-switcher-label" data-i18n="phaseLabel">👇 いま必要な情報に絞り込む（タップで切替）</div>
+        <div class="phase-tabs" role="tablist">
+          <button type="button" class="phase-tab active" data-phase-btn="all" onclick="setStayPhase('all')" data-i18n="phaseAll">すべて表示</button>
+          <button type="button" class="phase-tab" data-phase-btn="arrival" onclick="setStayPhase('arrival')" data-i18n="phaseArrival">🛫 到着・入室</button>
+          <button type="button" class="phase-tab" data-phase-btn="stay" onclick="setStayPhase('stay')" data-i18n="phaseStay">🏠 滞在中・周辺</button>
+          <button type="button" class="phase-tab" data-phase-btn="checkout" onclick="setStayPhase('checkout')" data-i18n="phaseCheckout">🚪 退室・FAQ</button>
+        </div>
+      </div>
+
       <!-- Smart Check-in Alert -->
-      <div class="card" style="border-left: 4px solid var(--accent-gold);">
+      <div class="card" data-phase="arrival" style="border-left: 4px solid var(--accent-gold);">
         <div class="card-header" style="margin-bottom:8px; border:none; padding:0;">
           <div class="card-icon" style="background:rgba(212,175,55,0.15);"><svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
           <div>
@@ -1396,7 +1939,7 @@
       </div>
 
       <!-- Access & Location (Before Arrival) -->
-      <section id="access" class="card">
+      <section id="access" class="card" data-phase="arrival">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
           <div>
@@ -1473,7 +2016,7 @@
       </section>
 
       <!-- Check-in & Key -->
-      <section id="checkin" class="card">
+      <section id="checkin" class="card" data-phase="arrival">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
           <div>
@@ -1547,7 +2090,7 @@
       </section>
 
       <!-- Wi-Fi & Facilities -->
-      <section id="wifi" class="card" style="border-left: 4px solid var(--accent-gold);">
+      <section id="wifi" class="card" data-phase="arrival stay" style="border-left: 4px solid var(--accent-gold);">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3C6.95 3 2.55 5.4 0 9l2.25 3C4.24 9.1 7.89 7 12 7s7.76 2.1 9.75 5L24 9c-2.55-3.6-6.95-6-12-6zm0 6c-3.16 0-6.03 1.34-8.06 3.5L6.19 15.5C7.66 14 9.7 13 12 13s4.34 1 5.81 2.5l2.25-3C18.03 10.34 15.16 9 12 9zm0 6c-1.38 0-2.63.56-3.54 1.46L12 21l3.54-4.54C14.63 15.56 13.38 15 12 15z"/></svg></div>
           <div>
@@ -1557,15 +2100,12 @@
         </div>
 
         <div class="wifi-box">
-          <!-- QR Code Connect Area -->
-          <div style="display:flex; align-items:center; gap:16px; background:rgba(0,0,0,0.3); padding:14px; border-radius:var(--radius-sm); border:1px solid rgba(212,175,55,0.3);">
-            <div style="background:#fff; padding:6px; border-radius:8px; line-height:0; flex-shrink:0;">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&amp;data=WIFI%3AS%3AGuest_Room101_5G%3BT%3AWPA%3BP%3AKohamaStay101%3B%3B&amp;margin=2" alt="Wi-Fi QR Code" width="100" height="100" style="display:block; border-radius:4px;">
-            </div>
+          <div class="wifi-row" style="border-color: var(--accent-gold); background: rgba(212, 175, 55, 0.1);">
             <div>
-              <div style="font-weight:700; color:var(--accent-gold-light); font-size:0.95rem; margin-bottom:4px;" data-i18n="wifiQrTitle">📷 QRコードでかんたん接続</div>
-              <p style="font-size:0.82rem; color:var(--text-sub); line-height:1.5; margin:0;" data-i18n="wifiQrDesc">スマホの標準カメラでQRコードをかざすだけで、パスワード入力なしで高速5GHz Wi-Fiに自動接続できます。</p>
+              <div class="wifi-info-label" style="color: var(--accent-gold-light); font-weight: 700;" data-i18n="lblWifiPassword">Wi-Fi パスワード</div>
+              <div class="wifi-info-val" style="color: var(--accent-gold-light); font-size: 1.1rem;">KohamaStay101</div>
             </div>
+            <button class="copy-btn" style="background: var(--accent-gold); color: #000; font-weight: 700;" onclick="copyText('KohamaStay101')" data-i18n="btnCopy">コピー</button>
           </div>
 
           <div class="wifi-row">
@@ -1584,19 +2124,26 @@
             <button class="copy-btn" onclick="copyText('Guest_Room101_2_4G')" data-i18n="btnCopy">コピー</button>
           </div>
 
-          <div class="wifi-row">
-            <div>
-              <div class="wifi-info-label" data-i18n="lblWifiPassword">Wi-Fi パスワード</div>
-              <div class="wifi-info-val">KohamaStay101</div>
+          <!-- Collapsible QR Code Area for Secondary Devices -->
+          <details class="wifi-qr-details">
+            <summary class="wifi-qr-summary">
+              <span data-i18n="wifiQrToggle">📷 別端末で読み取る場合はこちら（QRコードを表示）</span>
+            </summary>
+            <div class="wifi-qr-body">
+              <div style="background:#fff; padding:6px; border-radius:8px; line-height:0; flex-shrink:0;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&amp;data=WIFI%3AS%3AGuest_Room101_5G%3BT%3AWPA%3BP%3AKohamaStay101%3B%3B&amp;margin=2" alt="Wi-Fi QR Code" width="100" height="100" style="display:block; border-radius:4px;">
+              </div>
+              <div>
+                <div style="font-weight:700; color:var(--accent-gold-light); font-size:0.92rem; margin-bottom:4px;" data-i18n="wifiQrTitle">📷 QRコードでかんたん接続</div>
+                <p style="font-size:0.82rem; color:var(--text-sub); line-height:1.5; margin:0;" data-i18n="wifiQrDesc">スマホの標準カメラでQRコードをかざすだけで、パスワード入力なしで高速5GHz Wi-Fiに自動接続できます。</p>
+              </div>
             </div>
-            <button class="copy-btn" onclick="copyText('KohamaStay101')" data-i18n="btnCopy">コピー</button>
-          </div>
+          </details>
         </div>
       </section>
 
-      <!-- Wi-Fi & Facilities -->
       <!-- House Manual Card -->
-      <section id="manual" class="card" style="border-left: 4px solid var(--accent-gold); background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(20,25,35,0.95));">
+      <section id="manual" class="card" data-phase="stay" style="border-left: 4px solid var(--accent-gold); background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(20,25,35,0.95));">
         <div class="card-header">
           <div class="card-icon" style="background:rgba(212,175,55,0.2); color:var(--accent-gold);">📖</div>
           <div>
@@ -1611,7 +2158,7 @@
       </section>
 
       <!-- Amenities & Items Quick Guide -->
-      <section id="amenities" class="card">
+      <section id="amenities" class="card" data-phase="stay">
         <div class="card-header">
           <div class="card-icon" style="background:rgba(212,175,55,0.15); color:var(--accent-gold);"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h1.5v3l1.5-1.5 1.5 1.5V5H17v6h-5V5zm-5 2h3v2H7V7zm0 4h3v2H7v-2zm0 4h10v2H7v-2z"/></svg></div>
           <div>
@@ -1620,11 +2167,11 @@
           </div>
         </div>
 
-        <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:16px;" data-i18n="amenitiesDesc">
+        <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:14px;" data-i18n="amenitiesDesc">
           「あれはどこにある？」と思った際にご確認ください。主な備品やお部屋のアメニティの保管場所です。
         </p>
 
-        <div class="rules-grid">
+        <div class="rules-grid amenities-grid" id="amenitiesGrid">
           <div class="rule-item">
             <div class="rule-icon" style="font-size:1.5rem;">💇</div>
             <div>
@@ -1657,7 +2204,7 @@
             </div>
           </div>
 
-          <div class="rule-item">
+          <div class="rule-item extra-amenity extra-item-collapsed">
             <div class="rule-icon" style="font-size:1.5rem;">🧴</div>
             <div>
               <div class="rule-title" data-i18n="amBathTitle">シャンプー・ソープ類</div>
@@ -1665,7 +2212,7 @@
             </div>
           </div>
 
-          <div class="rule-item">
+          <div class="rule-item extra-amenity extra-item-collapsed">
             <div class="rule-icon" style="font-size:1.5rem;">🧻</div>
             <div>
               <div class="rule-title" data-i18n="amPaperTitle">トイレットペーパー予備</div>
@@ -1673,7 +2220,7 @@
             </div>
           </div>
 
-          <div class="rule-item">
+          <div class="rule-item extra-amenity extra-item-collapsed">
             <div class="rule-icon" style="font-size:1.5rem;">👟</div>
             <div>
               <div class="rule-title" data-i18n="amSlippersTitle">室内スリッパ</div>
@@ -1681,7 +2228,7 @@
             </div>
           </div>
 
-          <div class="rule-item">
+          <div class="rule-item extra-amenity extra-item-collapsed">
             <div class="rule-icon" style="font-size:1.5rem;">👔</div>
             <div>
               <div class="rule-title" data-i18n="amClosetTitle">アイロン & 消臭スプレー</div>
@@ -1689,7 +2236,7 @@
             </div>
           </div>
 
-          <div class="rule-item">
+          <div class="rule-item extra-amenity extra-item-collapsed">
             <div class="rule-icon" style="font-size:1.5rem;">📺</div>
             <div>
               <div class="rule-title" data-i18n="amRemoteTitle">各種リモコン（エアコン / TV）</div>
@@ -1697,7 +2244,7 @@
             </div>
           </div>
 
-          <div class="rule-item">
+          <div class="rule-item extra-amenity extra-item-collapsed">
             <div class="rule-icon" style="font-size:1.5rem;">🍳</div>
             <div>
               <div class="rule-title" data-i18n="amKitchenTitle">キッチン備品 & 調理家電</div>
@@ -1705,7 +2252,7 @@
             </div>
           </div>
 
-          <div class="rule-item">
+          <div class="rule-item extra-amenity extra-item-collapsed">
             <div class="rule-icon" style="font-size:1.5rem;">🔌</div>
             <div>
               <div class="rule-title" data-i18n="amPowerTitle">電源・USB充電</div>
@@ -1713,7 +2260,7 @@
             </div>
           </div>
 
-          <div class="rule-item">
+          <div class="rule-item extra-amenity extra-item-collapsed">
             <div class="rule-icon" style="font-size:1.5rem;">☂️</div>
             <div>
               <div class="rule-title" data-i18n="amUmbrellaTitle">雨傘（無料貸出）</div>
@@ -1721,13 +2268,14 @@
             </div>
           </div>
         </div>
+        <button type="button" id="toggleAmenitiesBtn" class="collapse-toggle-btn" onclick="toggleExtraItems('amenities')" data-i18n="btnShowAllAmenities">▼ すべての備品・アメニティを見る（全12項目）</button>
       </section>
 
 
       <!-- House Rules -->
       
 
-      <section id="rules" class="card">
+      <section id="rules" class="card" data-phase="stay">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
           <div>
@@ -1780,7 +2328,7 @@
       </section>
 
       <!-- Nearby & Maps Search -->
-      <section id="nearby" class="card">
+      <section id="nearby" class="card" data-phase="stay">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5 0 2.61-3.5 6.5-3.5 6.5s-3.5-3.89-3.5-6.5C8.5 7.57 10.07 6 12 6z"/></svg></div>
           <div>
@@ -1882,7 +2430,7 @@
             <a href="https://www.google.com/maps/search/%E3%83%80%E3%82%A4%E3%82%B3%E3%82%AF%E3%83%89%E3%83%A9%E3%83%83%E3%82%B0+%E7%B2%89%E6%B5%9C%E9%A7%85%E5%89%8D%E5%BA%97/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchDrug">「ダイコクドラッグ」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card" data-category="food">
+          <div class="place-card extra-place extra-item-collapsed" data-category="food">
             <div>
               <div class="place-header">
                 <span class="place-emoji">🍽️</span>
@@ -1896,7 +2444,7 @@
             <a href="https://www.google.com/maps/search/%E6%B4%8B%E9%A3%9F%E3%82%84%E3%82%8D%E3%81%8F/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchFood">「洋食やろく」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card" data-category="food">
+          <div class="place-card extra-place extra-item-collapsed" data-category="food">
             <div>
               <div class="place-header">
                 <span class="place-emoji">🐙</span>
@@ -1910,7 +2458,7 @@
             <a href="https://www.google.com/maps/search/%E3%82%AD%E3%83%A3%E3%83%99%E3%83%84%E3%83%8F%E3%82%A6%E3%82%B9+%E7%B2%89%E6%B5%9C/@34.6128,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchTako">「キャベツハウス」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card" data-category="sight">
+          <div class="place-card extra-place extra-item-collapsed" data-category="sight">
             <div>
               <div class="place-header">
                 <span class="place-emoji">⛩️</span>
@@ -1924,7 +2472,7 @@
             <a href="https://www.google.com/maps/search/%E4%BD%8F%E5%90%89%E5%A4%A7%E7%A4%BE/@34.6133,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchShrine">「住吉大社」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card" data-category="food">
+          <div class="place-card extra-place extra-item-collapsed" data-category="food">
             <div>
               <div class="place-header">
                 <span class="place-emoji">☕</span>
@@ -1938,7 +2486,7 @@
             <a href="https://www.google.com/maps/search/%E5%96%AB%E8%8C%B6%E3%82%B5%E3%83%B3%E3%83%AD%E3%83%BC%E3%82%BA+%E7%B2%89%E6%B5%9C/@34.614,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchCafe">「喫茶サンローズ」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card" data-category="sight">
+          <div class="place-card extra-place extra-item-collapsed" data-category="sight">
             <div>
               <div class="place-header">
                 <span class="place-emoji">♨️</span>
@@ -1952,7 +2500,7 @@
             <a href="https://www.google.com/maps/search/%E6%97%A5%E4%B9%8B%E5%87%BA%E6%B8%A9%E6%B3%89+%E7%B2%89%E6%B5%9C/@34.616,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchOnsen">「日之出温泉」の地図を見る ↗</a>
           </div>
 
-          <div class="place-card" data-category="shop sight">
+          <div class="place-card extra-place extra-item-collapsed" data-category="shop sight">
             <div>
               <div class="place-header">
                 <span class="place-emoji">☔</span>
@@ -1966,6 +2514,7 @@
             <a href="https://www.google.com/maps/search/%E7%B2%89%E6%B5%9C%E5%95%86%E5%BA%97%E8%A1%97/@34.614,135.4925,17z" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btnSearchArcade">「粉浜商店街」の地図を見る ↗</a>
           </div>
         </div>
+        <button type="button" id="togglePlacesBtn" class="collapse-toggle-btn" onclick="toggleExtraItems('places')" data-i18n="btnShowAllPlaces">▼ 周辺スポットをすべて表示（全10件）</button>
 
         <!-- Late-Night Arrival / Dinner Info Box (#6) -->
         <div class="alert-box alert-info" style="margin-top:16px; align-items:flex-start;">
@@ -1978,7 +2527,7 @@
       </section>
 
       <!-- Route Map & Sightseeing Transit Guide (During Stay) -->
-      <section id="routemap" class="card">
+      <section id="routemap" class="card" data-phase="arrival stay">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></div>
           <div>
@@ -2075,7 +2624,7 @@
       </section>
 
       <!-- Culture & Etiquette Guide -->
-      <section class="card" style="background:linear-gradient(135deg, #18202c, #131b26);">
+      <section class="card" data-phase="stay" style="background:linear-gradient(135deg, #18202c, #131b26);">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
           <div>
@@ -2116,7 +2665,7 @@
       </section>
 
       <!-- Check-out Guide -->
-      <section id="checkout" class="card">
+      <section id="checkout" class="card" data-phase="checkout">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></div>
           <div>
@@ -2176,7 +2725,7 @@
       </section>
 
       <!-- FAQ & Emergency Help -->
-      <section id="faq" class="card">
+      <section id="faq" class="card" data-phase="arrival stay checkout">
         <div class="card-header">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg></div>
           <div>
@@ -2521,7 +3070,22 @@
     "lateDinnerTitle": "20:00以降の夕食・夜遅いご到着時の買い物ヒント:",
     "lateDinnerDesc": "粉浜商店街の店舗は19:30〜20:00頃に閉まりますが、<strong>スーパー「近商ストア住吉店」は21:50まで営業</strong>（お弁当・お惣菜あり）、<strong>「ローソン」は24時間営業</strong>です。また、玉出駅周辺や住吉大社駅周辺には夜遅くまで営業しているラーメン店・居酒屋もございます（Uber Eats等のデリバリーも利用可能です）。",
     "cul4Title": "阪堺電車（路面電車）の乗り方",
-    "cul4Desc": "<strong>後ろのドア</strong>から乗車し、降りる際に<strong>前の運賃箱</strong>でお支払いください（全区間均一運賃・ICカードまたは現金利用可）。"
+    "cul4Desc": "<strong>後ろのドア</strong>から乗車し、降りる際に<strong>前の運賃箱</strong>でお支払いください（全区間均一運賃・ICカードまたは現金利用可）。",
+    "phaseLabel": "👇 いま必要な情報に絞り込む（タップで切替）",
+    "phaseAll": "すべて表示",
+    "phaseArrival": "🛫 到着・入室",
+    "phaseStay": "🏠 滞在中・周辺",
+    "phaseCheckout": "🚪 退室・FAQ",
+    "btnShowAllAmenities": "▼ すべての備品・アメニティを見る（全12項目）",
+    "btnHideAmenities": "▲ 備品リストを折りたたむ",
+    "btnShowAllPlaces": "▼ 周辺スポットをすべて表示（全10件）",
+    "btnHidePlaces": "▲ 周辺スポットを折りたたむ",
+    "wifiQrToggle": "📷 別端末で読み取る場合はこちら（QRコードを表示）",
+    "bnavCheckin": "入室・鍵",
+    "bnavWifi": "Wi-Fi",
+    "bnavMap": "周辺・路線",
+    "bnavManual": "マニュアル",
+    "bnavMenu": "目次"
   },
   "en": {
     "navHome": "Home",
@@ -2789,7 +3353,22 @@
     "lateDinnerTitle": "Late Arrival & Dinner Tips (After 20:00):",
     "lateDinnerDesc": "While shops in Kohama Arcade close around 19:30–20:00, <strong>KINSHO Supermarket is open until 21:50</strong> (bento boxes & deli items available) and <strong>Lawson is open 24 hours</strong>. You can also find late-night ramen and izakaya spots around Tamade & Sumiyoshitaisha Stations (or order via Uber Eats).",
     "cul4Title": "How to Ride the Retro Streetcar (Hankai Tram)",
-    "cul4Desc": "Board from the <strong>REAR door</strong>, and pay the flat fare at the <strong>FRONT fare box</strong> near the driver when getting off (IC cards like ICOCA/Suica or cash accepted)."
+    "cul4Desc": "Board from the <strong>REAR door</strong>, and pay the flat fare at the <strong>FRONT fare box</strong> near the driver when getting off (IC cards like ICOCA/Suica or cash accepted).",
+    "phaseLabel": "👇 Filter Guide by Your Stay Stage",
+    "phaseAll": "All Guide",
+    "phaseArrival": "🛫 Arrival & Key",
+    "phaseStay": "🏠 Stay & Nearby",
+    "phaseCheckout": "🚪 Check-out & FAQ",
+    "btnShowAllAmenities": "▼ Show All 12 Room Amenities",
+    "btnHideAmenities": "▲ Collapse Amenities List",
+    "btnShowAllPlaces": "▼ Show All 10 Nearby Spots",
+    "btnHidePlaces": "▲ Collapse Nearby Spots",
+    "wifiQrToggle": "📷 Show Wi-Fi QR Code (to scan with another device)",
+    "bnavCheckin": "Check-in",
+    "bnavWifi": "Wi-Fi",
+    "bnavMap": "Map & Train",
+    "bnavManual": "Manual",
+    "bnavMenu": "Menu"
   },
   "zh": {
     "navHome": "首页·概要",
@@ -3057,7 +3636,22 @@
     "lateDinnerTitle": "20:00以后晚到及夜间觅食贴士:",
     "lateDinnerDesc": "粉滨商业街的店铺大多在19:30〜20:00左右关门，但<strong>超市“KINSHO 住吉店”营业至21:50</strong>（有便当与熟食），<strong>“Lawson便利店”24小时营业</strong>。此外，玉出站及住吉大社站周边也有营业至深夜的拉面店与居酒屋（也可使用Uber Eats外卖）。",
     "cul4Title": "复古有轨电车（阪堺电车）乘车方法",
-    "cul4Desc": "请从<strong>后门上车</strong>，下车时在靠近司机的<strong>前门投币箱</strong>付费（全线统一票价，支持ICOCA/Suica等交通卡或现金）。"
+    "cul4Desc": "请从<strong>后门上车</strong>，下车时在靠近司机的<strong>前门投币箱</strong>付费（全线统一票价，支持ICOCA/Suica等交通卡或现金）。",
+    "phaseLabel": "👇 按住宿阶段快速筛选指南",
+    "phaseAll": "全部显示",
+    "phaseArrival": "🛫 到达·入住",
+    "phaseStay": "🏠 住宿·周边",
+    "phaseCheckout": "🚪 退房·FAQ",
+    "btnShowAllAmenities": "▼ 查看全部12项客房用品与设施",
+    "btnHideAmenities": "▲ 收起客房用品列表",
+    "btnShowAllPlaces": "▼ 查看全部10处周边推荐地点",
+    "btnHidePlaces": "▲ 收起周边推荐列表",
+    "wifiQrToggle": "📷 显示 Wi-Fi 二维码（供其他设备扫码连接）",
+    "bnavCheckin": "入住·钥匙",
+    "bnavWifi": "Wi-Fi",
+    "bnavMap": "周边·路线",
+    "bnavManual": "房屋手册",
+    "bnavMenu": "目录"
   },
   "ko": {
     "navHome": "홈·개요",
@@ -3325,7 +3919,22 @@
     "lateDinnerTitle": "20:00 이후 늦은 도착 시 저녁 식사 & 쇼핑 팁:",
     "lateDinnerDesc": "고하마 상점가 점포들은 19:30~20:00경에 문을 닫지만, <strong>슈퍼마켓 'KINSHO 스미요시점'은 21:50까지 영업</strong>(도시락·반찬 구비)하며, <strong>'로손 편의점'은 24시간 영업</strong>합니다. 또한 다마데역 및 스미요시타이샤역 주변에는 늦게까지 영업하는 라멘집과 이자카야도 있습니다 (Uber Eats 배달 가능).",
     "cul4Title": "레트로 노면전차 (한카이 전차) 타는 법",
-    "cul4Desc": "<strong>뒷문으로 승차</strong>하시고, 내리실 때 기관사 옆 <strong>앞문 요금함</strong>에서 지불해 주세요 (전 구간 단일 요금·ICOCA/Suica 등 교통카드 및 현금 사용 가능)."
+    "cul4Desc": "<strong>뒷문으로 승차</strong>하시고, 내리실 때 기관사 옆 <strong>앞문 요금함</strong>에서 지불해 주세요 (전 구간 단일 요금·ICOCA/Suica 등 교통카드 및 현금 사용 가능).",
+    "phaseLabel": "👇 숙박 단계별 가이드 빠른 보기",
+    "phaseAll": "전체 보기",
+    "phaseArrival": "🛫 도착·체크인",
+    "phaseStay": "🏠 체류·주변",
+    "phaseCheckout": "🚪 퇴실·FAQ",
+    "btnShowAllAmenities": "▼ 객실 비품 12종 모두 보기",
+    "btnHideAmenities": "▲ 비품 목록 접기",
+    "btnShowAllPlaces": "▼ 주변 추천 스팟 10곳 모두 보기",
+    "btnHidePlaces": "▲ 주변 스팟 접기",
+    "wifiQrToggle": "📷 다른 기기로 스캔하기 (Wi-Fi QR코드 보기)",
+    "bnavCheckin": "체크인·열쇠",
+    "bnavWifi": "Wi-Fi",
+    "bnavMap": "주변·노선",
+    "bnavManual": "매뉴얼",
+    "bnavMenu": "목차"
   }
 };
 
@@ -3396,9 +4005,68 @@
       }
     }
 
+    let amenitiesExpanded = false;
+    let placesExpanded = false;
+
+    function setStayPhase(phase) {
+      document.querySelectorAll('.phase-tab').forEach(btn => {
+        if (btn.getAttribute('data-phase-btn') === phase) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      document.querySelectorAll('[data-phase]').forEach(sec => {
+        const phases = (sec.getAttribute('data-phase') || '').split(/\s+/);
+        if (phase === 'all' || phases.includes(phase)) {
+          sec.classList.remove('phase-hidden');
+        } else {
+          sec.classList.add('phase-hidden');
+        }
+      });
+    }
+
+    function toggleExtraItems(type, forceExpand) {
+      const data = i18nData[currentLang] || i18nData.ja;
+      if (type === 'amenities') {
+        amenitiesExpanded = typeof forceExpand === 'boolean' ? forceExpand : !amenitiesExpanded;
+        document.querySelectorAll('.extra-amenity').forEach(el => {
+          el.classList.toggle('extra-item-collapsed', !amenitiesExpanded);
+        });
+        const btn = document.getElementById('toggleAmenitiesBtn');
+        if (btn) {
+          const key = amenitiesExpanded ? 'btnHideAmenities' : 'btnShowAllAmenities';
+          btn.setAttribute('data-i18n', key);
+          if (data[key]) btn.innerHTML = data[key];
+        }
+      } else if (type === 'places') {
+        placesExpanded = typeof forceExpand === 'boolean' ? forceExpand : !placesExpanded;
+        document.querySelectorAll('.extra-place').forEach(el => {
+          el.classList.toggle('extra-item-collapsed', !placesExpanded);
+        });
+        const btn = document.getElementById('togglePlacesBtn');
+        if (btn) {
+          const key = placesExpanded ? 'btnHidePlaces' : 'btnShowAllPlaces';
+          btn.setAttribute('data-i18n', key);
+          if (data[key]) btn.innerHTML = data[key];
+        }
+      }
+    }
+
     function filterPlaces(category, btnEl) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       if (btnEl) btnEl.classList.add('active');
+      const toggleBtn = document.getElementById('togglePlacesBtn');
+      if (category !== 'all') {
+        document.querySelectorAll('.extra-place').forEach(el => el.classList.remove('extra-item-collapsed'));
+        if (toggleBtn) toggleBtn.style.display = 'none';
+      } else {
+        document.querySelectorAll('.extra-place').forEach(el => {
+          el.classList.toggle('extra-item-collapsed', !placesExpanded);
+        });
+        if (toggleBtn) toggleBtn.style.display = 'flex';
+      }
       document.querySelectorAll('.place-card').forEach(card => {
         const cats = (card.getAttribute('data-category') || '').split(/\s+/);
         if (category === 'all' || cats.includes(category)) {
@@ -3469,10 +4137,16 @@
       if (!link || link.id === 'viewerExtLink') return;
 
       const href = link.getAttribute('href');
-      if (href && href.startsWith('#') && link.classList.contains('nav-link')) {
-        document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-        link.classList.add('active');
-        toggleMobileMenu(false);
+      if (href && href.startsWith('#')) {
+        const targetEl = document.querySelector(href);
+        if (targetEl && targetEl.classList.contains('phase-hidden')) {
+          setStayPhase('all');
+        }
+        if (link.classList.contains('nav-link')) {
+          document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+          link.classList.add('active');
+          toggleMobileMenu(false);
+        }
         return;
       }
       if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:')) return;
